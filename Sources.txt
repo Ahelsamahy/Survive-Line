@@ -1,0 +1,3 @@
+deal with font: https://stackoverflow.com/questions/10077644/pygame-how-to-display-text-with-font-color
+
+draw sine wave: https://www.ericeastwood.com/blog/7/animated-sine-wave-two-ways-with-pygame-and-tkinter
