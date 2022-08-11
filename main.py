@@ -1,10 +1,9 @@
 import math
 import pygame
+import pygame.gfxdraw
 import time
 from numpy import random
 from defs import *
-
-
 
 
 def update_label(data, title, font, x, y, gameDisplay):
@@ -36,42 +35,63 @@ def run_game():
     surface.fill(background_color)
     running = True
 
-    label_font = pygame.font.Font("../Nexa-Light.otf", DATA_FONT_SIZE)
+    label_font = pygame.font.Font(
+        "./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
 
     clock = pygame.time.Clock()
-    lineGap=0
-    scoreCounter=0
+    lineGap = 0
+    scoreCounter = 0
     dt = 0
     gameTime = 0
+    CC = 0
 
     while running:
 
-        dt = clock.tick(FPS)
+        dt = clock.tick(30)
         gameTime += dt
 
         # Redraw the background
         surface.fill(background_color)
 
+        amplitude = 50  # in px
+
+        overallY = 300
         # Update sine wave
-        frequency = 1
+
+        # if (scoreCounter % 5 == 0):
+        #     frequency = random.randint(1, 6)
         
-        speed = 2
-        scoreCounter+=1
+        frequency = 1
+        speed = 1
+        scoreCounter += 1
+        matrix = {}
         print(scoreCounter)
-        if  (scoreCounter%20==0):
-            lineGap+=1
+        if (scoreCounter % 20 == 0):
+            lineGap += 1
             print("inside inside")
+        if (scoreCounter % 1 == 0) and CC<799:
+            CC += 1
+            
+        
+        for y in range(0, CC):
+            x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
+                    ((float(y)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
+            matrix[x] = y
+            for cordX, cordY in matrix.items():
+                pygame.gfxdraw.pixel(gameDisplay, cordX-50, cordY, (255, 255, 255))
+            pygame.display.flip()
 
-        for x in range(0, DISPLAY_H):
-            y = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
-                    ((float(x)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
-            # amplitude = random.randint(100)
-            surface.set_at((y-55-lineGap, x), (255,255,255))
-            surface.set_at((y-345+lineGap, x), (255,255,255))
+        if (scoreCounter % 1 == 0):
+            gameDisplay.blit(surface, (0, 0))
+            # surface.set_at((x-50-lineGap, y), (255,255,255))
+            # surface.set_at((x-350+lineGap, y), (255, 255, 255))
 
+        # for cordX,cordY in matrix.items():
+        #     pygame.gfxdraw.pixel(gameDisplay,cordX-50, cordY, (255, 255, 255))
+        # for x in range(0, DISPLAY_H):
 
         # Put the surface we draw on, onto the screen
-        gameDisplay.blit(surface, (0, 0))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -79,9 +99,7 @@ def run_game():
                 running = False
                 print("A key is pressed, will stop now\n")
 
-        update_data_labels(gameDisplay, dt, gameTime, label_font)
-
-        pygame.display.flip()
+        # update_data_labels(gameDisplay, dt, gameTime, label_font)
 
 
 if __name__ == "__main__":
