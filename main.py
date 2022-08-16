@@ -5,6 +5,15 @@ import time
 from numpy import random
 from defs import *
 from itertools import cycle
+from apscheduler.schedulers.background import BackgroundScheduler
+
+def print_t():
+  print("hey hey hey")
+
+sched = BackgroundScheduler()
+sched.add_job(print_t, 'interval', seconds =5)
+
+sched.start()
 
 
 
@@ -46,7 +55,8 @@ def run_game():
     dt = 0
     gameTime = 0
     CC = 0
-
+    y = 0
+    x=0
     while running:
 
         dt = clock.tick(30)
@@ -74,20 +84,20 @@ def run_game():
         if (scoreCounter % 20 == 0):
             lineGap += 1
             print("inside inside")
-        if (scoreCounter % 2 == 0) and CC < 799:
+        if (scoreCounter % 1 == 0) and CC < 799:
             CC += 1
-
-        for y in range(0, CC):
-            x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
-                    ((float(y)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
+            y += 1
+        # if (scoreCounter%30 ==0):
+        x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
+                                                   ((float(y)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
+        matrix[y][next(posX)] = x
+        matrix[y][next(posX)] = y
+        pygame.gfxdraw.pixel(gameDisplay, matrix[y][next(posX)]-55, matrix[y][next(posX)], (255, 255, 255))
             
-            matrix[y][next(posX)] = x
-            matrix[y][next(posX)] = y
+        # for show in range(0,DISPLAY_H):
+        #     pygame.gfxdraw.pixel(gameDisplay, matrix[y][next(posX)]-55, matrix[y][next(posX)]+show, (255, 255, 255))
             
-            # print(matrix[y][next(posX)], matrix[y][next(posX)])
-            # matrix[y,next(posX)]
-            pygame.gfxdraw.pixel(gameDisplay, matrix[y][next(posX)]-50, matrix[y][next(posX)], (255, 255, 255))
-            pygame.display.flip()
+        pygame.display.flip()
         # for y in range(0,DISPLAY_H):
         #     matrix[y,posX.next()]
         #     pygame.gfxdraw.pixel(gameDisplay, cordX-50, cordY, (255, 255, 255))

@@ -1,28 +1,24 @@
-to_dict = {}
+w, h = 2, 800
+Matrix = [[0 for x in range(w)] for y in range(h)]
 
-# multi_keys = ['Jennifer', 'potter', 'bill']
-# cordY = [1,2,3]
-# y =1
-# for keys in multi_keys:
-#         to_dict[keys] = y
-#         y+=1
-        
-matrix={}
-y =0
-for x in range (10):
-    matrix[x]=y
-    y+=1
-    
-print(*matrix.items(), sep='\n')
+Matrix[0][0] = 1
+Matrix[0][1]=359
+Matrix[0][2]=359
 
-print("Initialize dictionary multiple key-value : " + str(to_dict))
+print(Matrix[0][0])  
+print(Matrix[0][1])  
 
 
+# from array import *
+
+# t = [ [0]*2 for i in range(800)]
+# t[1][1]="tt"
+# for i in t:
+#     print(i)
 
 
-counter =0
+# print("Initialize dictionary multiple key-value : " + str(to_dict))
 
-matrix= dict.fromkeys(['company', 'revenue'])
 
 # print(matrix)
 
@@ -46,11 +42,11 @@ matrix= dict.fromkeys(['company', 'revenue'])
 # game_time = 0
 
 # pygame.init()
-# Make a window to show on
+# # Make a window to show on
 # gameDisplay = pygame.display.set_mode(
 #     (DISPLAY_W, DISPLAY_H))
 # pygame.display.set_caption('Survive line')
-# Make a surface to draw on
+# # Make a surface to draw on
 # surface = pygame.Surface((DISPLAY_W, DISPLAY_H))
 # surface.fill(background_color)
 # running = True
@@ -59,15 +55,15 @@ matrix= dict.fromkeys(['company', 'revenue'])
 #     dt = clock.tick(30)
 #     game_time += dt
 #     pygame.gfxdraw.line(gameDisplay, 60, 80, 130, 100, (255, 255, 255))
-#     pygame.draw.aaline(gameDisplay, (255, 255, 255), (60, 100), (130, 120))
+#     pygame.draw.aaline(gameDisplay, (255, 255, 255), (60, 100), (130, 120), blend=0)
 #     pygame.draw.line(gameDisplay, (255, 255, 255), (60, 120), (130, 140), width=6)
 #     no_pts = gameDisplay.get_width()
 
 #     x=100
 #     for x in range(50):
-#         pygame.gfxdraw.pixel(gameDisplay,60+x+1, 170+x/2, (255, 255, 255))
-#         pygame.gfxdraw.pixel(gameDisplay,60+x, 170+x/2, (255, 255, 255))
-#         pygame.gfxdraw.pixel(gameDisplay,60+x-1, 170+x/2, (255, 255, 255))
+#         pygame.gfxdraw.pixel(gameDisplay,60+x+1, 170+x, (255, 255, 255))
+#         pygame.gfxdraw.pixel(gameDisplay,60+x, 170+x, (255, 255, 255))
+#         pygame.gfxdraw.pixel(gameDisplay,60+x-1, 170+x, (255, 255, 255))
 
 #     pygame.display.update()
 #     for event in pygame.event.get():
