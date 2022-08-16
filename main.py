@@ -4,6 +4,8 @@ import pygame.gfxdraw
 import time
 from numpy import random
 from defs import *
+from itertools import cycle
+
 
 
 def update_label(data, title, font, x, y, gameDisplay):
@@ -60,26 +62,37 @@ def run_game():
 
         # if (scoreCounter % 5 == 0):
         #     frequency = random.randint(1, 6)
-        
+
         frequency = 1
         speed = 1
         scoreCounter += 1
-        matrix = {}
+        w, h = 2, DISPLAY_H
+        matrix = [[0 for x in range(w)] for y in range(h)]
+        posX = cycle(range(2))
+
         print(scoreCounter)
         if (scoreCounter % 20 == 0):
             lineGap += 1
             print("inside inside")
-        if (scoreCounter % 1 == 0) and CC<799:
+        if (scoreCounter % 2 == 0) and CC < 799:
             CC += 1
-            
-        
+
         for y in range(0, CC):
             x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
                     ((float(y)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
-            matrix[x] = y
-            for cordX, cordY in matrix.items():
-                pygame.gfxdraw.pixel(gameDisplay, cordX-50, cordY, (255, 255, 255))
+            
+            matrix[y][next(posX)] = x
+            matrix[y][next(posX)] = y
+            
+            # print(matrix[y][next(posX)], matrix[y][next(posX)])
+            # matrix[y,next(posX)]
+            pygame.gfxdraw.pixel(gameDisplay, matrix[y][next(posX)]-50, matrix[y][next(posX)], (255, 255, 255))
             pygame.display.flip()
+        # for y in range(0,DISPLAY_H):
+        #     matrix[y,posX.next()]
+        #     pygame.gfxdraw.pixel(gameDisplay, cordX-50, cordY, (255, 255, 255))
+
+        #     pygame.display.flip()
 
         if (scoreCounter % 1 == 0):
             gameDisplay.blit(surface, (0, 0))
