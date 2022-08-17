@@ -33,7 +33,15 @@ def update_data_labels(gameDisplay, dt, gameTime, font):
                          font, x_pos, y_pos + gap, gameDisplay)
 
 
-def run_game():
+def debug(SCORE_COUNTER, LINE_GAP, GAME_COUNTER):
+    global CORD_Y
+    print(SCORE_COUNTER)
+    if (SCORE_COUNTER % 20 == 0):
+        LINE_GAP += 1
+        print("Incremented line gap")
+    if (SCORE_COUNTER % 1 == 0) and GAME_COUNTER < 799:
+        GAME_COUNTER += 1
+        CORD_Y+=1
 
     pygame.init()
     # Make a window to show on
