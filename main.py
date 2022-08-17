@@ -7,13 +7,23 @@ from defs import *
 from itertools import cycle
 from apscheduler.schedulers.background import BackgroundScheduler
 
-def print_t():
-  print("hey hey hey")
 
-sched = BackgroundScheduler()
-sched.add_job(print_t, 'interval', seconds =5)
+clock = pygame.time.Clock()
+LINE_GAP = 0
+SCORE_COUNTER = 0
+DELTA_TIME = 0
+GAME_TIME = 0
+GAME_COUNTER = 0  # COUNTER
+CORD_Y= 0
+CORD_X= 0
+POINTS_MATRIX = [[0 for x in range(2)] for y in range(DISPLAY_H)]
+posX = cycle(range(2))
+pygame.init()
+# Make a window to show on
+GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H), pygame.NOFRAME)
+pygame.display.set_caption('Survive line')
 
-sched.start()
+label_font = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
 
 
 
