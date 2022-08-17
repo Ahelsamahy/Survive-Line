@@ -13,9 +13,11 @@ SCORE_COUNTER = 0
 DELTA_TIME = 0
 GAME_TIME = 0
 GAME_COUNTER = 0
+WAVE_AMPLITUDE = 50
+WAVE_FREQUENCY = 1
+WAVE_SPEED = 1
 CORD_Y = 0
 CORD_X = 0
-Y_AXIS_INCREMENT = 0
 POINTS_MATRIX = [[0 for x in range(2)] for y in range(DISPLAY_H)]
 posX = cycle(range(2))
 pygame.init()
@@ -47,21 +49,25 @@ def generateWave():
         CORD_Y += 1
     else:
         CORD_Y = 0
-    amplitude = 50
-    frequency = 1
-    speed = int(FPS/30)
-    x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
-            ((float(CORD_Y)/-DISPLAY_W)*(2*math.pi) + (speed*time.time()))))
+    
+    x = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
+            ((float(CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
     POINTS_MATRIX[CORD_Y][next(posX)] = x
     POINTS_MATRIX[CORD_Y][next(posX)] = -SCORE_COUNTER
 
+def changeWave():
+    global FPS, LINE_GAP
+    if(SCORE_COUNTER %100 ==0) and FPS < 120:
+        FPS+=2
+        print("asd;lgsagoasf")
+    if (SCORE_COUNTER % 20 == 0):
+        LINE_GAP += 1
+        print("Incremented line gap")    
 
 def debug(SCORE_COUNTER, LINE_GAP):
     global CORD_Y
     print(SCORE_COUNTER)
-    if (SCORE_COUNTER % 20 == 0):
-        LINE_GAP += 1
-        print("Incremented line gap")
+
 
 
 def run_game():
@@ -75,13 +81,11 @@ def run_game():
         # GAME_TIME += DELTA_TIME
         surface.fill(background_color)
 
-        # if (scoreCounter % 5 == 0):
-        #     frequency = random.randint(1, 6)
-
         global SCORE_COUNTER, GAME_COUNTER
         SCORE_COUNTER += 1
         debug(SCORE_COUNTER, LINE_GAP)
 
+        changeWave()
         generateWave()
 
         for Y_CORD in range(800):
