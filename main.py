@@ -42,6 +42,16 @@ def update_data_labels(gameDisplay, dt, gameTime, font):
     y_pos = update_label(round(gameTime/1000, 2), 'Game time',
                          font, x_pos, y_pos + gap, gameDisplay)
 
+def generateWave():
+    amplitude = 50
+    overallY = 300
+    frequency = 1
+    speed = 1
+
+    x = int((DISPLAY_H/2) + amplitude*math.sin(frequency *
+            ((float(CORD_Y)/-DISPLAY_W+50)*(2*math.pi) + (speed*time.time()))))
+    POINTS_MATRIX[CORD_Y][next(posX)] = x
+    POINTS_MATRIX[CORD_Y][next(posX)] = CORD_Y
 
 def debug(SCORE_COUNTER, LINE_GAP, GAME_COUNTER):
     global CORD_Y
