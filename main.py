@@ -66,10 +66,15 @@ def generateWave():
         CORD_Y += 1
     else:
         CORD_Y = 0
-    
-    x = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
-            ((float(CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
-    POINTS_MATRIX[CORD_Y][next(posX)] = x
+
+    CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
+                 ((float(CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+    if CORD_X-50-WAVE_GAP > DISPLAY_W:
+        CORD_X = DISPLAY_W+50+WAVE_GAP
+    elif (CORD_X < DISPLAY_W//2):
+        CORD_X = DISPLAY_W//2
+
+    POINTS_MATRIX[CORD_Y][next(posX)] = CORD_X
     POINTS_MATRIX[CORD_Y][next(posX)] = -SCORE_COUNTER
 
 
