@@ -8,11 +8,13 @@ from itertools import cycle
 
 clock = pygame.time.Clock()
 WHITE = (255, 255, 255)
-LINE_GAP = 0
+WAVE_GAP = 0
 SCORE_COUNTER = 0
 DELTA_TIME = 0
 GAME_TIME = 0
 GAME_COUNTER = 0
+GAME_SPEED = 2
+
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
@@ -96,10 +98,9 @@ def changeWave():
         WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
 
 
-def debug(SCORE_COUNTER, LINE_GAP):
+def debug(SCORE_COUNTER, WAVE_GAP):
     global CORD_Y
     print(SCORE_COUNTER)
-
 
 
 def run_game():
@@ -115,8 +116,9 @@ def run_game():
 
         global SCORE_COUNTER, GAME_COUNTER
         SCORE_COUNTER += 1
-        debug(SCORE_COUNTER, LINE_GAP)
+        debug(SCORE_COUNTER, WAVE_GAP)
 
+        changeSpeed()
         changeWave()
         generateWave()
 
