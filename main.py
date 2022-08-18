@@ -82,13 +82,14 @@ def changeSpeed():
 
 
 def changeWave():
-    global FPS, LINE_GAP
-    if(SCORE_COUNTER %100 ==0) and FPS < 120:
-        FPS+=2
-        print("asd;lgsagoasf")
-    if (SCORE_COUNTER % 20 == 0):
-        LINE_GAP += 1
-        print("Incremented line gap")    
+    global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED, WAVE_GAP
+    if (SCORE_COUNTER % 10 == 0) and WAVE_GAP < 60:
+        WAVE_GAP += 1
+        print("Incremented line gap")
+    if (SCORE_COUNTER % 100 == 0):
+        # WAVE_FREQUENCY = random.randint(1, 6)
+        WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
+
 
 def debug(SCORE_COUNTER, LINE_GAP):
     global CORD_Y
