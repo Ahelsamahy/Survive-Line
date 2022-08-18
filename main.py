@@ -72,6 +72,15 @@ def generateWave():
     POINTS_MATRIX[CORD_Y][next(posX)] = x
     POINTS_MATRIX[CORD_Y][next(posX)] = -SCORE_COUNTER
 
+
+def changeSpeed():
+    global FPS, WAVE_GAP, GAME_SPEED
+    if(SCORE_COUNTER % (100 * (GAME_SPEED//2)) == 0) and FPS < 120:
+        FPS += 2
+        GAME_SPEED *= GAME_SPEED
+        print("incremented speed of game")
+
+
 def changeWave():
     global FPS, LINE_GAP
     if(SCORE_COUNTER %100 ==0) and FPS < 120:
