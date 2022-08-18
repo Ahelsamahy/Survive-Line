@@ -44,7 +44,24 @@ def update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, font):
 
 
 def generateWave():
-    global CORD_Y
+    global CORD_Y, CORD_X, SCORE_COUNTER
+    if (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0] > 1):
+        gap = POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0]-1
+        if CORD_Y + (gap) > DISPLAY_H-1:
+            gap = DISPLAY_H - CORD_Y -1 
+        POINTS_MATRIX[CORD_Y + (gap)][0] = POINTS_MATRIX[CORD_Y][0]
+        POINTS_MATRIX[CORD_Y + (gap)][1] = POINTS_MATRIX[CORD_Y][1]
+        POINTS_MATRIX[CORD_Y][0] = POINTS_MATRIX[CORD_Y][1] = 0
+
+        print(POINTS_MATRIX[CORD_Y-1][0], POINTS_MATRIX[CORD_Y+gap][0])
+        insideY = CORD_Y
+        for x in range(POINTS_MATRIX[CORD_Y-1][0]-1, POINTS_MATRIX[CORD_Y+gap][0], -(gap//gap)):
+            POINTS_MATRIX[insideY][next(posX)] = x
+            POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER
+            if insideY<799:
+                insideY+=1
+            # SCORE_COUNTER+=1
+
     if CORD_Y < DISPLAY_H-1:
         CORD_Y += 1
     else:
