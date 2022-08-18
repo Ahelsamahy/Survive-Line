@@ -89,7 +89,10 @@ def run_game():
         generateWave()
 
         for Y_CORD in range(800):
-            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(posX)]-55, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WHITE)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-55-WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WHITE)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-350+WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WHITE)
         pygame.display.flip()
 
         if (SCORE_COUNTER % 1 == 0):
