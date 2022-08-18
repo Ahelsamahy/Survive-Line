@@ -1,4 +1,5 @@
 import math
+from textwrap import fill
 import pygame
 import pygame.gfxdraw
 import time
@@ -45,25 +46,52 @@ def update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, font):
                          font, x_pos, y_pos + gap, GAME_DISPLAY)
 
 
-def generateWave():
-    global CORD_Y, CORD_X, SCORE_COUNTER
-    if (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0] > 1):
-        gap = POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0]-1
+def fillGap(gap, gapDirection):
+    # gapDirection to right is true, left is false
+    insideY = CORD_Y
+    if gap == 0:
+        gap == 1
+    if(gapDirection):
         if CORD_Y + (gap) > DISPLAY_H-1:
-            gap = DISPLAY_H - CORD_Y -1 
+            gap = DISPLAY_H - CORD_Y - 1
         POINTS_MATRIX[CORD_Y + (gap)][0] = POINTS_MATRIX[CORD_Y][0]
         POINTS_MATRIX[CORD_Y + (gap)][1] = POINTS_MATRIX[CORD_Y][1]
         POINTS_MATRIX[CORD_Y][0] = POINTS_MATRIX[CORD_Y][1] = 0
-
         print(POINTS_MATRIX[CORD_Y-1][0], POINTS_MATRIX[CORD_Y+gap][0])
-        insideY = CORD_Y
+        for x in range(POINTS_MATRIX[CORD_Y-1][0]+1, POINTS_MATRIX[CORD_Y+gap][0], (gap//gap)):
+            POINTS_MATRIX[insideY][next(posX)] = x
+            POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER+1
+            if insideY < 799:
+                insideY += 1
+    else:
+        if CORD_Y + (gap) > DISPLAY_H-1:
+            gap = DISPLAY_H - CORD_Y - 1
+        POINTS_MATRIX[CORD_Y + (gap)][0] = POINTS_MATRIX[CORD_Y][0]
+        POINTS_MATRIX[CORD_Y + (gap)][1] = POINTS_MATRIX[CORD_Y][1]
+        POINTS_MATRIX[CORD_Y][0] = POINTS_MATRIX[CORD_Y][1] = 0
+        print(POINTS_MATRIX[CORD_Y-1][0], POINTS_MATRIX[CORD_Y+gap][0])
         for x in range(POINTS_MATRIX[CORD_Y-1][0]-1, POINTS_MATRIX[CORD_Y+gap][0], -(gap//gap)):
             POINTS_MATRIX[insideY][next(posX)] = x
             POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER
-            if insideY<799:
-                insideY+=1
-            # SCORE_COUNTER+=1
+            if insideY < 799:
+                insideY += 1
+    print("Moved a point")
 
+
+def checkGap():
+    # gapDirection = True  # to right is true, left is false
+    if (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0] > 2):
+        gap = (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0])-1
+        fillGap(gap, False)
+    elif(POINTS_MATRIX[CORD_Y][0] - POINTS_MATRIX[CORD_Y-1][0] > 1) and (CORD_Y not in {1, 2, 3}):
+        gap = (POINTS_MATRIX[CORD_Y][0] - POINTS_MATRIX[CORD_Y-1][0]) - 1
+        fillGap(gap, True)
+        print("Gap between the left point and next right point is: " +str( gap))
+
+
+def generateWave():
+    global CORD_Y, CORD_X, SCORE_COUNTER
+    checkGap()
     if CORD_Y < DISPLAY_H-1:
         CORD_Y += 1
     else:
