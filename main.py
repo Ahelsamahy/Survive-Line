@@ -9,6 +9,7 @@ from itertools import cycle
 
 clock = pygame.time.Clock()
 WHITE = (255, 255, 255)
+WAVE_COLOUR= (178, 190, 181)
 WAVE_GAP = 0
 SCORE_COUNTER = 0
 DELTA_TIME = 0
@@ -19,8 +20,8 @@ GAME_SPEED = 2
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
-CORD_Y = 0
-CORD_X = 0
+WAVE_CORD_Y = 0
+WAVE_CORD_X = 0
 POINTS_MATRIX = [[0 for x in range(2)] for y in range(DISPLAY_H)]
 posX = cycle(range(2))
 pygame.init()
@@ -48,29 +49,31 @@ def update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, font):
 
 def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
-    insideY = CORD_Y
+    global WAVE_CORD_Y
+    if WAVE_CORD_Y % 799 == 0:
+        WAVE_CORD_Y = 1
+    if WAVE_CORD_Y + (gap) > DISPLAY_H-1:
+        gap = DISPLAY_H - WAVE_CORD_Y - 1
     if gap == 0:
-        gap == 1
+        gap = 1
+    insideY = WAVE_CORD_Y
+
     if(gapDirection):
-        if CORD_Y + (gap) > DISPLAY_H-1:
-            gap = DISPLAY_H - CORD_Y - 1
-        POINTS_MATRIX[CORD_Y + (gap)][0] = POINTS_MATRIX[CORD_Y][0]
-        POINTS_MATRIX[CORD_Y + (gap)][1] = POINTS_MATRIX[CORD_Y][1]
-        POINTS_MATRIX[CORD_Y][0] = POINTS_MATRIX[CORD_Y][1] = 0
-        print(POINTS_MATRIX[CORD_Y-1][0], POINTS_MATRIX[CORD_Y+gap][0])
-        for x in range(POINTS_MATRIX[CORD_Y-1][0]+1, POINTS_MATRIX[CORD_Y+gap][0], (gap//gap)):
+        POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
+        POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
+        POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
+        print(POINTS_MATRIX[WAVE_CORD_Y-1][0], POINTS_MATRIX[WAVE_CORD_Y+gap][0])
+        for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]+1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], (gap//gap)):
             POINTS_MATRIX[insideY][next(posX)] = x
             POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER+1
             if insideY < 799:
                 insideY += 1
     else:
-        if CORD_Y + (gap) > DISPLAY_H-1:
-            gap = DISPLAY_H - CORD_Y - 1
-        POINTS_MATRIX[CORD_Y + (gap)][0] = POINTS_MATRIX[CORD_Y][0]
-        POINTS_MATRIX[CORD_Y + (gap)][1] = POINTS_MATRIX[CORD_Y][1]
-        POINTS_MATRIX[CORD_Y][0] = POINTS_MATRIX[CORD_Y][1] = 0
-        print(POINTS_MATRIX[CORD_Y-1][0], POINTS_MATRIX[CORD_Y+gap][0])
-        for x in range(POINTS_MATRIX[CORD_Y-1][0]-1, POINTS_MATRIX[CORD_Y+gap][0], -(gap//gap)):
+        POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
+        POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
+        POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
+        print(POINTS_MATRIX[WAVE_CORD_Y-1][0], POINTS_MATRIX[WAVE_CORD_Y+gap][0])
+        for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]-1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], -(gap//gap)):
             POINTS_MATRIX[insideY][next(posX)] = x
             POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER
             if insideY < 799:
@@ -80,32 +83,34 @@ def fillGap(gap, gapDirection):
 
 def checkGap():
     # gapDirection = True  # to right is true, left is false
-    if (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0] > 2):
-        gap = (POINTS_MATRIX[CORD_Y-1][0]-POINTS_MATRIX[CORD_Y][0])-1
+    if (POINTS_MATRIX[WAVE_CORD_Y-1][0]-POINTS_MATRIX[WAVE_CORD_Y][0] > 1):
+        gap = (POINTS_MATRIX[WAVE_CORD_Y-1][0]-POINTS_MATRIX[WAVE_CORD_Y][0])-1
         fillGap(gap, False)
-    elif(POINTS_MATRIX[CORD_Y][0] - POINTS_MATRIX[CORD_Y-1][0] > 1) and (CORD_Y not in {1, 2, 3}):
-        gap = (POINTS_MATRIX[CORD_Y][0] - POINTS_MATRIX[CORD_Y-1][0]) - 1
+    elif(POINTS_MATRIX[WAVE_CORD_Y][0] - POINTS_MATRIX[WAVE_CORD_Y-1][0] > 1) and (WAVE_CORD_Y not in {1, 2, 3}):
+        gap = (POINTS_MATRIX[WAVE_CORD_Y][0] - POINTS_MATRIX[WAVE_CORD_Y-1][0]) - 1
         fillGap(gap, True)
-        print("Gap between the left point and next right point is: " +str( gap))
 
 
 def generateWave():
-    global CORD_Y, CORD_X, SCORE_COUNTER
+    global WAVE_CORD_Y, WAVE_CORD_X, SCORE_COUNTER
     checkGap()
-    if CORD_Y < DISPLAY_H-1:
-        CORD_Y += 1
+    if WAVE_CORD_Y < DISPLAY_H-1:
+        WAVE_CORD_Y += 1
     else:
-        CORD_Y = 0
+        WAVE_CORD_Y = 0
 
-    CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
-                 ((float(CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
-    if CORD_X-50-WAVE_GAP > DISPLAY_W:
-        CORD_X = DISPLAY_W+50+WAVE_GAP
-    elif (CORD_X < DISPLAY_W//2):
-        CORD_X = DISPLAY_W//2
+    WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
+                 ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+    if WAVE_CORD_X-WAVE_AMPLITUDE-WAVE_GAP > DISPLAY_W:
+        WAVE_CORD_X = DISPLAY_W+50+WAVE_GAP
+    elif WAVE_CORD_X-350-WAVE_GAP > DISPLAY_W:
+        WAVE_CORD_X = DISPLAY_W+350+WAVE_GAP
 
-    POINTS_MATRIX[CORD_Y][next(posX)] = CORD_X
-    POINTS_MATRIX[CORD_Y][next(posX)] = -SCORE_COUNTER
+    if (WAVE_CORD_X < DISPLAY_W//2):
+        WAVE_CORD_X = DISPLAY_W//2
+
+    POINTS_MATRIX[WAVE_CORD_Y][next(posX)] = WAVE_CORD_X
+    POINTS_MATRIX[WAVE_CORD_Y][next(posX)] = -SCORE_COUNTER
 
 
 def changeSpeed():
@@ -121,13 +126,12 @@ def changeWave():
     if (SCORE_COUNTER % 10 == 0) and WAVE_GAP < 60:
         WAVE_GAP += 1
         print("Incremented line gap")
-    if (SCORE_COUNTER % 100 == 0):
+    if (SCORE_COUNTER % 101 == 0):
         # WAVE_FREQUENCY = random.randint(1, 6)
         WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
 
 
-def debug(SCORE_COUNTER, WAVE_GAP):
-    global CORD_Y
+def debug(SCORE_COUNTER):
     print(SCORE_COUNTER)
 
 
@@ -151,20 +155,33 @@ def run_game():
         generateWave()
 
         for Y_CORD in range(800):
+            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+            #     posX)]-55-WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-                posX)]-55-WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WHITE)
+                posX)]-55-WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-                posX)]-350+WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WHITE)
-        pygame.display.flip()
+                posX)]-55-WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+
+            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+            #     posX)]-350+WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-350+WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-350+WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+
+
 
         if (SCORE_COUNTER % 1 == 0):
             GAME_DISPLAY.blit(surface, (0, 0))
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if (event.type == pygame.QUIT):
                 running = False
+
             elif event.type == pygame.KEYDOWN:
-                running = False
-                print("A key is pressed, will stop now\n")
+                if(event.key == pygame.K_ESCAPE):
+                    running = False
+                    print("ESC key is pressed, will stop now\n")
+                if event.key == pygame.K_RIGHT:
 
         # update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, label_font)
 
