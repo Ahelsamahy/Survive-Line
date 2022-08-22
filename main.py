@@ -34,23 +34,20 @@ pygame.init()
 GAME_DISPLAY = pygame.display.set_mode(
     (DISPLAY_W, DISPLAY_H), pygame.NOFRAME)  # Make a window to show on
 pygame.display.set_caption('Survive line')
-label_font = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
+SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
 
 
-def update_label(data, title, font, x, y, GAME_DISPLAY):
-    label = font.render('{} {}'.format(title, data), 1, DATA_FONT_COLOR)
+def update_label(data, font, x, y, GAME_DISPLAY):
+    label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
     GAME_DISPLAY.blit(label, (x, y))
     return y
 
 
-def update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, font):
+def update_data_labels(GAME_DISPLAY, font):
     y_pos = 10
     gap = 30
-    x_pos = 10
-    y_pos = update_label(round(1000/DELTA_TIME, 2), 'FPS', font,
-                         x_pos, y_pos + gap, GAME_DISPLAY)
-    y_pos = update_label(round(GAME_TIME/1000, 2), 'Game time',
-                         font, x_pos, y_pos + gap, GAME_DISPLAY)
+    x_pos = DISPLAY_W//2
+    y_pos = update_label(round(SCORE_COUNTER/100),font, x_pos, y_pos + gap, GAME_DISPLAY)
 
 
 def fillGap(gap, gapDirection):
@@ -208,7 +205,7 @@ def run_game():
         if (SCORE_COUNTER % 1 == 0):
             GAME_DISPLAY.blit(surface, (0, 0))
 
-        # update_data_labels(GAME_DISPLAY, DELTA_TIME, GAME_TIME, label_font)
+        update_data_labels(GAME_DISPLAY, SCORE_FONT)
 
 
 if __name__ == "__main__":
