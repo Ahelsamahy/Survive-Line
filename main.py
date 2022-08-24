@@ -155,6 +155,34 @@ def moveCircle():
         BALL_CORD_X -= BALL_MOVE_SPEED
 
 
+
+def optionsMenu():
+    pygame.init()
+
+    while TRUE:
+        SCREEN.fill(background_color)
+        windowX, windowY = 300, 200
+        startBorderX, startBorderY = DISPLAY_W//2-windowX//2, DISPLAY_H//2-windowY//2
+        pygame.draw.rect(SCREEN, "white", pygame.Rect(
+            startBorderX, startBorderY, windowX, windowY),  2)
+        update_label("I don't own the copyright for the songs", NORMAL_FONT,
+                     startBorderX+windowX//10, startBorderY+windowY-30, GAME_DISPLAY)
+        pygame.display.update()
+
+        GAME_DISPLAY.blit(SCREEN, (0, 0))
+        for event in pygame.event.get():
+            if (event.type == pygame.QUIT):
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if(event.key == pygame.K_ESCAPE):
+                    print("ESC key is pressed, will stop now\n")
+                    pygame.quit()
+                    sys.exit()
+                elif event.key == pygame.K_BACKSPACE:
+                    run_game()
+
+
 def run_game():
     # Make a surface to draw on
     surface = pygame.Surface((DISPLAY_W, DISPLAY_H))
