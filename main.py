@@ -155,6 +155,14 @@ def moveCircle():
         BALL_CORD_X -= BALL_MOVE_SPEED
 
 
+def collision():
+    ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
+    for x in range(540, 560):
+        afterCalculations = POINTS_MATRIX[x][0]-55-WAVE_GAP
+        if 0 < (ball.right - afterCalculations) < 10:
+            print("hit from " + str(afterCalculations))
+
+
 
 def optionsMenu():
     pygame.init()
@@ -202,6 +210,15 @@ def run_game():
         changeWave()
         generateWave()
 
+        # color = WAVE_COLOUR
+        # for inside in range(800):
+        #     if inside in range(500, 570):
+        #         color = (255, 0, 0)
+        #     pygame.gfxdraw.pixel(
+        #         GAME_DISPLAY, POINTS_MATRIX[inside][0]-55-WAVE_GAP, POINTS_MATRIX[inside][1]+SCORE_COUNTER, color)
+
+        # so i want to reach a fixed point in the screen that will be the collision area.
+
         for Y_CORD in range(800):
             # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
             #     posX)]-55-WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
@@ -227,6 +244,7 @@ def run_game():
 
         moveCircle()
         drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
+        # collision()
 
         pygame.display.flip()
 
