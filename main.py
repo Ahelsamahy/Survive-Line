@@ -163,6 +163,20 @@ def collision():
             print("hit from " + str(afterCalculations))
 
 
+def ballParticles():
+    # [loc, velocity, timer]
+    PARTICLES.append([[BALL_CORD_X, BALL_CORD_Y], [
+                     random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6)])
+
+    for particle in PARTICLES:
+        particle[0][0] -= particle[1][0]
+        particle[0][1] -= particle[1][1]
+        particle[2] -= 0.1
+
+        pygame.draw.circle(GAME_DISPLAY, (255, 255, 255), [int(
+            particle[0][0]), int(particle[0][1])], int(particle[2]))
+        if particle[2] <= 0:
+            PARTICLES.remove(particle)
 
 def backgroundMusic():
     directory = "./usedMaterial/Music/"
@@ -249,6 +263,7 @@ def run_game():
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
                 posX)]-350+WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
 
+        ballParticles()
         for event in pygame.event.get():
             if (event.type == pygame.QUIT):
                 running = False
