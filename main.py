@@ -31,7 +31,7 @@ BALL_MOVE_SPEED = 3
 BALL_RADIUS = 12
 
 pygame.init()
-GAME_DISPLAY = pygame.display.set_mode(
+pygame.mixer.pre_init(44100, -16, 2, 512)
     (DISPLAY_W, DISPLAY_H), pygame.NOFRAME)  # Make a window to show on
 pygame.display.set_caption('Survive line')
 SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
@@ -164,6 +164,21 @@ def collision():
 
 
 
+def backgroundMusic():
+    directory = "./usedMaterial/Music/"
+    playList={}
+
+    for file in os.listdir(directory):
+         filename = os.fsdecode(file)
+         if filename.endswith(".mp3"):
+            playList[os.path.join(directory, filename)]=filename[:-4]
+            continue
+         else:
+             continue
+    backgroundMusicDir = (list(playList.keys())[1])[1:]
+    pygame.mixer.music.load(os.path.abspath(os.getcwd())+backgroundMusicDir)
+    pygame.mixer.music.play(-1,0.0)
+
 def optionsMenu():
     pygame.init()
 
@@ -255,4 +270,5 @@ def run_game():
 
 
 if __name__ == "__main__":
+    backgroundMusic()
     run_game()
