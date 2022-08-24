@@ -1,4 +1,6 @@
+import sys,os
 import math
+from pickle import TRUE
 from textwrap import fill
 import pygame
 import pygame.gfxdraw
@@ -8,6 +10,8 @@ from defs import *
 from itertools import cycle
 
 clock = pygame.time.Clock()
+SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
+
 WHITE = (255, 255, 255)
 WAVE_COLOUR = (178, 190, 181)
 WAVE_GAP = 0
@@ -16,6 +20,8 @@ DELTA_TIME = 0
 GAME_TIME = 0
 GAME_COUNTER = 0
 GAME_SPEED = 2
+# [loc, velocity, timer]
+PARTICLES = []
 
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
@@ -27,14 +33,16 @@ posX = cycle(range(2))
 
 BALL_CORD_Y = 550
 BALL_CORD_X = DISPLAY_W//2
-BALL_MOVE_SPEED = 3
+BALL_MOVE_SPEED = 5
 BALL_RADIUS = 12
 
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
-    (DISPLAY_W, DISPLAY_H), pygame.NOFRAME)  # Make a window to show on
+# Make a window to show on [, pygame.NOFRAME]
+GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 pygame.display.set_caption('Survive line')
 SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
+NORMAL_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 12)
 
 
 def update_label(data, font, x, y, GAME_DISPLAY):
@@ -47,7 +55,8 @@ def update_data_labels(GAME_DISPLAY, font):
     y_pos = 10
     gap = 30
     x_pos = DISPLAY_W//2
-    y_pos = update_label(round(SCORE_COUNTER/100),font, x_pos, y_pos + gap, GAME_DISPLAY)
+    y_pos = update_label(round(SCORE_COUNTER/100), font,
+                         x_pos, y_pos + gap, GAME_DISPLAY)
 
 
 def fillGap(gap, gapDirection):
@@ -65,8 +74,8 @@ def fillGap(gap, gapDirection):
         POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
         POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
         POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
-        print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
-              POINTS_MATRIX[WAVE_CORD_Y+gap][0])
+        # print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
+        #   POINTS_MATRIX[WAVE_CORD_Y+gap][0])
         for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]+1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], (gap//gap)):
             POINTS_MATRIX[insideY][next(posX)] = x
             POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER+1
@@ -76,8 +85,8 @@ def fillGap(gap, gapDirection):
         POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
         POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
         POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
-        print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
-              POINTS_MATRIX[WAVE_CORD_Y+gap][0])
+        # print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
+        #       POINTS_MATRIX[WAVE_CORD_Y+gap][0])
         for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]-1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], -(gap//gap)):
             POINTS_MATRIX[insideY][next(posX)] = x
             POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER
@@ -106,7 +115,7 @@ def generateWave():
         WAVE_CORD_Y = 0
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
-                                                              ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+                      ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
     if WAVE_CORD_X-WAVE_AMPLITUDE-WAVE_GAP > DISPLAY_W:
         WAVE_CORD_X = DISPLAY_W+50+WAVE_GAP
     elif WAVE_CORD_X-350-WAVE_GAP > DISPLAY_W:
@@ -141,9 +150,9 @@ def debug(SCORE_COUNTER):
     print(SCORE_COUNTER)
 
 
-def drawCircle(surface, x, y, radius, color):
-    pygame.gfxdraw.aacircle(surface, x, y, radius, color)
-    pygame.gfxdraw.filled_circle(surface, x, y, radius, color)
+def drawCircle(SCREEN, x, y, radius, color):
+    pygame.gfxdraw.aacircle(SCREEN, x, y, radius, color)
+    pygame.gfxdraw.filled_circle(SCREEN, x, y, radius, color)
 
 
 def moveCircle():
@@ -221,19 +230,18 @@ def optionsMenu():
 
 
 def run_game():
-    # Make a surface to draw on
-    surface = pygame.Surface((DISPLAY_W, DISPLAY_H))
-    surface.fill(background_color)
-    running = True
+    # Make a SCREEN to draw on
 
+    running = True
+    GAP_PERIOD = 0
     while running:
         DELTA_TIME = clock.tick(FPS)
         # GAME_TIME += DELTA_TIME
-        surface.fill(background_color)
+        SCREEN.fill(background_color)
 
         global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y
         SCORE_COUNTER += 1
-        debug(SCORE_COUNTER)
+        # debug(SCORE_COUNTER)
 
         changeSpeed()
         changeWave()
@@ -264,13 +272,17 @@ def run_game():
                 posX)]-350+WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
 
         ballParticles()
+
         for event in pygame.event.get():
             if (event.type == pygame.QUIT):
-                running = False
+                pygame.quit()
             elif event.type == pygame.KEYDOWN:
                 if(event.key == pygame.K_ESCAPE):
-                    running = False
                     print("ESC key is pressed, will stop now\n")
+                    pygame.quit()
+                    sys.exit()
+                elif event.key == pygame.K_o:
+                    optionsMenu()
 
         moveCircle()
         drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
@@ -278,10 +290,9 @@ def run_game():
 
         pygame.display.flip()
 
-        if (SCORE_COUNTER % 1 == 0):
-            GAME_DISPLAY.blit(surface, (0, 0))
+        GAME_DISPLAY.blit(SCREEN, (0, 0))
 
-        update_data_labels(GAME_DISPLAY, SCORE_FONT)
+        # update_data_labels(GAME_DISPLAY, SCORE_FONT)
 
 
 if __name__ == "__main__":
