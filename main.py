@@ -1,7 +1,7 @@
-import sys,os
+import sys
+import os
 import math
 from pickle import TRUE
-from textwrap import fill
 import pygame
 import pygame.gfxdraw
 import time
@@ -22,6 +22,7 @@ GAME_COUNTER = 0
 GAME_SPEED = 2
 # [loc, velocity, timer]
 PARTICLES = []
+songNum=1
 
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
@@ -41,6 +42,7 @@ pygame.mixer.pre_init(44100, -16, 2, 512)
 # Make a window to show on [, pygame.NOFRAME]
 GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 pygame.display.set_caption('Survive line')
+
 SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
 NORMAL_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 12)
 
@@ -116,11 +118,13 @@ def generateWave():
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
                       ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+    #make the dot only to the right half of screen, elif for the left part
     if WAVE_CORD_X-WAVE_AMPLITUDE-WAVE_GAP > DISPLAY_W:
         WAVE_CORD_X = DISPLAY_W+50+WAVE_GAP
     elif WAVE_CORD_X-350-WAVE_GAP > DISPLAY_W:
         WAVE_CORD_X = DISPLAY_W+350+WAVE_GAP
 
+    #not to generate dot that will overlap the left line
     if (WAVE_CORD_X < DISPLAY_W//2):
         WAVE_CORD_X = DISPLAY_W//2
 
@@ -157,10 +161,10 @@ def drawCircle(SCREEN, x, y, radius, color):
 
 def moveCircle():
     global BALL_CORD_X
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_RIGHT] and BALL_CORD_X + (BALL_RADIUS) < DISPLAY_W-4:
+    PRESSED_KEYS = pygame.key.get_pressed()
+    if PRESSED_KEYS[pygame.K_RIGHT] and BALL_CORD_X + (BALL_RADIUS) < DISPLAY_W-4:
         BALL_CORD_X += BALL_MOVE_SPEED
-    if keys[pygame.K_LEFT] and BALL_CORD_X > 0 + BALL_RADIUS+4:
+    if PRESSED_KEYS[pygame.K_LEFT] and BALL_CORD_X > 0 + BALL_RADIUS+4:
         BALL_CORD_X -= BALL_MOVE_SPEED
 
 
@@ -187,20 +191,24 @@ def ballParticles():
         if particle[2] <= 0:
             PARTICLES.remove(particle)
 
+
 def backgroundMusic():
     directory = "./usedMaterial/Music/"
-    playList={}
+    playList = {}
 
     for file in os.listdir(directory):
-         filename = os.fsdecode(file)
-         if filename.endswith(".mp3"):
-            playList[os.path.join(directory, filename)]=filename[:-4]
+        filename = os.fsdecode(file)
+        if filename.endswith(".mp3"):
+            playList[os.path.join(directory, filename)] = filename[:-4]
             continue
-         else:
-             continue
-    backgroundMusicDir = (list(playList.keys())[1])[1:]
+        else:
+            continue
+    
+
+    backgroundMusicDir = (list(playList.keys())[songNum])[1:]
     pygame.mixer.music.load(os.path.abspath(os.getcwd())+backgroundMusicDir)
-    pygame.mixer.music.play(-1,0.0)
+
+
 
 def optionsMenu():
     pygame.init()
@@ -231,15 +239,14 @@ def optionsMenu():
 
 def run_game():
     # Make a SCREEN to draw on
-
+    pygame.mixer.music.play(-1, 0.0)
     running = True
-    GAP_PERIOD = 0
     while running:
         DELTA_TIME = clock.tick(FPS)
         # GAME_TIME += DELTA_TIME
         SCREEN.fill(background_color)
 
-        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y
+        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y,songNum
         SCORE_COUNTER += 1
         # debug(SCORE_COUNTER)
 
@@ -247,25 +254,25 @@ def run_game():
         changeWave()
         generateWave()
 
-        # color = WAVE_COLOUR
-        # for inside in range(800):
-        #     if inside in range(500, 570):
-        #         color = (255, 0, 0)
-        #     pygame.gfxdraw.pixel(
-        #         GAME_DISPLAY, POINTS_MATRIX[inside][0]-55-WAVE_GAP, POINTS_MATRIX[inside][1]+SCORE_COUNTER, color)
+        color = WAVE_COLOUR
+        for inside in range(800):
+            if inside in range(500, 570):
+                color = (255, 0, 0)
+            pygame.gfxdraw.pixel(
+                GAME_DISPLAY, POINTS_MATRIX[inside][0]-55-WAVE_GAP, POINTS_MATRIX[inside][1]+SCORE_COUNTER, color)
 
         # so i want to reach a fixed point in the screen that will be the collision area.
 
         for Y_CORD in range(800):
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-55-WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-55-WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
                 posX)]-55-WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
                 posX)]-55-WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
 
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-350+WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
+                posX)]-350+WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
                 posX)]-350+WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
             pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
@@ -283,6 +290,10 @@ def run_game():
                     sys.exit()
                 elif event.key == pygame.K_o:
                     optionsMenu()
+                elif(event.key == pygame.K_n):
+                    print("Next Song")
+                    songNum +=1
+
 
         moveCircle()
         drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
