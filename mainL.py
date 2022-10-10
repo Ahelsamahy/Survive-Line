@@ -82,7 +82,14 @@ def changeSpeed():
 
 
 
+def collision():
+    ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
+    for x in range(245, 255):
+        if ball.right >= POINTS_MATRIX[x]-55:
+            print("hit from " + str(x))
 
+        if ball.left <= POINTS_MATRIX[x]-340:
+            print("hit from " + str(x))
 
 
 
