@@ -22,14 +22,14 @@ GAME_COUNTER = 0
 GAME_SPEED = 2
 # [loc, velocity, timer]
 PARTICLES = []
-songNum=1
+songNum = 1
 
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
 WAVE_CORD_Y = 0
 WAVE_CORD_X = 0
-POINTS_MATRIX = [[0 for x in range(2)] for y in range(DISPLAY_H)]
+POINTS_MATRIX = []
 posX = cycle(range(2))
 
 BALL_CORD_Y = 550
@@ -61,75 +61,16 @@ def update_data_labels(GAME_DISPLAY, font):
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
 
-def fillGap(gap, gapDirection):
-    # gapDirection to right is true, left is false
-    global WAVE_CORD_Y
-    if WAVE_CORD_Y % 799 == 0:
-        WAVE_CORD_Y = 1
-    if WAVE_CORD_Y + (gap) > DISPLAY_H-1:
-        gap = DISPLAY_H - WAVE_CORD_Y - 1
-    if gap == 0:
-        gap = 1
-    insideY = WAVE_CORD_Y
-
-    if(gapDirection):
-        POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
-        POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
-        POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
-        # print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
-        #   POINTS_MATRIX[WAVE_CORD_Y+gap][0])
-        for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]+1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], (gap//gap)):
-            POINTS_MATRIX[insideY][next(posX)] = x
-            POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER+1
-            if insideY < 799:
-                insideY += 1
-    else:
-        POINTS_MATRIX[WAVE_CORD_Y + (gap)][0] = POINTS_MATRIX[WAVE_CORD_Y][0]
-        POINTS_MATRIX[WAVE_CORD_Y + (gap)][1] = POINTS_MATRIX[WAVE_CORD_Y][1]
-        POINTS_MATRIX[WAVE_CORD_Y][0] = POINTS_MATRIX[WAVE_CORD_Y][1] = 0
-        # print(POINTS_MATRIX[WAVE_CORD_Y-1][0],
-        #       POINTS_MATRIX[WAVE_CORD_Y+gap][0])
-        for x in range(POINTS_MATRIX[WAVE_CORD_Y-1][0]-1, POINTS_MATRIX[WAVE_CORD_Y+gap][0], -(gap//gap)):
-            POINTS_MATRIX[insideY][next(posX)] = x
-            POINTS_MATRIX[insideY][next(posX)] = -SCORE_COUNTER
-            if insideY < 799:
-                insideY += 1
-    # print("Moved a point")
-
-
-def checkGap():
-    # gapDirection = True  # to right is true, left is false
-    if (POINTS_MATRIX[WAVE_CORD_Y-1][0]-POINTS_MATRIX[WAVE_CORD_Y][0] > 1):
-        gap = (POINTS_MATRIX[WAVE_CORD_Y-1][0]-POINTS_MATRIX[WAVE_CORD_Y][0])-1
-        fillGap(gap, False)
-    elif(POINTS_MATRIX[WAVE_CORD_Y][0] - POINTS_MATRIX[WAVE_CORD_Y-1][0] > 1) and (WAVE_CORD_Y not in {1, 2, 3}):
-        gap = (POINTS_MATRIX[WAVE_CORD_Y][0] -
-               POINTS_MATRIX[WAVE_CORD_Y-1][0]) - 1
-        fillGap(gap, True)
-
-
 def generateWave():
     global WAVE_CORD_Y, WAVE_CORD_X, SCORE_COUNTER
-    checkGap()
-    if WAVE_CORD_Y < DISPLAY_H-1:
-        WAVE_CORD_Y += 1
-    else:
-        WAVE_CORD_Y = 0
+    # checkGap()
+    if len(POINTS_MATRIX) == DISPLAY_H-1:
+        POINTS_MATRIX.pop(0)
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
                       ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
-    #make the dot only to the right half of screen, elif for the left part
-    if WAVE_CORD_X-WAVE_AMPLITUDE-WAVE_GAP > DISPLAY_W:
-        WAVE_CORD_X = DISPLAY_W+50+WAVE_GAP
-    elif WAVE_CORD_X-350-WAVE_GAP > DISPLAY_W:
-        WAVE_CORD_X = DISPLAY_W+350+WAVE_GAP
 
-    #not to generate dot that will overlap the left line
-    if (WAVE_CORD_X < DISPLAY_W//2):
-        WAVE_CORD_X = DISPLAY_W//2
-
-    POINTS_MATRIX[WAVE_CORD_Y][next(posX)] = WAVE_CORD_X
-    POINTS_MATRIX[WAVE_CORD_Y][next(posX)] = -SCORE_COUNTER
+    POINTS_MATRIX.append(WAVE_CORD_X)
 
 
 def changeSpeed():
@@ -140,14 +81,10 @@ def changeSpeed():
         print("incremented speed of game")
 
 
-def changeWave():
-    global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED, WAVE_GAP
-    if (SCORE_COUNTER % 10 == 0) and WAVE_GAP < 80:
-        WAVE_GAP += 1
-        print("Incremented line gap")
-    if (SCORE_COUNTER % 200 == 0):
-        # WAVE_FREQUENCY = random.randint(1, 6)
-        WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
+
+
+
+
 
 
 def debug(SCORE_COUNTER):
@@ -167,13 +104,6 @@ def moveCircle():
     if PRESSED_KEYS[pygame.K_LEFT] and BALL_CORD_X > 0 + BALL_RADIUS+4:
         BALL_CORD_X -= BALL_MOVE_SPEED
 
-
-def collision():
-    ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
-    for x in range(540, 560):
-        afterCalculations = POINTS_MATRIX[x][0]-55-WAVE_GAP
-        if 0 < (ball.right - afterCalculations) < 10:
-            print("hit from " + str(afterCalculations))
 
 
 def ballParticles():
@@ -203,11 +133,9 @@ def backgroundMusic():
             continue
         else:
             continue
-    
 
     backgroundMusicDir = (list(playList.keys())[songNum])[1:]
     pygame.mixer.music.load(os.path.abspath(os.getcwd())+backgroundMusicDir)
-
 
 
 def optionsMenu():
@@ -246,37 +174,23 @@ def run_game():
         # GAME_TIME += DELTA_TIME
         SCREEN.fill(background_color)
 
-        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y,songNum
+        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, songNum
         SCORE_COUNTER += 1
         # debug(SCORE_COUNTER)
 
-        changeSpeed()
-        changeWave()
+        # changeSpeed()
+        # changeWave()
         generateWave()
 
         color = WAVE_COLOUR
-        for inside in range(800):
-            if inside in range(500, 570):
-                color = (255, 0, 0)
-            pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_MATRIX[inside][0]-55-WAVE_GAP, POINTS_MATRIX[inside][1]+SCORE_COUNTER, color)
-
         # so i want to reach a fixed point in the screen that will be the collision area.
 
-        for Y_CORD in range(800):
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-55-WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
-            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-                posX)]-55-WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-55-WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+        for Y_CORD in range(len(POINTS_MATRIX)):
 
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-350+WAVE_GAP+1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
-            pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-                posX)]-350+WAVE_GAP, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
-            # pygame.gfxdraw.pixel(GAME_DISPLAY, POINTS_MATRIX[Y_CORD][next(
-            #     posX)]-350+WAVE_GAP-1, POINTS_MATRIX[Y_CORD][next(posX)]+SCORE_COUNTER, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(
+                GAME_DISPLAY, POINTS_MATRIX[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+            pygame.gfxdraw.pixel(
+                GAME_DISPLAY, POINTS_MATRIX[Y_CORD]-350-WAVE_GAP,DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
         ballParticles()
 
@@ -292,12 +206,12 @@ def run_game():
                     optionsMenu()
                 elif(event.key == pygame.K_n):
                     print("Next Song")
-                    songNum +=1
-
+                    songNum += 1
 
         moveCircle()
         drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
-        # collision()
+        if len(POINTS_MATRIX)>260:
+            collision()
 
         pygame.display.flip()
 
