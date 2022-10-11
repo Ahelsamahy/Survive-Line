@@ -25,7 +25,6 @@ def collision():
             print("hit from " + str(x))
             return keepGenerating == FALSE
 
-
 def drawCircle(SCREEN, x, y, radius, color):
     pygame.gfxdraw.aacircle(SCREEN, x, y, radius, color)
     pygame.gfxdraw.filled_circle(SCREEN, x, y, radius, color)
@@ -58,7 +57,7 @@ def reset():
     global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES,SCORE_COUNTER
     BALL_CORD_Y = 550
     BALL_CORD_X = DISPLAY_W//2
-    SCORE_COUNTER =0
+    SCORE_COUNTER = 0
     POINTS_LIST.clear()
     keepGenerating = TRUE
     PARTICLES.clear()

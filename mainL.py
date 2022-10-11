@@ -10,6 +10,7 @@ from numpy import random
 from defs import *
 from itertools import cycle
 from ballFunc import *
+from waveFunc import *
 
 clock = pygame.time.Clock()
 SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
@@ -45,25 +46,6 @@ def update_data_labels(GAME_DISPLAY, font):
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
 
-def generateWave():
-    global WAVE_CORD_X, SCORE_COUNTER
-    # checkGap()
-    if len(POINTS_LIST) == DISPLAY_H-1:
-        POINTS_LIST.pop(0)
-
-    WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
-                      ((float(0)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
-
-    POINTS_LIST.append(WAVE_CORD_X)
-
-
-def changeSpeed():
-    global FPS, WAVE_GAP, GAME_SPEED
-    if(SCORE_COUNTER % (100 * (GAME_SPEED//2)) == 0) and FPS < 60:
-        FPS += 2
-        GAME_SPEED *= GAME_SPEED
-        print("incremented speed of game")
-
 
 def debug(SCORE_COUNTER):
     print(SCORE_COUNTER)
@@ -76,10 +58,7 @@ def gameOver():
     while TRUE:
         SCREEN.fill(background_color)
         windowX, windowY = 300, 200
-        startBorderX, startBorderY = (
-            DISPLAY_W-windowX)//2, (DISPLAY_H-windowY)//2
-        # pygame.draw.rect(SCREEN, "white", pygame.Rect(
-        #     startBorderX, startBorderY, windowX, windowY),  2)
+        startBorderY = (DISPLAY_H-windowY)//2
         update_label("SCORE", BIG_FONT,
                      windowX//2, DISPLAY_H//2 - startBorderY//4, GAME_DISPLAY)
         keepCenter = (len(str((abs(round(SCORE_COUNTER//300))))))
