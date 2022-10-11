@@ -1,11 +1,11 @@
 import math
-from tkinter import FALSE
+import time
 from numpy import random
-from defs import *
 
+from defs import *
 from mainL import *
 
-import pygame
+
 
 def generateWave():
     global WAVE_CORD_X, SCORE_COUNTER
@@ -19,10 +19,65 @@ def generateWave():
     POINTS_LIST.append(WAVE_CORD_X)
 
 
-def changeSpeed():
-    global FPS, WAVE_GAP, GAME_SPEED
-    if(SCORE_COUNTER % (100 * (GAME_SPEED//2)) == 0) and FPS < 60:
+def changeSpeed(Counter):
+    global FPS, GAME_SPEED
+    if(Counter % (100 * (GAME_SPEED//2)) == 0) and FPS < 100:
         FPS += 2
         GAME_SPEED *= GAME_SPEED
         print("incremented speed of game")
 
+
+def changeWave():
+    global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED, WAVE_GAP
+    if (SCORE_COUNTER % 10 == 0) and WAVE_GAP < 80:
+        WAVE_GAP += 1
+        print("Incremented line gap")
+    if (SCORE_COUNTER % 200 == 0):
+        # WAVE_FREQUENCY = random.randint(1, 6)
+        WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
+
+
+def fillGap(gap, gapDirection):
+    # gapDirection to right is true, left is false
+    global WAVE_CORD_Y
+    if WAVE_CORD_Y % 799 == 0:
+        WAVE_CORD_Y = 1
+    if WAVE_CORD_Y + (gap) > DISPLAY_H-1:
+        gap = DISPLAY_H - WAVE_CORD_Y - 1
+    if gap == 0:
+        gap = 1
+    insideY = WAVE_CORD_Y
+
+    if(gapDirection):
+        POINTS_LIST[WAVE_CORD_Y + (gap)][0] = POINTS_LIST[WAVE_CORD_Y][0]
+        POINTS_LIST[WAVE_CORD_Y + (gap)][1] = POINTS_LIST[WAVE_CORD_Y][1]
+        POINTS_LIST[WAVE_CORD_Y][0] = POINTS_LIST[WAVE_CORD_Y][1] = 0
+        # print(POINTS_LIST[WAVE_CORD_Y-1][0],
+        #   POINTS_LIST[WAVE_CORD_Y+gap][0])
+        for x in range(POINTS_LIST[WAVE_CORD_Y-1][0]+1, POINTS_LIST[WAVE_CORD_Y+gap][0], (gap//gap)):
+            POINTS_LIST[insideY][next(posX)] = x
+            POINTS_LIST[insideY][next(posX)] = -SCORE_COUNTER+1
+            if insideY < 799:
+                insideY += 1
+    else:
+        POINTS_LIST[WAVE_CORD_Y + (gap)][0] = POINTS_LIST[WAVE_CORD_Y][0]
+        POINTS_LIST[WAVE_CORD_Y + (gap)][1] = POINTS_LIST[WAVE_CORD_Y][1]
+        POINTS_LIST[WAVE_CORD_Y][0] = POINTS_LIST[WAVE_CORD_Y][1] = 0
+        # print(POINTS_LIST[WAVE_CORD_Y-1][0],
+        #       POINTS_LIST[WAVE_CORD_Y+gap][0])
+        for x in range(POINTS_LIST[WAVE_CORD_Y-1][0]-1, POINTS_LIST[WAVE_CORD_Y+gap][0], -(gap//gap)):
+            POINTS_LIST[insideY][next(posX)] = x
+            POINTS_LIST[insideY][next(posX)] = -SCORE_COUNTER
+            if insideY < 799:
+                insideY += 1
+    # print("Moved a point")
+
+
+def checkGap():
+    # gapDirection = True  # to right is true, left is false
+    if (POINTS_LIST[WAVE_CORD_Y-1]-POINTS_LIST[WAVE_CORD_Y] > 1):
+        gap = (POINTS_LIST[WAVE_CORD_Y-1]-POINTS_LIST[WAVE_CORD_Y])-1
+        fillGap(gap, False)
+    elif(POINTS_LIST[WAVE_CORD_Y] - POINTS_LIST[WAVE_CORD_Y-1] > 1) and (WAVE_CORD_Y not in {1, 2, 3}):
+        gap = (POINTS_LIST[WAVE_CORD_Y] - POINTS_LIST[WAVE_CORD_Y-1]) - 1
+        fillGap(gap, True)

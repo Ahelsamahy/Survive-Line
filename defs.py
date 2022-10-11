@@ -1,5 +1,3 @@
-from tkinter import TRUE
-
 
 DISPLAY_W = 400
 DISPLAY_H = 800
@@ -24,7 +22,7 @@ WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
 WAVE_CORD_X = 0
 POINTS_LIST = []
-keepGenerating = TRUE
+keepGenerating = True
 
 
 
