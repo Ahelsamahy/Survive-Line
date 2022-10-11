@@ -1,7 +1,8 @@
+from ast import Global
 import sys
 import os
 import math
-from pickle import TRUE
+from pickle import FALSE, TRUE
 import pygame
 import pygame.gfxdraw
 import time
@@ -27,10 +28,9 @@ songNum = 1
 WAVE_AMPLITUDE = 50
 WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
-WAVE_CORD_Y = 0
 WAVE_CORD_X = 0
-POINTS_MATRIX = []
-posX = cycle(range(2))
+POINTS_LIST = []
+keepGenerating = TRUE
 
 BALL_CORD_Y = 550
 BALL_CORD_X = DISPLAY_W//2
@@ -43,8 +43,10 @@ pygame.mixer.pre_init(44100, -16, 2, 512)
 GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 pygame.display.set_caption('Survive line')
 
-SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", DATA_FONT_SIZE)
+
 NORMAL_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 12)
+BIG_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 30)
+SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 35)
 
 
 def update_label(data, font, x, y, GAME_DISPLAY):
@@ -57,20 +59,20 @@ def update_data_labels(GAME_DISPLAY, font):
     y_pos = 10
     gap = 30
     x_pos = DISPLAY_W//2
-    y_pos = update_label(round(SCORE_COUNTER/100), font,
+    y_pos = update_label(SCORE_COUNTER//200, font,
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
 
 def generateWave():
-    global WAVE_CORD_Y, WAVE_CORD_X, SCORE_COUNTER
+    global WAVE_CORD_X, SCORE_COUNTER
     # checkGap()
-    if len(POINTS_MATRIX) == DISPLAY_H-1:
-        POINTS_MATRIX.pop(0)
+    if len(POINTS_LIST) == DISPLAY_H-1:
+        POINTS_LIST.pop(0)
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
-                      ((float(WAVE_CORD_Y)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+                      ((float(0)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
 
-    POINTS_MATRIX.append(WAVE_CORD_X)
+    POINTS_LIST.append(WAVE_CORD_X)
 
 
 def changeSpeed():
@@ -81,17 +83,17 @@ def changeSpeed():
         print("incremented speed of game")
 
 
-
 def collision():
+    global keepGenerating
     ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
     for x in range(245, 255):
-        if ball.right >= POINTS_MATRIX[x]-55:
+        if ball.right >= POINTS_LIST[x]-55:
             print("hit from " + str(x))
+            keepGenerating = FALSE
 
-        if ball.left <= POINTS_MATRIX[x]-340:
+        if ball.left <= POINTS_LIST[x]-340:
             print("hit from " + str(x))
-
-
+            keepGenerating = FALSE
 
 
 def debug(SCORE_COUNTER):
@@ -111,6 +113,49 @@ def moveCircle():
     if PRESSED_KEYS[pygame.K_LEFT] and BALL_CORD_X > 0 + BALL_RADIUS+4:
         BALL_CORD_X -= BALL_MOVE_SPEED
 
+
+def reset():
+    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES
+    BALL_CORD_Y = 550
+    BALL_CORD_X = DISPLAY_W//2
+    POINTS_LIST.clear()
+    keepGenerating = TRUE
+    PARTICLES.clear()
+
+
+def gameOver():
+
+    pygame.init()
+
+    while TRUE:
+        SCREEN.fill(background_color)
+        windowX, windowY = 300, 200
+        startBorderX, startBorderY = (
+            DISPLAY_W-windowX)//2, (DISPLAY_H-windowY)//2
+        # pygame.draw.rect(SCREEN, "white", pygame.Rect(
+        #     startBorderX, startBorderY, windowX, windowY),  2)
+        update_label("SCORE", BIG_FONT,
+                     windowX//2, DISPLAY_H//2 - startBorderY//4, GAME_DISPLAY)
+        keepCenter = (len(str((abs(round(SCORE_COUNTER//300))))))
+        update_label(round(SCORE_COUNTER//200), SCORE_FONT,
+                     DISPLAY_W//2-8 * keepCenter - keepCenter*0.3, DISPLAY_H//2 - startBorderY//8, GAME_DISPLAY)
+        update_label("press anykey to play again", NORMAL_FONT,
+                     DISPLAY_W//2 - 75, DISPLAY_H//2 + startBorderY//3, GAME_DISPLAY)
+        pygame.display.update()
+
+        GAME_DISPLAY.blit(SCREEN, (0, 0))
+        for event in pygame.event.get():
+            if (event.type == pygame.QUIT):
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if(event.key == pygame.K_ESCAPE):
+                    print("ESC key is pressed, will stop now\n")
+                    pygame.quit()
+                    sys.exit()
+                else:
+                    reset()
+                    run_game()
 
 
 def ballParticles():
@@ -146,6 +191,7 @@ def backgroundMusic():
 
 
 def optionsMenu():
+
     pygame.init()
 
     while TRUE:
@@ -169,6 +215,7 @@ def optionsMenu():
                     pygame.quit()
                     sys.exit()
                 elif event.key == pygame.K_BACKSPACE:
+
                     run_game()
 
 
@@ -183,21 +230,28 @@ def run_game():
 
         global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, songNum
         SCORE_COUNTER += 1
+
+        if len(POINTS_LIST) > 260:
+            collision()
+
         # debug(SCORE_COUNTER)
 
         # changeSpeed()
         # changeWave()
-        generateWave()
+        if keepGenerating == TRUE:
+            generateWave()
+        else:
+            gameOver()
 
         color = WAVE_COLOUR
         # so i want to reach a fixed point in the screen that will be the collision area.
 
-        for Y_CORD in range(len(POINTS_MATRIX)):
+        for Y_CORD in range(len(POINTS_LIST)):
 
             pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_MATRIX[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+                GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
             pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_MATRIX[Y_CORD]-350-WAVE_GAP,DISPLAY_H-Y_CORD, WAVE_COLOUR)
+                GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
         ballParticles()
 
@@ -217,8 +271,6 @@ def run_game():
 
         moveCircle()
         drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
-        if len(POINTS_MATRIX)>260:
-            collision()
 
         pygame.display.flip()
 
