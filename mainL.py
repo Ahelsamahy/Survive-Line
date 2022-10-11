@@ -1,14 +1,8 @@
-from ast import Global
 import sys
 import os
-import math
-from pickle import FALSE, TRUE
 import pygame
 import pygame.gfxdraw
-import time
-from numpy import random
 from defs import *
-from itertools import cycle
 from ballFunc import *
 from waveFunc import *
 
