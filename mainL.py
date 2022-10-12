@@ -2,15 +2,12 @@ import sys
 import os
 import pygame
 import pygame.gfxdraw
-from defs import *
+
 from ballFunc import *
 from waveFunc import *
 
 clock = pygame.time.Clock()
 SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
-
-
-# [loc, velocity, timer]
 
 songNum = 1
 
@@ -39,21 +36,21 @@ def update_data_labels(GAME_DISPLAY, font):
     y_pos = update_label(SCORE_COUNTER//200, font,
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
-def ballParticles():
-    # [loc, velocity, timer]
-    PARTICLES.append([[BALL_CORD_X, BALL_CORD_Y], [
-                     random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6)])
 
-    for particle in PARTICLES:
-        particle[0][0] -= particle[1][0]
-        particle[0][1] -= particle[1][1]
-        particle[2] -= 0.1
+class ballParticles:
+    def __init__(self,loc, vel, timer):
+        # [loc, velocity, timer]
+        PARTICLES.append([loc, vel, timer])
 
-        pygame.draw.circle(GAME_DISPLAY, (255, 255, 255), [int(
-            particle[0][0]), int(particle[0][1])], int(particle[2]))
-        if particle[2] <= 0:
-            PARTICLES.remove(particle)
+        for particle in PARTICLES:
+            particle[0][0] -= particle[1][0]
+            particle[0][1] -= particle[1][1]
+            particle[2] -= 0.1
 
+            pygame.draw.circle(GAME_DISPLAY, (255, 255, 255), [int(
+                particle[0][0]), int(particle[0][1])], int(particle[2]))
+            if particle[2] <= 0:
+                PARTICLES.remove(particle)
 
 
 def debug(SCORE_COUNTER):
@@ -61,7 +58,7 @@ def debug(SCORE_COUNTER):
 
 
 def gameOver():
-
+    global SCORE_COUNTER
     pygame.init()
 
     while True:
@@ -88,7 +85,7 @@ def gameOver():
                     pygame.quit()
                     sys.exit()
                 else:
-                    reset()
+                    SCORE_COUNTER = reset()
                     run_game()
 
 
@@ -145,7 +142,7 @@ def run_game():
         DELTA_TIME = clock.tick(FPS)
         # GAME_TIME += DELTA_TIME
         SCREEN.fill(background_color)
-        
+
         global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, songNum, keepGenerating
         SCORE_COUNTER += 1
         keepGenerating = True
@@ -155,20 +152,29 @@ def run_game():
         debug(SCORE_COUNTER)
 
         changeSpeed(SCORE_COUNTER)
-        # changeWave()
+        # changeWave(SCORE_COUNTER)
         if keepGenerating == False:
             gameOver()
         else:
             generateWave()
 
         for Y_CORD in range(len(POINTS_LIST)):
-
+            # pygame.gfxdraw.pixel(
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP-1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
             pygame.gfxdraw.pixel(
                 GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+            # pygame.gfxdraw.pixel(
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP+1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+
+            # pygame.gfxdraw.pixel(
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP-1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
             pygame.gfxdraw.pixel(
                 GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+            # pygame.gfxdraw.pixel(
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP+1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
-        ballParticles()
+        #[location(x,y), Velocity, Time]
+        ballParticles([BALL_CORD_X, BALL_CORD_Y],[random.randint(0, 20) / 10 - 1, -3],random.randint(4, 6))
 
         for event in pygame.event.get():
             if (event.type == pygame.QUIT):
@@ -190,8 +196,6 @@ def run_game():
         pygame.display.flip()
 
         GAME_DISPLAY.blit(SCREEN, (0, 0))
-
-        # update_data_labels(GAME_DISPLAY, SCORE_FONT)
 
 
 if __name__ == "__main__":
