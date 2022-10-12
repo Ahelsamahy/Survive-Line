@@ -143,11 +143,11 @@ def run_game():
         # GAME_TIME += DELTA_TIME
         SCREEN.fill(background_color)
 
-        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, songNum, keepGenerating
+        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y,WAVE_GAP,WAVE_AMPLITUDE, songNum, keepGenerating
         SCORE_COUNTER += 1
         keepGenerating = True
         if len(POINTS_LIST) > 260:
-            keepGenerating = collision()
+            keepGenerating = collision(WAVE_GAP)
 
         debug(SCORE_COUNTER)
 
@@ -168,11 +168,11 @@ def run_game():
                 # GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP+1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
             # pygame.gfxdraw.pixel(
-                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP-1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350+WAVE_GAP-1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
             pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+                GAME_DISPLAY, POINTS_LIST[Y_CORD]-350+WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
             # pygame.gfxdraw.pixel(
-                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350-WAVE_GAP+1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+                # GAME_DISPLAY, POINTS_LIST[Y_CORD]-350+WAVE_GAP+1, DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
         #[location(x,y), Velocity, Time]
         ballParticles([BALL_CORD_X, BALL_CORD_Y],[random.randint(0, 20) / 10 - 1, -3],random.randint(4, 6))

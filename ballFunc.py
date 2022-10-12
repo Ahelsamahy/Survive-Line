@@ -10,15 +10,15 @@ BALL_MOVE_SPEED = 5
 BALL_RADIUS = 12
 
 
-def collision():
+def collision(waveGap):
     global keepGenerating
     ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
     for x in range(245, 255):
-        if ball.right >= POINTS_LIST[x]-55:
+        if ball.right >= POINTS_LIST[x]-55-waveGap:
             print("hit from " + str(x))
             return keepGenerating == False
 
-        if ball.left <= POINTS_LIST[x]-340:
+        if ball.left <= POINTS_LIST[x]-340+waveGap:
             print("hit from " + str(x))
             return keepGenerating == False
 
