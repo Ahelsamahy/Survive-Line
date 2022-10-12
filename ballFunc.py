@@ -39,10 +39,12 @@ def moveCircle():
 
 
 def reset():
-    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER
+    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP
     BALL_CORD_Y = 550
     BALL_CORD_X = DISPLAY_W//2
     POINTS_LIST.clear()
     keepGenerating = True
     PARTICLES.clear()
-    return SCORE_COUNTER == 0
+    SCORE_COUNTER == 0
+    WAVE_GAP == 0
+    return WAVE_GAP, SCORE_COUNTER

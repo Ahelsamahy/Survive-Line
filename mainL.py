@@ -58,7 +58,7 @@ def debug(SCORE_COUNTER):
 
 
 def gameOver():
-    global SCORE_COUNTER
+    global WAVE_GAP, SCORE_COUNTER
     pygame.init()
 
     while True:
@@ -85,7 +85,7 @@ def gameOver():
                     pygame.quit()
                     sys.exit()
                 else:
-                    SCORE_COUNTER = reset()
+                    WAVE_GAP, SCORE_COUNTER = reset()
                     run_game()
 
 
