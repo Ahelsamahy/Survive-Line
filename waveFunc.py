@@ -32,6 +32,7 @@ def changeWave(Counter):
         print("Incremented line gap")
     if (Counter % 200 == 0):
         WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
+    return WAVE_GAP, WAVE_AMPLITUDE
 
 
 def fillGap(gap, gapDirection):

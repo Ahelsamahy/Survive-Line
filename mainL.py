@@ -152,7 +152,8 @@ def run_game():
         debug(SCORE_COUNTER)
 
         changeSpeed(SCORE_COUNTER)
-        # changeWave(SCORE_COUNTER)
+        WAVE_GAP,WAVE_AMPLITUDE= changeWave(SCORE_COUNTER)
+
         if keepGenerating == False:
             gameOver()
         else:
