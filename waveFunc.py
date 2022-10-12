@@ -3,8 +3,6 @@ import time
 from numpy import random
 
 from defs import *
-from mainL import *
-
 
 
 def generateWave():
@@ -27,13 +25,12 @@ def changeSpeed(Counter):
         print("incremented speed of game")
 
 
-def changeWave():
+def changeWave(Counter):
     global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED, WAVE_GAP
-    if (SCORE_COUNTER % 10 == 0) and WAVE_GAP < 80:
+    if (Counter % 10 == 0) and WAVE_GAP < 80:
         WAVE_GAP += 1
         print("Incremented line gap")
-    if (SCORE_COUNTER % 200 == 0):
-        # WAVE_FREQUENCY = random.randint(1, 6)
+    if (Counter % 200 == 0):
         WAVE_AMPLITUDE = random.randint(50, WAVE_AMPLITUDE+WAVE_GAP)
 
 
@@ -70,7 +67,6 @@ def fillGap(gap, gapDirection):
             POINTS_LIST[insideY][next(posX)] = -SCORE_COUNTER
             if insideY < 799:
                 insideY += 1
-    # print("Moved a point")
 
 
 def checkGap():

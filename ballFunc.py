@@ -9,6 +9,7 @@ BALL_CORD_X = DISPLAY_W//2
 BALL_MOVE_SPEED = 5
 BALL_RADIUS = 12
 
+
 def collision():
     global keepGenerating
     ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
@@ -21,9 +22,11 @@ def collision():
             print("hit from " + str(x))
             return keepGenerating == False
 
+
 def drawCircle(SCREEN, x, y, radius, color):
     pygame.gfxdraw.aacircle(SCREEN, x, y, radius, color)
     pygame.gfxdraw.filled_circle(SCREEN, x, y, radius, color)
+
 
 def moveCircle():
     global BALL_CORD_X
@@ -36,10 +39,10 @@ def moveCircle():
 
 
 def reset():
-    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES,SCORE_COUNTER
+    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER
     BALL_CORD_Y = 550
     BALL_CORD_X = DISPLAY_W//2
-    SCORE_COUNTER = 0
     POINTS_LIST.clear()
     keepGenerating = True
     PARTICLES.clear()
+    return SCORE_COUNTER == 0
