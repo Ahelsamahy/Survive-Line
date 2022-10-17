@@ -41,14 +41,14 @@ def changeSpeed(Counter):
         print("incremented speed of game")
 
 
-def changeWave(Counter):
-    global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED, WAVE_GAP
-    if (Counter % 30 == 0) and WAVE_GAP < 80:
-        WAVE_GAP += 1
+def changeWave(Counter, waveGap):
+    global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED
+    if (Counter % 30 == 0) and waveGap < 80:
+        waveGap += 1
         print("Incremented line gap")
     if (Counter % 50 == 0):
-        WAVE_AMPLITUDE = random.randint(50, 51+WAVE_GAP)
-    return WAVE_GAP, WAVE_AMPLITUDE
+        WAVE_AMPLITUDE = random.randint(50, 51+waveGap)
+    return waveGap, WAVE_AMPLITUDE
 
 
 def checkGap():
