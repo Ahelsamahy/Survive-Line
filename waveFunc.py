@@ -12,7 +12,7 @@ def generateWave():
     if len(POINTS_LIST) == DISPLAY_H-1:
         POINTS_LIST.pop(0)
 
-    if POINTS_I % 799 == 0 or SCORE_COUNTER ==0:
+    if POINTS_I % 799 == 0:
         POINTS_I = 0
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
@@ -55,11 +55,16 @@ def checkGap():
     # gapDirection = True  # to right is true, left is false
     if (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I] > 1):
         gap = (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I])-1
-        # fillGap(gap, False)
-    # elif (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
-    #     gap = (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1]) - 1
-    #     # fillGap(gap, True)
+        fillGap(gap, False)
+    elif (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
+        gap = (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1]) - 1
+        fillGap(gap, True)
 
+class List(list):
+    def __setitem__(self, index, value):
+        self.extend([None] * ((max(index.start, index.stop - 1) if isinstance(index, slice) else index) - len(self) + 1))
+        super().__setitem__(index, value)
+        
 
 def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
@@ -72,23 +77,21 @@ def fillGap(gap, gapDirection):
 
     if(gapDirection):
         # to move the point according to gap
-        POINTS_LIST[POINTS_I + (gap)] = POINTS_LIST[POINTS_I]
+        POINTS_LIST.insert(POINTS_I + (gap), POINTS_LIST[POINTS_I])
         POINTS_LIST[POINTS_I] = 0
         # print(POINTS_LIST[POINTS_I-1][0],
         #   POINTS_LIST[POINTS_I+gap][0])
         # to fill the gap
-        for x in range(POINTS_LIST[POINTS_I-1]+1, POINTS_LIST[POINTS_I+gap], (gap//gap)):
-            POINTS_LIST[insideY]=x
+        for x in range(POINTS_LIST[POINTS_I-1], POINTS_LIST[POINTS_I+gap], (gap//gap)):
+            POINTS_LIST[insideY] = x+1
             if insideY < 799:
                 insideY += 1
-    # else:
-    #     POINTS_LIST[POINTS_I + (gap)][0] = POINTS_LIST[POINTS_I][0]
-    #     POINTS_LIST[POINTS_I + (gap)][1] = POINTS_LIST[POINTS_I][1]
-    #     POINTS_LIST[POINTS_I][0] = POINTS_LIST[POINTS_I][1] = 0
-    #     # print(POINTS_LIST[POINTS_I-1][0],
-    #     #       POINTS_LIST[POINTS_I+gap][0])
-    #     for x in range(POINTS_LIST[POINTS_I-1][0]-1, POINTS_LIST[POINTS_I+gap][0], -(gap//gap)):
-    #         POINTS_LIST[insideY][next(posX)] = x
-    #         POINTS_LIST[insideY][next(posX)] = -SCORE_COUNTER
-    #         if insideY < 799:
-    #             insideY += 1
+    else:
+        POINTS_LIST.insert(POINTS_I + (gap), POINTS_LIST[POINTS_I])
+        POINTS_LIST[POINTS_I] = 0
+        # print(POINTS_LIST[POINTS_I-1][0],
+        #       POINTS_LIST[POINTS_I+gap][0])
+        for x in range(POINTS_LIST[POINTS_I-1], POINTS_LIST[POINTS_I+gap], -(gap//gap)):
+            POINTS_LIST[insideY] = x
+            if insideY < 799:
+                insideY += 1
