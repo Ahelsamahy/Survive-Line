@@ -1,6 +1,7 @@
 import math
 import time
 from numpy import random
+import numpy as np
 
 from defs import *
 POINTS_I = 0
@@ -9,10 +10,9 @@ POINTS_I = 0
 def generateWave():
     global WAVE_CORD_X, SCORE_COUNTER, POINTS_I
 
-    if len(POINTS_LIST) == DISPLAY_H-1:
-        POINTS_LIST.pop(0)
 
-    if POINTS_I % 799 == 0:
+
+    if POINTS_I % 800 == 0:
         POINTS_I = 0
 
     WAVE_CORD_X = int((DISPLAY_H/2) + WAVE_AMPLITUDE*math.sin(WAVE_FREQUENCY *
@@ -28,8 +28,14 @@ def generateWave():
     if (WAVE_CORD_X < DISPLAY_W//2):
         WAVE_CORD_X = DISPLAY_W//2
 
-    POINTS_LIST.append(WAVE_CORD_X)
-    checkGap()
+    
+    if POINTS_LIST[-1] != 0:
+        POINTS_LIST.pop(0)
+        POINTS_LIST.append(WAVE_CORD_X)
+    else:
+        POINTS_LIST.pop(POINTS_I)
+        POINTS_LIST.insert(POINTS_I, WAVE_CORD_X)
+    # checkGap()
     POINTS_I += 1
 
 
@@ -59,22 +65,17 @@ def checkGap():
     elif (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
         gap = (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1]) - 1
         fillGap(gap, True)
-
-class List(list):
-    def __setitem__(self, index, value):
-        self.extend([None] * ((max(index.start, index.stop - 1) if isinstance(index, slice) else index) - len(self) + 1))
-        super().__setitem__(index, value)
         
 
 def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
-    global POINTS_I
+    global POINTS_I, POINTS_LIST
     if POINTS_I + (gap) > DISPLAY_H-1:
         gap = DISPLAY_H - POINTS_I - 1
     if gap == 0:
         gap = 1
     insideY = POINTS_I
-
+    pointsArr = np.array(POINTS_LIST)
     if(gapDirection):
         # to move the point according to gap
         POINTS_LIST.insert(POINTS_I + (gap), POINTS_LIST[POINTS_I])
