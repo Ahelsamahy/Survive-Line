@@ -1,1 +1,3 @@
 2022.10.22: the problem that was found is that list when it is predefined will add elements to it when it is needed, but will make a prbllem when tryting to move the point when a gap is found to move the points forward, as it throw error "outof index" so to make it right, I had to make a predefiened list with 800 element enside of it that they are all zero's then before adding element, it will remove the specific zero at its place
+
+Ended with problem in trying to figure out a way to fill the gap after the first wave (8ooPx) are generated as filling the gaps doesn't wok after it, problem with adding it to the function addPoint(), is that it will make it a recusrive function calling when it ends up in filling the gap with for loop

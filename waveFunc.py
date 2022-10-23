@@ -44,23 +44,23 @@ def generateWave():
     if (WAVE_CORD_X < DISPLAY_W//2):
         WAVE_CORD_X = DISPLAY_W//2
 
-    addPoint(POINTS_I,WAVE_CORD_X)
-    
+    addPoint(POINTS_I, WAVE_CORD_X)
     checkGap()
     POINTS_I += 1
 
-def addPoint(index,point):
+
+def addPoint(index, point):
     if POINTS_LIST[-1] != 0:
         POINTS_LIST.pop(0)
         POINTS_LIST.append(point)
     else:
-        POINTS_LIST.pop(index)
-        POINTS_LIST.insert(index, point)
+        POINTS_LIST[index] = point
+
 
 def checkGap():
     # gapDirection = True  # to right is true, left is false
     if (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I] > 1):
-        gap = (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I])-1
+        gap = (POINTS_LIST[POINTS_I-1] - POINTS_LIST[POINTS_I]) - 1
         fillGap(gap, False)
     elif (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
         gap = (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1]) - 1
@@ -70,26 +70,24 @@ def checkGap():
 def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
     global POINTS_I, POINTS_LIST
-    if POINTS_I + (gap) > DISPLAY_H-1:
+    if POINTS_I + (gap) >= DISPLAY_H-1:
         gap = DISPLAY_H - POINTS_I - 1
     if gap == 0:
         gap = 1
     insideY = POINTS_I
     if(gapDirection):
         # to move the point according to gap
-        addPoint(POINTS_I + (gap),POINTS_LIST[POINTS_I])
+        POINTS_LIST[POINTS_I+gap] = POINTS_LIST[POINTS_I]
         POINTS_LIST[POINTS_I] = 0
-        for x in range(POINTS_LIST[POINTS_I-1], POINTS_LIST[POINTS_I+gap], (gap//gap)):
-            addPoint(insideY,x+1)
-            # POINTS_LIST[insideY] = x+1
+        for x in range(POINTS_LIST[POINTS_I-1], POINTS_LIST[POINTS_I+gap]-1, (gap//gap)):
+            POINTS_LIST[insideY] = x+1
             if insideY < 799:
                 insideY += 1
     else:
-        addPoint(POINTS_I + (gap),POINTS_LIST[POINTS_I])
+        POINTS_LIST[POINTS_I+gap] = POINTS_LIST[POINTS_I]
         POINTS_LIST[POINTS_I] = 0
-        for x in range(POINTS_LIST[POINTS_I-1], POINTS_LIST[POINTS_I+gap], -(gap//gap)):
-            addPoint(insideY,x)
-            # POINTS_LIST[insideY] = x
+        for x in range(POINTS_LIST[POINTS_I-1]-1, POINTS_LIST[POINTS_I+gap], -(gap//gap)):
+            POINTS_LIST[insideY] = x
             if insideY < 799:
                 insideY += 1
     POINTS_I = insideY-1
