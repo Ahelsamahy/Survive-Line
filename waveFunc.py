@@ -71,7 +71,12 @@ def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
     global POINTS_I, POINTS_LIST
     if POINTS_I + (gap) >= DISPLAY_H-1:
-        gap = DISPLAY_H - POINTS_I - 1
+        untilEnd = DISPLAY_H-POINTS_I
+        toAddFromStart = gap-untilEnd
+        del POINTS_LIST[:toAddFromStart]
+        toAdd = [0]*toAddFromStart
+        POINTS_LIST.extend(toAdd)
+        # POINTS_I = toAddFromStart
     if gap == 0:
         gap = 1
     insideY = POINTS_I
