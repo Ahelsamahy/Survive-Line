@@ -5,7 +5,7 @@ FPS = 60
 
 DATA_FONT_SIZE = 35
 DATA_FONT_COLOR = (255, 255, 255)
-background_color = (0,0,0)
+background_color = (0, 0, 0)
 
 
 WHITE = (255, 255, 255)
@@ -22,12 +22,5 @@ WAVE_FREQUENCY = 1
 WAVE_SPEED = 1
 WAVE_CORD_X = 0
 POINTS_LIST = [0]*800
+POINTS_I = 0
 keepGenerating = True
-
-
-
-
-
-
-
-

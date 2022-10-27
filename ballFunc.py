@@ -3,6 +3,8 @@ from defs import *
 
 import pygame
 
+
+
 PARTICLES = []
 BALL_CORD_Y = 550
 BALL_CORD_X = DISPLAY_W//2
@@ -14,12 +16,12 @@ def collision(waveGap):
     global keepGenerating
     ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
     for x in range(245, 255):
-        if (POINTS_LIST[x] != 0) and ( ball.right >= POINTS_LIST[x]-55-waveGap):
-            print("hit from " + str(x)+ " right")
+        if (POINTS_LIST[x] != 0) and (ball.right >= POINTS_LIST[x]-55-waveGap):
+            print("hit from " + str(x) + " right")
             return keepGenerating == False
 
-        if ball.left <= POINTS_LIST[x]-340+waveGap<=2:
-            print("hit from " + str(x)+ " left")
+        if ball.left <= POINTS_LIST[x]-340+waveGap <= 2:
+            print("hit from " + str(x) + " left")
             return keepGenerating == False
 
 
@@ -39,12 +41,13 @@ def moveCircle():
 
 
 def reset():
-    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP
+    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP, POINTS_I
     BALL_CORD_Y = 550
     BALL_CORD_X = DISPLAY_W//2
-    POINTS_LIST = []*800
+    POINTS_LIST = [0]*800
+    POINTS_I = 0
     keepGenerating = True
     PARTICLES.clear()
     SCORE_COUNTER == 0
     WAVE_GAP == 0
-    return WAVE_GAP, SCORE_COUNTER
+    return WAVE_GAP, SCORE_COUNTER, POINTS_LIST,POINTS_I

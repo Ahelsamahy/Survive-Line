@@ -17,7 +17,7 @@ def changeSpeed(Counter):
 
 def changeWave(Counter, waveGap):
     global WAVE_FREQUENCY, WAVE_AMPLITUDE, WAVE_SPEED
-    if (Counter % 30 == 0) and waveGap < 80:
+    if (Counter % 30 == 0) and waveGap < 50:
         waveGap += 1
         print("Incremented line gap")
     if (Counter % 50 == 0):
@@ -59,10 +59,10 @@ def addPoint(index, point):
 
 def checkGap():
     # gapDirection = True  # to right is true, left is false
-    if (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I] > 1):
+    if (POINTS_I not in [0, 1,799]) and (POINTS_LIST[POINTS_I-1]-POINTS_LIST[POINTS_I] > 1):
         gap = (POINTS_LIST[POINTS_I-1] - POINTS_LIST[POINTS_I]) - 1
         fillGap(gap, False)
-    elif (POINTS_I not in [0, 1]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
+    elif (POINTS_I not in [0, 1,799]) and (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1] > 1):
         gap = (POINTS_LIST[POINTS_I] - POINTS_LIST[POINTS_I-1]) - 1
         fillGap(gap, True)
 
@@ -71,12 +71,13 @@ def fillGap(gap, gapDirection):
     # gapDirection to right is true, left is false
     global POINTS_I, POINTS_LIST
     if POINTS_I + (gap) >= DISPLAY_H-1:
-        untilEnd = DISPLAY_H-POINTS_I
-        toAddFromStart = gap-untilEnd
+        untilEnd = DISPLAY_H-POINTS_I 
+        toAddFromStart = abs(gap-untilEnd)
         del POINTS_LIST[:toAddFromStart]
         toAdd = [0]*toAddFromStart
         POINTS_LIST.extend(toAdd)
-        # POINTS_I = toAddFromStart
+        POINTS_I -= toAddFromStart
+        gap-=1
     if gap == 0:
         gap = 1
     insideY = POINTS_I

@@ -58,7 +58,7 @@ def debug(SCORE_COUNTER):
 
 
 def gameOver():
-    global WAVE_GAP, SCORE_COUNTER
+    global WAVE_GAP, SCORE_COUNTER, POINTS_LIST, pointsIndex
     pygame.init()
 
     while True:
@@ -85,8 +85,8 @@ def gameOver():
                     pygame.quit()
                     sys.exit()
                 else:
-                    WAVE_GAP, SCORE_COUNTER = reset()
-                    WAVE_GAP =0
+                    WAVE_GAP, SCORE_COUNTER, POINTS_LIST, pointsIndex = reset()
+                    WAVE_GAP = 0
                     run_game()
 
 
@@ -153,7 +153,7 @@ def run_game():
         debug(SCORE_COUNTER)
 
         changeSpeed(SCORE_COUNTER)
-        WAVE_GAP, WAVE_AMPLITUDE = changeWave(SCORE_COUNTER,WAVE_GAP)
+        WAVE_GAP, WAVE_AMPLITUDE = changeWave(SCORE_COUNTER, WAVE_GAP)
 
         if keepGenerating == False:
             gameOver()
