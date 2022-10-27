@@ -6,6 +6,8 @@ import pygame.gfxdraw
 from ballFunc import *
 from waveFunc import *
 
+pointsIndex = 0
+
 clock = pygame.time.Clock()
 SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
 
@@ -58,7 +60,7 @@ def debug(SCORE_COUNTER):
 
 
 def gameOver():
-    global WAVE_GAP, SCORE_COUNTER, POINTS_LIST, pointsIndex
+    global WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
     pygame.init()
 
     while True:
@@ -85,7 +87,7 @@ def gameOver():
                     pygame.quit()
                     sys.exit()
                 else:
-                    WAVE_GAP, SCORE_COUNTER, POINTS_LIST, pointsIndex = reset()
+                    WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I = reset()
                     WAVE_GAP = 0
                     run_game()
 
@@ -135,9 +137,11 @@ def optionsMenu():
                     run_game()
 
 
+
 def run_game():
     # Make a SCREEN to draw on
     pygame.mixer.music.play(-1, 0.0)
+    e = generatePlusFilling(POINTS_I)
     running = True
     while running:
         DELTA_TIME = clock.tick(FPS)
@@ -158,7 +162,7 @@ def run_game():
         if keepGenerating == False:
             gameOver()
         else:
-            generateWave()
+            e.generateWave()
 
         for Y_CORD in range(len(POINTS_LIST)):
             # pygame.gfxdraw.pixel(
