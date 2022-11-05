@@ -27,8 +27,9 @@ def changeWave(Counter, waveGap):
 
 class generatePlusFilling(object):
 
-    def __init__(self, points):
+    def __init__(self, points,pointslist):
         self.points_i = points
+        self.pointsList = pointslist
 
     def generateWave(self):
         global WAVE_CORD_X, SCORE_COUNTER,points_i
@@ -54,30 +55,29 @@ class generatePlusFilling(object):
         self.points_i += 1
 
     def addPoint(self, index, point):
-        if POINTS_LIST[-1] != 0:
-            POINTS_LIST.pop(0)
-            POINTS_LIST.append(point)
+        if self.pointsList[-1] != 0:
+            self.pointsList.pop(0)
+            self.pointsList.append(point)
         else:
-            POINTS_LIST[index] = point
+            self.pointsList[index] = point
 
     def checkGap(self):
         # gapDirection = True  # to right is true, left is false
-        if (self.points_i not in [0, 1, 799]) and (POINTS_LIST[self.points_i-1]-POINTS_LIST[self.points_i] > 1):
-            gap = (POINTS_LIST[self.points_i-1] - POINTS_LIST[self.points_i]) - 1
+        if (self.points_i not in [0, 1, 799]) and (self.pointsList[self.points_i-1]-self.pointsList[self.points_i] > 1):
+            gap = (self.pointsList[self.points_i-1] - self.pointsList[self.points_i]) - 1
             self.fillGap(gap, False)
-        elif (self.points_i not in [0, 1, 799]) and (POINTS_LIST[self.points_i] - POINTS_LIST[self.points_i-1] > 1):
-            gap = (POINTS_LIST[self.points_i] - POINTS_LIST[self.points_i-1]) - 1
+        elif (self.points_i not in [0, 1, 799]) and (self.pointsList[self.points_i] - self.pointsList[self.points_i-1] > 1):
+            gap = (self.pointsList[self.points_i] - self.pointsList[self.points_i-1]) - 1
             self.fillGap(gap, True)
 
     def fillGap(self, gap, gapDirection):
         # gapDirection to right is true, left is false
-        global  POINTS_LIST
         if self.points_i + (gap) >= DISPLAY_H-1:
             untilEnd = DISPLAY_H-self.points_i
             toAddFromStart = abs(gap-untilEnd)
-            del POINTS_LIST[:toAddFromStart]
+            del self.pointsList[:toAddFromStart]
             toAdd = [0]*toAddFromStart
-            POINTS_LIST.extend(toAdd)
+            self.pointsList.extend(toAdd)
             self.points_i -= toAddFromStart
             gap -= 1
         if gap == 0:
@@ -85,17 +85,17 @@ class generatePlusFilling(object):
         insideY = self.points_i
         if(gapDirection):
             # to move the point according to gap
-            POINTS_LIST[self.points_i+gap] = POINTS_LIST[self.points_i]
-            POINTS_LIST[self.points_i] = 0
-            for x in range(POINTS_LIST[self.points_i-1], POINTS_LIST[self.points_i+gap]-1, (gap//gap)):
-                POINTS_LIST[insideY] = x+1
+            self.pointsList[self.points_i+gap] = self.pointsList[self.points_i]
+            self.pointsList[self.points_i] = 0
+            for x in range(self.pointsList[self.points_i-1], self.pointsList[self.points_i+gap]-1, (gap//gap)):
+                self.pointsList[insideY] = x+1
                 if insideY < 799:
                     insideY += 1
         else:
-            POINTS_LIST[self.points_i+gap] = POINTS_LIST[self.points_i]
-            POINTS_LIST[self.points_i] = 0
-            for x in range(POINTS_LIST[self.points_i-1]-1, POINTS_LIST[self.points_i+gap], -(gap//gap)):
-                POINTS_LIST[insideY] = x
+            self.pointsList[self.points_i+gap] = self.pointsList[self.points_i]
+            self.pointsList[self.points_i] = 0
+            for x in range(self.pointsList[self.points_i-1]-1, self.pointsList[self.points_i+gap], -(gap//gap)):
+                self.pointsList[insideY] = x
                 if insideY < 799:
                     insideY += 1
         self.points_i = insideY-1

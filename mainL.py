@@ -9,6 +9,8 @@ from waveFunc import *
 pointsIndex = 0
 
 clock = pygame.time.Clock()
+
+# Make a SCREEN to draw on
 SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
 
 songNum = 1
@@ -41,7 +43,7 @@ def update_data_labels(GAME_DISPLAY, font):
 
 class ballParticles:
     def __init__(self, loc, vel, timer):
-        # [loc, velocity, timer]
+    # [loc, velocity, timer]
         PARTICLES.append([loc, vel, timer])
 
         for particle in PARTICLES:
@@ -53,6 +55,24 @@ class ballParticles:
                 particle[0][0]), int(particle[0][1])], int(particle[2]))
             if particle[2] <= 0:
                 PARTICLES.remove(particle)
+# class ballParticles:
+#     def __init__(self, loc, vel, timer):
+#         self.loc = loc
+#         self.vel = vel
+#         self.timer = timer
+
+# def XYZ(loc, vel, timer):
+#     # [loc, velocity, timer]
+#     PARTICLES.append(ballParticles(loc, vel, timer))
+#     # PARTICLES.append([loc, vel, timer])
+#     for particle in PARTICLES:
+#         particle.loc[0] -= particle.vel[0]
+#         particle.loc[1] -= particle.vel[1]
+#         particle.timer -= 0.1
+#         pygame.draw.circle(GAME_DISPLAY, (255, 255, 255), [int(
+#             particle[0][0]), int(particle[0][1])], int(particle[2]))
+#         if particle[2] <= 0:
+#             PARTICLES.remove(particle)
 
 
 def debug(SCORE_COUNTER):
@@ -139,16 +159,16 @@ def optionsMenu():
 
 
 def run_game():
-    # Make a SCREEN to draw on
+    global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, WAVE_AMPLITUDE, songNum, keepGenerating,POINTS_I
     pygame.mixer.music.play(-1, 0.0)
-    e = generatePlusFilling(POINTS_I)
+    e = generatePlusFilling(POINTS_I, POINTS_LIST)
     running = True
+
     while running:
         DELTA_TIME = clock.tick(FPS)
         # GAME_TIME += DELTA_TIME
         SCREEN.fill(background_color)
 
-        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, WAVE_AMPLITUDE, songNum, keepGenerating
         SCORE_COUNTER += 1
         keepGenerating = True
         if len(POINTS_LIST) > 260:
