@@ -20,7 +20,7 @@ def collision(waveGap):
             print("hit from " + str(x) + " right")
             return keepGenerating == False
 
-        if ball.left <= POINTS_LIST[x]-340+waveGap <= 2:
+        if (POINTS_LIST[x] != 0) and ball.left <= POINTS_LIST[x]-338+waveGap:
             print("hit from " + str(x) + " left")
             return keepGenerating == False
 

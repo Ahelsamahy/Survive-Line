@@ -13,3 +13,9 @@ the function does on the first time becasue the whole list is defiend with 0 so 
 now it is needed to work on the reset function and left collision
 
 make generate wave in a class, that would make pass points_i as a var to the class and deal with the related functions [generateWav(), addPoint(), checkGap(), fillGap()] all with the same var
+
+2022.11.5: the wave not showing when the game reset
+
+I don't know what happened to the code, but when the reset function is called after the collision, it resets all the vars in the game, and it is working, but if i see Points_list in generate wave, it shows that there are points inside of it and they are filled in the right index (which is ok even though all elements should be 0) but on the other hand, in the for loop to draw the lines, it doesn't see the added numbers in the list and just sees a list (Points_list) with zero elements.
+what i did is the same with points_i, made a new var for the list in the class constructor of the generatePlusFilling() for the list and changed the usage of it in the whole class.
+
