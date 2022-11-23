@@ -42,8 +42,6 @@ def update_data_labels(GAME_DISPLAY, font):
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
 
-
-
 def debug(SCORE_COUNTER):
     print(SCORE_COUNTER)
 
@@ -131,11 +129,10 @@ class surviveLineGame(object):
         pass
 
     def run_game(self):
-        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, WAVE_AMPLITUDE, POINTS_I, songNum, keepGenerating
+        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, GAME_SPEED, FPS, WAVE_AMPLITUDE, POINTS_I,WAVE_CORD_X, songNum, keepGenerating
         pygame.mixer.music.play(-1, 0.0)
-        e = generatePlusFilling(POINTS_I, POINTS_LIST)
-        ballIns = Ball(WAVE_GAP)
 
+        # change difficulty of the game
         running = True
 
         while running:
@@ -143,19 +140,23 @@ class surviveLineGame(object):
             SCREEN.fill(background_color)
 
             SCORE_COUNTER += 1
+            ballIns = Ball(WAVE_GAP)
+            CD = changeDifficulty(SCORE_COUNTER, WAVE_GAP,
+                                  GAME_SPEED, FPS, WAVE_AMPLITUDE)
+            e = generatePlusFilling(WAVE_CORD_X, POINTS_I, POINTS_LIST, WAVE_AMPLITUDE)
             keepGenerating = True
             if len(POINTS_LIST) > 260:
                 keepGenerating = ballIns.collision()
 
             debug(SCORE_COUNTER)
 
-            changeSpeed(SCORE_COUNTER)
-            WAVE_GAP, WAVE_AMPLITUDE = changeWave(SCORE_COUNTER, WAVE_GAP)
+            FPS, GAME_SPEED = CD.changeSpeed()
+            WAVE_GAP, WAVE_AMPLITUDE = CD.changeWave()
 
             if keepGenerating == False:
                 gameOver()
             else:
-                e.generateWave()
+                WAVE_CORD_X, POINTS_I=e.generateWave()
 
             for Y_CORD in range(len(POINTS_LIST)):
                 pygame.gfxdraw.pixel(
@@ -166,7 +167,7 @@ class surviveLineGame(object):
 
             #[location(x,y), Velocity, Time]
             bP = ballParticles([BALL_CORD_X, BALL_CORD_Y], [
-                               random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6),GAME_DISPLAY)
+                               random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6), GAME_DISPLAY)
             bP.generateParticles()
 
             for event in pygame.event.get():
@@ -185,7 +186,7 @@ class surviveLineGame(object):
 
             BALL_CORD_X = ballIns.moveCircle()
             ballIns.drawCircle(GAME_DISPLAY, BALL_CORD_X,
-                       BALL_CORD_Y, BALL_RADIUS, WHITE)
+                               BALL_CORD_Y, BALL_RADIUS, WHITE)
 
             pygame.display.flip()
 
@@ -194,7 +195,7 @@ class surviveLineGame(object):
 
 if __name__ == "__main__":
     backgroundMusic()
-    game =surviveLineGame()
+    game = surviveLineGame()
     game.run_game()
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config.txt')
