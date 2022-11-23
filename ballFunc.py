@@ -12,42 +12,38 @@ BALL_MOVE_SPEED = 5
 BALL_RADIUS = 12
 
 class Ball(object):
-    def __init__(self, waveGap):
+    def __init__(self, waveGap,loc, vel, timer,gameDisplay):
         self.WaveGap = waveGap
+        self.Loc = loc
+        self.Vel = vel
+        self.Timer = timer
+        self.GameDisplay = gameDisplay
 
-    def collision(self):
+    def collision(self,ball):
         global keepGenerating
         ball = pygame.Rect(BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
         for x in range(245, 255):
             if (POINTS_LIST[x] != 0) and (ball.right >= POINTS_LIST[x]-55-self.WaveGap):
                 print("hit from " + str(x) + " right")
-                # return keepGenerating == False
+                return keepGenerating == False
 
             if (POINTS_LIST[x] != 0) and ball.left <= POINTS_LIST[x]-338+self.WaveGap:
                 print("hit from " + str(x) + " left")
-                    # return keepGenerating == False
-
+                return keepGenerating == False
 
     def drawCircle(self,SCREEN, x, y, radius, color):
         pygame.gfxdraw.aacircle(SCREEN, x, y, radius, color)
         pygame.gfxdraw.filled_circle(SCREEN, x, y, radius, color)
 
-
-    def moveCircle(self):
+    def moveCircle(self,moveBall):
+        # if moveBall= true then move to right
         global BALL_CORD_X
-        PRESSED_KEYS = pygame.key.get_pressed()
-        if PRESSED_KEYS[pygame.K_RIGHT] and BALL_CORD_X + (BALL_RADIUS) < DISPLAY_W-4:
+
+        if moveBall==True and BALL_CORD_X + (BALL_RADIUS) < DISPLAY_W-4:
             BALL_CORD_X += BALL_MOVE_SPEED
-        if PRESSED_KEYS[pygame.K_LEFT] and BALL_CORD_X > 0 + BALL_RADIUS+4:
+        if (moveBall==False) and BALL_CORD_X > 0 + BALL_RADIUS+4:
             BALL_CORD_X -= BALL_MOVE_SPEED
         return BALL_CORD_X
-
-class ballParticles(object):
-    def __init__(self, loc, vel, timer,gameDisplay):
-        self.Loc = loc
-        self.Vel = vel
-        self.Timer = timer
-        self.GameDisplay = gameDisplay
 
     def generateParticles(self):
         PARTICLES.append([self.Loc, self.Vel, self.Timer])

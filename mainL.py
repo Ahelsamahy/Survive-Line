@@ -28,6 +28,7 @@ BIG_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 30)
 SCORE_FONT = pygame.font.Font("./usedMaterial/Nexa-Light.otf", 35)
 
 
+            ballIns.generateParticles()
 def update_label(data, font, x, y, GAME_DISPLAY):
     label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
     GAME_DISPLAY.blit(label, (x, y))
