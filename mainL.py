@@ -42,23 +42,7 @@ def update_data_labels(GAME_DISPLAY, font):
                          x_pos, y_pos + gap, GAME_DISPLAY)
 
 
-class ballParticles(object):
-    def __init__(self, loc, vel, timer):
-        self.Loc = loc
-        self.Vel = vel
-        self.Timer = timer
 
-    def generateParticles(self):
-        PARTICLES.append([self.Loc, self.Vel, self.Timer])
-        for particle in PARTICLES:
-            particle[0][0] -= particle[1][0]
-            particle[0][1] -= particle[1][1]
-            particle[2] -= 0.1
-
-            pygame.draw.circle(GAME_DISPLAY, (255, 255, 255), [int(
-                particle[0][0]), int(particle[0][1])], int(particle[2]))
-            if particle[2] <= 0:
-                PARTICLES.remove(particle)
 
 def debug(SCORE_COUNTER):
     print(SCORE_COUNTER)
@@ -142,68 +126,76 @@ def optionsMenu():
                     run_game()
 
 
-def run_game():
-    global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, WAVE_AMPLITUDE, songNum, keepGenerating, POINTS_I
-    pygame.mixer.music.play(-1, 0.0)
-    e = generatePlusFilling(POINTS_I, POINTS_LIST)
-    
-    running = True
+class surviveLineGame(object):
+    def __init__(self):
+        pass
 
-    while running:
-        DELTA_TIME = clock.tick(FPS)
-        SCREEN.fill(background_color)
+    def run_game(self):
+        global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, WAVE_AMPLITUDE, POINTS_I, songNum, keepGenerating
+        pygame.mixer.music.play(-1, 0.0)
+        e = generatePlusFilling(POINTS_I, POINTS_LIST)
+        ballIns = Ball(WAVE_GAP)
 
-        SCORE_COUNTER += 1
-        keepGenerating = True
-        if len(POINTS_LIST) > 260:
-            keepGenerating = collision(WAVE_GAP)
+        running = True
 
-        debug(SCORE_COUNTER)
+        while running:
+            DELTA_TIME = clock.tick(FPS)
+            SCREEN.fill(background_color)
 
-        changeSpeed(SCORE_COUNTER)
-        WAVE_GAP, WAVE_AMPLITUDE = changeWave(SCORE_COUNTER, WAVE_GAP)
+            SCORE_COUNTER += 1
+            keepGenerating = True
+            if len(POINTS_LIST) > 260:
+                keepGenerating = ballIns.collision()
 
-        if keepGenerating == False:
-            gameOver()
-        else:
-            e.generateWave()
+            debug(SCORE_COUNTER)
 
-        for Y_CORD in range(len(POINTS_LIST)):
-            pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+            changeSpeed(SCORE_COUNTER)
+            WAVE_GAP, WAVE_AMPLITUDE = changeWave(SCORE_COUNTER, WAVE_GAP)
 
-            pygame.gfxdraw.pixel(
-                GAME_DISPLAY, POINTS_LIST[Y_CORD]-350+WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+            if keepGenerating == False:
+                gameOver()
+            else:
+                e.generateWave()
 
-        #[location(x,y), Velocity, Time]
-        bP = ballParticles([BALL_CORD_X, BALL_CORD_Y], [random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6))
-        bP.generateParticles()
+            for Y_CORD in range(len(POINTS_LIST)):
+                pygame.gfxdraw.pixel(
+                    GAME_DISPLAY, POINTS_LIST[Y_CORD]-55-WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
 
-        for event in pygame.event.get():
-            if (event.type == pygame.QUIT):
-                pygame.quit()
-            elif event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_ESCAPE):
-                    print("ESC key is pressed, will stop now\n")
+                pygame.gfxdraw.pixel(
+                    GAME_DISPLAY, POINTS_LIST[Y_CORD]-350+WAVE_GAP, DISPLAY_H-Y_CORD, WAVE_COLOUR)
+
+            #[location(x,y), Velocity, Time]
+            bP = ballParticles([BALL_CORD_X, BALL_CORD_Y], [
+                               random.randint(0, 20) / 10 - 1, -3], random.randint(4, 6),GAME_DISPLAY)
+            bP.generateParticles()
+
+            for event in pygame.event.get():
+                if (event.type == pygame.QUIT):
                     pygame.quit()
-                    sys.exit()
-                elif event.key == pygame.K_o:
-                    optionsMenu()
-                elif (event.key == pygame.K_n):
-                    print("Next Song")
-                    songNum += 1
+                elif event.type == pygame.KEYDOWN:
+                    if (event.key == pygame.K_ESCAPE):
+                        print("ESC key is pressed, will stop now\n")
+                        pygame.quit()
+                        sys.exit()
+                    elif event.key == pygame.K_o:
+                        optionsMenu()
+                    elif (event.key == pygame.K_n):
+                        print("Next Song")
+                        songNum += 1
 
-        BALL_CORD_X = moveCircle()
-        drawCircle(GAME_DISPLAY, BALL_CORD_X, BALL_CORD_Y, BALL_RADIUS, WHITE)
+            BALL_CORD_X = ballIns.moveCircle()
+            ballIns.drawCircle(GAME_DISPLAY, BALL_CORD_X,
+                       BALL_CORD_Y, BALL_RADIUS, WHITE)
 
-        pygame.display.flip()
+            pygame.display.flip()
 
-        GAME_DISPLAY.blit(SCREEN, (0, 0))
+            GAME_DISPLAY.blit(SCREEN, (0, 0))
 
 
 if __name__ == "__main__":
     backgroundMusic()
-    run_game()
+    game =surviveLineGame()
+    game.run_game()
     local_dir = os.path.dirname(__file__)
     config_path = os.path.join(local_dir, 'config.txt')
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
