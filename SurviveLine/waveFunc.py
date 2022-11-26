@@ -3,19 +3,36 @@ import time
 from numpy import random
 import numpy as np
 
-from defs import *
+# from defs import *
 POINTS_I = 0
 
 
 class Wave():
+    WAVE_AMPLITUDE = 50
+    WAVE_FREQUENCY = 1
+    WAVE_SPEED = 1
+    def __init__(self, counter, waveGap, gameSpeed, fps, waveAmplitude, xCord, points, pointslist):
+        self.Counter = counter
+        self.WaveGap = waveGap
+        self.GameSpeed = gameSpeed
+        self.FPS = fps
+        self.WaveAmplitude = waveAmplitude
+        self.points_i = points
+        self.pointsList = pointslist
+        self.XCord = xCord
+        self.pointsList = [0]*800
+
+    def reset(self):
+        self.Counter = 0
+        self.WaveGap = 0
+        self.GameSpeed = 0
+        self.FPS = 60
+        self.WaveAmplitude = 50
+        self.points_i = 0
+        self.pointsList = [0]*800
+        self.XCord = 0
 
     class changeDifficulty(object):
-        def __init__(self, counter, waveGap, gameSpeed, fps, waveAmplitude):
-            self.Counter = counter
-            self.WaveGap = waveGap
-            self.GameSpeed = gameSpeed
-            self.FPS = fps
-            self.WaveAmplitude = waveAmplitude
 
         def changeSpeed(self):
             if (self.Counter % (100 * (self.GameSpeed//2)) == 0) and self.FPS < 100:
@@ -33,20 +50,13 @@ class Wave():
             return self.WaveGap, self.WaveAmplitude
 
     class generatePlusFilling(object):
-
-        def __init__(self, xCord, points, pointslist, waveAmplitude):
-            self.points_i = points
-            self.pointsList = pointslist
-            self.WaveAmplitude = waveAmplitude
-            self.XCord = xCord
-
         def generateWave(self):
             global SCORE_COUNTER
             if self.points_i % 800 == 0:
                 self.points_i = 0
 
-            self.XCord = int((DISPLAY_H/2) + self.WaveAmplitude*math.sin(WAVE_FREQUENCY *
-                                                                         ((float(0)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
+            self.XCord = int((DISPLAY_H/2) + self.WaveAmplitude*math.sin(
+                WAVE_FREQUENCY * ((float(0)/-DISPLAY_W)*(2*math.pi) + (WAVE_SPEED*time.time()))))
 
             # make the dot only to the right half of screen, elif for the left part
             if self.XCord-self.WaveAmplitude-WAVE_GAP > DISPLAY_W:
