@@ -19,3 +19,10 @@ make generate wave in a class, that would make pass points_i as a var to the cla
 I don't know what happened to the code, but when the reset function is called after the collision, it resets all the vars in the game, and it is working, but if i see Points_list in generate wave, it shows that there are points inside of it and they are filled in the right index (which is ok even though all elements should be 0) but on the other hand, in the for loop to draw the lines, it doesn't see the added numbers in the list and just sees a list (Points_list) with zero elements.
 what i did is the same with points_i, made a new var for the list in the class constructor of the generatePlusFilling() for the list and changed the usage of it in the whole class.
 
+2022.11.25 changing the layout:
+
+so, before, i was making the classes based on the the object, anything that is related to the ball, would be in the ball class, and the same for wave, turns out it is better to have only the basics for the object to instentiate it then the functions such as collision should be inn the game so they can have a return value. so far what i have been doing is implementing the AI in the game, but made another version of the game working by itself without the AI
+
+implemented the game file from the pong game to the class in survivalline
+
+something i had before is the problem of having one file that does the functionality for all components of the game, for instance, the reset function that exsisted in ball func, it is responsible for reseting the whole game including wave related vars, it is better to have a class for the wave then in it have function to reset the related vars for it, then you can call it whenever you want, as for my opinion, this is better because i would get confusing with the vars to call
