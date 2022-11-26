@@ -12,12 +12,17 @@ BALL_MOVE_SPEED = 5
 BALL_RADIUS = 12
 
 class Ball(object):
-    def __init__(self, waveGap,loc, vel, timer,gameDisplay):
+    def __init__(self, waveGap,loc, vel, timer,gameDisplay,X_POS):
         self.WaveGap = waveGap
         self.Loc = loc
         self.Vel = vel
         self.Timer = timer
         self.GameDisplay = gameDisplay
+        self.rect = pygame.Rect(self.X_POS, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
+
+    def drawCircle(self,SCREEN):
+        pygame.gfxdraw.aacircle(SCREEN, self.rect.x, BALL_CORD_Y, BALL_RADIUS, WHITE)
+        pygame.gfxdraw.filled_circle(SCREEN, self.rect.x, BALL_CORD_Y, BALL_RADIUS, WHITE)
 
     def collision(self,ball):
         global keepGenerating
