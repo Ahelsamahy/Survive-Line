@@ -1,5 +1,5 @@
 from numpy import random
-from defs import *
+from .defs import *
 
 import pygame
 
@@ -62,15 +62,14 @@ class Ball(object):
             if particle[2] <= 0:
                 PARTICLES.remove(particle)
 
-
-def reset():
-    global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP, POINTS_I
-    BALL_CORD_Y = 550
-    BALL_CORD_X = DISPLAY_W//2
-    POINTS_LIST = [0]*800
-    POINTS_I = 0
-    keepGenerating = True
-    PARTICLES.clear()
-    SCORE_COUNTER = 0
-    WAVE_GAP = 0
-    return WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
+# def reset():
+#     global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP, POINTS_I
+#     BALL_CORD_Y = 550
+#     BALL_CORD_X = DISPLAY_W//2
+#     POINTS_LIST = [0]*800
+#     POINTS_I = 0
+#     keepGenerating = True
+#     PARTICLES.clear()
+#     SCORE_COUNTER = 0
+#     WAVE_GAP = 0
+#     return WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
