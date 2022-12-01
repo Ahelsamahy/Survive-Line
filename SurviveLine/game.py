@@ -33,11 +33,8 @@ class Game():
     def __init__(self, window, wDisplay, hDisplay):
         self.WDisplay = wDisplay
         self.HDisplay = hDisplay
-
         self.Wave = Wave(wDisplay, hDisplay)
-
         self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
-
         self.window = window
 
     def updateLabel(self, data, font, x, y, GAME_DISPLAY):
@@ -52,18 +49,17 @@ class Game():
         y_pos = self.updateLabel(
             self.Wave.ScoreCount//200, Game.SCORE_FONT, x_pos, y_pos + gap, self.window)
 
-    def collision(self):
-        global keepGenerating
+    def collision(self,runLoop):
         ball = self.Ball.drawBall(self.window)
         Wave = self.Wave
         for x in range(240, 255):
-            if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap):
+            if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap+9):
                 print("hit from " + str(x) + " right")
-                return keepGenerating == False
+                # return runLoop == False
 
             if (Wave.PointsList[x] != 0) and ball.left <= Wave.PointsList[x]-338+Wave.WaveGap:
                 print("hit from " + str(x) + " left")
-                return keepGenerating == False
+                # return runLoop == False
 
     def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
@@ -86,8 +82,9 @@ class Game():
 
     def loop(self):
         self.Ball.moveBall()
-        self.collision()
         self.Wave.ScoreCount += 1
+        self.Wave.changeSpeed()
+        self.Wave.changeWave()
         if self.Ball.ballCordX < 0:
             self.Ball.reset()
         elif self.Ball.ballCordX > self.WDisplay:

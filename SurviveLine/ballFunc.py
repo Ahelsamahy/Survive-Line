@@ -19,8 +19,6 @@ class Ball(object):
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList
 
-        
-
     def drawBall(self, SCREEN):
         self.ballRect = pygame.Rect(self.ballCordX, self.ballCordY, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
         pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,

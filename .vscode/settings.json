@@ -3,5 +3,6 @@
     "aaline",
     "blit",
     "KEYDOWN"
-  ]
+  ],
+  "python.analysis.typeCheckingMode": "basic"
 }

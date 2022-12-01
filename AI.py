@@ -5,14 +5,19 @@ import os
 import pickle
 
 
+DISPLAY_W = 400
+DISPLAY_H = 800
+
+
 class SurviveLineGame:
     def __init__(self, window, width, height):
         self.game = Game(window, width, height)
         self.Wave = self.game.Wave
         self.ball = self.game.Ball
 
-    def test_ai(self):
-        #, genome, config
+
+    def testAI(self):
+        # , genome, config
         # net = neat.nn.FeedForwardNetwork.create(genome, config)
 
         run = True
@@ -32,8 +37,11 @@ class SurviveLineGame:
             if keys[pygame.K_ESCAPE]:
                 run = False
 
+            # leftWave = self.Wave.PointsList[245:255] - 338 + self.Wave.WaveGap
+            # rightWave = self.Wave.PointsList[245:255] - 55 - self.Wave.WaveGap+9
+            # ballCord = self.ball.ballCordX
             # output = net.activate(
-            #     (self.ball.ballCordX, self.Wave.pointsList[245:255]))
+            #     (ballCord - leftWave, ballCord, rightWave - ballCord))
             # decision = output.index(max(output))
 
             # if decision == 0:
@@ -43,58 +51,62 @@ class SurviveLineGame:
             # else:
             #     self.game.moveBall(right=True)
 
-            game_info = self.game.loop()
+            self.game.loop()
             self.game.draw()
-            self.game.collision()
+            keepRunning = self.game.collision(run)
+            if  keepRunning==False:
+                run = False
             pygame.display.update()
 
         pygame.quit()
 
-    # def train_ai(self, genome1, genome2, config):
-    #     net1 = neat.nn.FeedForwardNetwork.create(genome1, config)
-    #     net2 = neat.nn.FeedForwardNetwork.create(genome2, config)
+    def trainAI(self, genome1, config):
+        net = neat.nn.FeedForwardNetwork.create(genome1, config)
 
-    #     run = True
-    #     while run:
-    #         for event in pygame.event.get():
-    #             if event.type == pygame.QUIT:
-    #                 quit()
+        run = True
+        while run:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    quit()
 
-    #         output1 = net1.activate(
-    #             (self.ball.ballCordX, self.Wave.pointsList[245:255]))
-    #         decision1 = output1.index(max(output1))
+            leftWave = self.Wave.PointsList[245] - 338 + self.Wave.WaveGap
+            rightWave = self.Wave.PointsList[245] - 55 - self.Wave.WaveGap+9
+            ballCord = self.ball.ballCordX
+            output = net.activate(
+                (ballCord - leftWave, ballCord, rightWave - ballCord))
+            decision = output.index(max(output))
 
-    #         if decision1 == 0:
-    #             pass
-    #         elif decision1 == 1:
-    #             self.game.moveBall(right=False)
-    #         else:
-    #             self.game.moveBall(right=False)
+            if decision == 0:
+                pass
+            elif decision == 1:
+                self.game.moveBall(right=False)
+            else:
+                self.game.moveBall(right=True)
 
-    #         output2 = net2.activate(
-    #             (self.right_paddle.y, self.ball.y, abs(self.right_paddle.x - self.ball.x)))
-    #         decision2 = output2.index(max(output2))
+            self.game.draw()
+            keepRunning = self.game.collision(run)
+            if  keepRunning==False:
+                run = False
+            pygame.display.update()
 
-    #         if decision2 == 0:
-    #             pass
-    #         elif decision2 == 1:
-    #             self.game.move_paddle(left=False, up=True)
-    #         else:
-    #             self.game.move_paddle(left=False, up=False)
+            if self.Wave.ScoreCount >= 2000:
+                self.calcFitness(genome1, self.Wave.ScoreCount)
+                break
 
-    #         game_info = Game.loop()
+    def calcFitness(self, genome1, scoreCounter):
+        genome1.fitness += scoreCounter
 
-    #         Game.draw(draw_score=False, draw_hits=True)
-    #         pygame.display.update()
 
-    #         if game_info.left_score >= 1 or game_info.right_score >= 1 or game_info.left_hits > 50:
-    #             self.calculate_fitness(genome1, genome2, game_info)
-    #             break
+def evalGenomes(genomes, config):
+    width, height = DISPLAY_W, DISPLAY_H
+    window = pygame.display.set_mode((width, height))
 
-def eval_genomes(genomes, config):
-    pass
+    for i, (genome_id1, genome1) in enumerate(genomes):
+        game = SurviveLineGame(window, width, height)
+        game.trainAI(genome1, config)
 
-def run_neat(config):
+
+def runNEAT(config):
     # p = neat.Checkpointer.restore_checkpoint('neat-checkpoint-7')
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
@@ -102,21 +114,31 @@ def run_neat(config):
     p.add_reporter(stats)
     p.add_reporter(neat.Checkpointer(1))
 
-    winner = p.run(eval_genomes, 1)
+    winner = p.run(evalGenomes, 1)
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
+
+def testAI(config):
+    width, height = DISPLAY_W, DISPLAY_H
+    window = pygame.display.set_mode((width, height))
+
+    with open("best.pickle", "rb") as f:
+        winner = pickle.load(f)
+
+    game = SurviveLineGame(window, width, height)
+    game.testAI(winner, config)
+
+
 if __name__ == "__main__":
     local_dir = os.path.dirname(__file__)
-    config_path = os.path.join(local_dir, "config.txt")
-    width, height = 400, 800
-    win = pygame.display.set_mode((width, height))
-    e = SurviveLineGame(win,width, height )
-
+    configPath = os.path.join(local_dir, "config.txt")
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
-                         config_path)
-    e.test_ai()
-    # run_neat(config)
-    # test_ai(config)
-
+                         configPath)
+    width, height = DISPLAY_W, DISPLAY_H
+    window = pygame.display.set_mode((width, height))
+    e = SurviveLineGame(window, width, height)
+    e.testAI()
+    # runNEAT(config)
+    # testAI(config)
