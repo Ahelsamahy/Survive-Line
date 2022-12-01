@@ -69,6 +69,10 @@ class Game():
     def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
         self.displayScore()
+        self.Ball.drawBall(self.window)
+        self.Ball.generateParticles()
+        self.Wave.display(self.window)
+        self.Wave.generateWave()
 
     def moveBall(self, right=True):
         if (right and Ball.ballCordX + (Ball.radius*2) < DISPLAY_W-4):
