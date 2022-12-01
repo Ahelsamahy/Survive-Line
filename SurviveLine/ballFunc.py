@@ -28,12 +28,12 @@ class Ball(object):
         pygame.gfxdraw.filled_circle(
             SCREEN, self.ballCordX, self.ballCordY, self.radius*2, WHITE)
 
-    def moveBall(self, right=True):
+    def moveBall(self, right=None):
         # if moveBall= true then move to right
         if right == True:
-            self.ballCordX += self.moveSpeed
-        else:
-            self.ballCordX -= self.moveSpeed
+            self.ballCordX += Ball.BALL_MOVE_SPEED
+        elif right == False:
+            self.ballCordX -= Ball.BALL_MOVE_SPEED
 
     def collision(self, ball):
         global keepGenerating
