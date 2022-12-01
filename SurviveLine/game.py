@@ -41,17 +41,17 @@ class Game():
 
         self.window = window
 
+    def updateLabel(self, data, font, x, y, GAME_DISPLAY):
+        label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
+        GAME_DISPLAY.blit(label, (x, y))
+        return y
+
     def displayScore(self):
         y_pos = 10
         gap = 30
         x_pos = self.WDisplay//2
-        y_pos = updateLabel(
-            self.Wave.ScoreCount//200, self.scoreFont, x_pos, y_pos + gap, self.gameDisplay)
-
-    def updateLabel(data, font, x, y, GAME_DISPLAY):
-        label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
-        GAME_DISPLAY.blit(label, (x, y))
-        return y
+        y_pos = self.updateLabel(
+            self.Wave.ScoreCount//200, Game.SCORE_FONT, x_pos, y_pos + gap, self.window)
 
     def collision(self):
         global keepGenerating
