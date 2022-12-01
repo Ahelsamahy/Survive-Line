@@ -16,10 +16,6 @@ class Ball(object):
         self.WaveGap = waveGap
 
         self.Particles = []
-        self.Loc = [random.randint(0, 20) / 10 - 1, -3]
-        self.Vel = random.randint(4, 6)
-        self.Timer = [Ball.BALL_CORD_X, Ball.BALL_CORD_Y]
-
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList
 
@@ -51,7 +47,10 @@ class Ball(object):
                 return keepGenerating == False
 
     def generateParticles(self):
-        self.Particles.append([self.Loc, self.Vel, self.Timer])
+        Loc =[self.ballCordX, self.ballCordY] 
+        Vel = [random.randint(0, 20) / 10 - 1, -3]
+        Timer = random.randint(4, 6)
+        self.Particles.append([Loc, Vel, Timer])
         for particle in self.Particles:
             particle[0][0] -= particle[1][0]
             particle[0][1] -= particle[1][1]
