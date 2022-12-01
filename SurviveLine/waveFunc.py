@@ -2,6 +2,7 @@ import math
 import time
 from numpy import random
 import numpy as np
+import pygame
 
 # from defs import *
 PointsI = 0
@@ -21,6 +22,13 @@ class Wave():
         self.WaveAmplitude = 50
         self.PointsI = 0  # index to loop inside the points list
         self.PointsList = [0]*800
+
+    def display(self, Display):
+        for Y_CORD in range(len(self.PointsList)):
+            pygame.gfxdraw.pixel(
+                Display, self.PointsList[Y_CORD]-55-self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel(
+                Display, self.PointsList[Y_CORD]-350+self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
 
     def changeSpeed(self):
         if (self.ScoreCount % (100 * (self.GameSpeed//2)) == 0) and self.FPS < 100:
