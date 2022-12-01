@@ -24,20 +24,19 @@ pygame.display.set_caption('Survive line')
 localDir = os.path.dirname(__file__)
 fontPath = os.path.join(localDir, './usedMaterial/Nexa-Light.otf')
 
-NORMAL_FONT = pygame.font.Font(fontPath, 12)
-BIG_FONT = pygame.font.Font(fontPath, 30)
-SCORE_FONT = pygame.font.Font(fontPath, 35)
-
 
 class Game():
+    NORMAL_FONT = pygame.font.Font(fontPath, 12)
+    BIG_FONT = pygame.font.Font(fontPath, 30)
+    SCORE_FONT = pygame.font.Font(fontPath, 35)
+
     def __init__(self, window, wDisplay, hDisplay):
         self.WDisplay = wDisplay
         self.HDisplay = hDisplay
 
-        self.Wave = Wave(wDisplay, hDisplay, counter=0)
+        self.Wave = Wave(wDisplay, hDisplay)
 
-        self.Ball = Ball(self.Wave.WaveGap, window,
-                         Ball.BALL_CORD_X, self.Wave.PointsList)
+        self.Ball = Ball(self.Wave.WaveGap, window, self.WDisplay//2, self.Wave.PointsList)
 
         self.window = window
 
@@ -55,14 +54,14 @@ class Game():
 
     def collision(self):
         global keepGenerating
-        ball = self.Ball
+        ball = self.Ball.ballRect
         Wave = self.Wave
         for x in range(245, 255):
-            if (Wave.pointsList[x] != 0) and (ball.right >= Wave.pointsList[x]-55-Wave.WaveGap):
+            if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap):
                 print("hit from " + str(x) + " right")
                 return keepGenerating == False
 
-            if (Wave.pointsList[x] != 0) and ball.left <= Wave.pointsList[x]-338+Wave.WaveGap:
+            if (Wave.PointsList[x] != 0) and ball.left <= Wave.PointsList[x]-338+Wave.WaveGap:
                 print("hit from " + str(x) + " left")
                 return keepGenerating == False
 
@@ -75,11 +74,12 @@ class Game():
         self.Wave.generateWave()
 
     def moveBall(self, right=True):
-        if (right and Ball.ballCordX + (Ball.radius*2) < DISPLAY_W-4):
+        if (right and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < DISPLAY_W):
+            self.Ball.moveBall(right)
             return False
-        if (right == False and (Ball.ballCordX > 0 + Ball.radius*2+4)):
+        if (right == False and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
+            self.Ball.moveBall(right=False)
             return False
-
         return True
 
     def loop(self):
@@ -96,14 +96,13 @@ class Game():
         self.Wave.reset()
 
 
-if __name__ == "__main__":
-    backgroundMusic()
-    localDir = os.path.dirname(__file__)
-    configPath = os.path.join(localDir, 'config.txt')
-    runNeat(configPath)
-
 # region old code
 
+# if __name__ == "__main__":
+#     backgroundMusic()
+#     localDir = os.path.dirname(__file__)
+#     configPath = os.path.join(localDir, 'config.txt')
+#     runNeat(configPath)
 # def run_game(self, genomes, config):
     #     global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, GAME_SPEED, FPS, WAVE_AMPLITUDE, POINTS_I, WAVE_CORD_X, songNum, keepGenerating
     #     pygame.mixer.music.play(-1, 0.0)
