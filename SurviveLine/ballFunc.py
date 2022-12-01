@@ -10,8 +10,8 @@ class Ball(object):
     BALL_CORD_Y = 550       # fixed as the ball doesn't go up or down
     BALL_CORD_X = 0         # changes as the ball moves on this axes
 
-    def __init__(self, waveGap, gameDisplay, X_POS, pointsList):
-        self.ballCordX = X_POS
+    def __init__(self, waveGap, gameDisplay, pointsList):
+        self.ballCordX = DISPLAY_W//2
         self.ballCordY = 550
         self.WaveGap = waveGap
 
@@ -19,14 +19,15 @@ class Ball(object):
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList
 
-        self.ballRect = pygame.Rect(self.ballCordX, self.ballCordY, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
+        
 
     def drawBall(self, SCREEN):
-        
+        self.ballRect = pygame.Rect(self.ballCordX, self.ballCordY, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
         pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,
-                                self.ballCordY, self.radius*2, WHITE)
+                                self.ballCordY, Ball.BALL_RADIUS, WHITE)
         pygame.gfxdraw.filled_circle(
-            SCREEN, self.ballCordX, self.ballCordY, self.radius*2, WHITE)
+            SCREEN, self.ballCordX, self.ballCordY, Ball.BALL_RADIUS, WHITE)
+        return self.ballRect
 
     def moveBall(self, right=None):
         # if moveBall= true then move to right
@@ -34,19 +35,6 @@ class Ball(object):
             self.ballCordX += Ball.BALL_MOVE_SPEED
         elif right == False:
             self.ballCordX -= Ball.BALL_MOVE_SPEED
-
-    def collision(self, ball):
-        global keepGenerating
-        ball = pygame.Rect(self.ballCordX, self.ballCordY,
-                           Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
-        for x in range(245, 255):
-            if (self.PointsList[x] != 0) and (ball.right >= self.PointsList[x]-55-self.WaveGap):
-                print("hit from " + str(x) + " right")
-                return keepGenerating == False
-
-            if (self.PointsList[x] != 0) and ball.left <= self.PointsList[x]-338+self.WaveGap:
-                print("hit from " + str(x) + " left")
-                return keepGenerating == False
 
     def generateParticles(self):
         Loc =[self.ballCordX, self.ballCordY] 
@@ -68,6 +56,22 @@ class Ball(object):
         self.ballCordX = DISPLAY_W//2
         self.Particles = []
 
+
+#region unused
+
+    # def collision(self, ball):
+    #     global keepGenerating
+    #     ball = pygame.Rect(self.ballCordX, self.ballCordY,
+    #                        Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
+    #     for x in range(245, 255):
+    #         if (self.PointsList[x] != 0) and (ball.right >= self.PointsList[x]-55-self.WaveGap):
+    #             print("hit from " + str(x) + " right")
+    #             return keepGenerating == False
+
+    #         if (self.PointsList[x] != 0) and ball.left <= self.PointsList[x]-338+self.WaveGap:
+    #             print("hit from " + str(x) + " left")
+    #             return keepGenerating == False
+
 # def reset():
 #     global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP, POINTS_I
 #     BALL_CORD_Y = 550
@@ -79,3 +83,5 @@ class Ball(object):
 #     SCORE_COUNTER = 0
 #     WAVE_GAP = 0
 #     return WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
+
+#endregion

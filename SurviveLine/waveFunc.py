@@ -23,7 +23,7 @@ class Wave():
         self.PointsI = 0  # index to loop inside the points list
         self.PointsList = [0]*800
 
-    def display(self, Display):
+    def draw(self, Display):
         for Y_CORD in range(len(self.PointsList)):
             pygame.gfxdraw.pixel(
                 Display, self.PointsList[Y_CORD]-55-self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
@@ -66,7 +66,6 @@ class Wave():
         self.addPoint(self.PointsI, pointsList_XCord)
         self.checkGap()
         self.PointsI += 1
-        return pointsList_XCord, self.PointsI
 
     def addPoint(self, index, point):
         if self.PointsList[-1] != 0:

@@ -36,7 +36,7 @@ class Game():
 
         self.Wave = Wave(wDisplay, hDisplay)
 
-        self.Ball = Ball(self.Wave.WaveGap, window, self.WDisplay//2, self.Wave.PointsList)
+        self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
 
         self.window = window
 
@@ -54,9 +54,9 @@ class Game():
 
     def collision(self):
         global keepGenerating
-        ball = self.Ball.ballRect
+        ball = self.Ball.drawBall(self.window)
         Wave = self.Wave
-        for x in range(245, 255):
+        for x in range(240, 255):
             if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap):
                 print("hit from " + str(x) + " right")
                 return keepGenerating == False
@@ -68,10 +68,12 @@ class Game():
     def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
         self.displayScore()
+
+        self.Wave.draw(self.window)
+        self.Wave.generateWave()
+
         self.Ball.drawBall(self.window)
         self.Ball.generateParticles()
-        self.Wave.display(self.window)
-        self.Wave.generateWave()
 
     def moveBall(self, right=True):
         if (right and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < DISPLAY_W):

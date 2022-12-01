@@ -45,6 +45,7 @@ class SurviveLineGame:
 
             game_info = self.game.loop()
             self.game.draw()
+            self.game.collision()
             pygame.display.update()
 
         pygame.quit()
