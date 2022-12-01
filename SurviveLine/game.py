@@ -10,20 +10,15 @@ from .defs import *
 from .ballFunc import *
 from .waveFunc import *
 
-pointsIndex = 0
-
-clock = pygame.time.Clock()
-
-
 # Make a SCREEN to draw on
-SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
+# SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
 
 songNum = 1
 
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
-#[, pygame.NOFRAME]
-GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
+# [, pygame.NOFRAME]
+# GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 pygame.display.set_caption('Survive line')
 
 localDir = os.path.dirname(__file__)
@@ -41,9 +36,8 @@ class Game():
 
         self.Wave = Wave(wDisplay, hDisplay, counter=0)
 
-        self.Ball = Ball(WAVE_GAP, [BALL_CORD_X, BALL_CORD_Y], [random.randint(
-            0, 20) / 10 - 1, -3], random.randint(4, 6), GAME_DISPLAY, BALL_CORD_X)
-        self.Wave = Wave()
+        self.Ball = Ball(self.Wave.WaveGap, window,
+                         Ball.BALL_CORD_X, self.Wave.PointsList)
 
         self.window = window
 
@@ -52,13 +46,13 @@ class Game():
         gap = 30
         x_pos = self.WDisplay//2
         y_pos = updateLabel(
-            self.scoreCounter//200, self.scoreFont, x_pos, y_pos + gap, self.gameDisplay)
+            self.Wave.ScoreCount//200, self.scoreFont, x_pos, y_pos + gap, self.gameDisplay)
 
     def updateLabel(data, font, x, y, GAME_DISPLAY):
         label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
         GAME_DISPLAY.blit(label, (x, y))
         return y
-    
+
     def collision(self):
         global keepGenerating
         ball = self.Ball
@@ -87,7 +81,7 @@ class Game():
     def loop(self):
         self.Ball.moveBall()
         self.collision()
-
+        self.Wave.ScoreCount += 1
         if self.Ball.ballCordX < 0:
             self.Ball.reset()
         elif self.Ball.ballCordX > self.WDisplay:
@@ -98,9 +92,15 @@ class Game():
         self.Wave.reset()
 
 
+if __name__ == "__main__":
+    backgroundMusic()
+    localDir = os.path.dirname(__file__)
+    configPath = os.path.join(localDir, 'config.txt')
+    runNeat(configPath)
 
+# region old code
 
-    # def run_game(self, genomes, config):
+# def run_game(self, genomes, config):
     #     global SCORE_COUNTER, GAME_COUNTER, BALL_CORD_X, BALL_CORD_Y, WAVE_GAP, GAME_SPEED, FPS, WAVE_AMPLITUDE, POINTS_I, WAVE_CORD_X, songNum, keepGenerating
     #     pygame.mixer.music.play(-1, 0.0)
 
@@ -181,28 +181,13 @@ class Game():
     #         pygame.display.flip()
     #         GAME_DISPLAY.blit(SCREEN, (0, 0))
 
-
-
-
-
-# def distance(xCord):
-#     ball = pygame.Rect(xCord, BALL_CORD_Y, BALL_RADIUS, BALL_RADIUS)
-#     for x in range(245, 255):
-#         Dx = POINTS_LIST[x]-55-WAVE_GAP - ball.right
-#     return Dx
-
-
 # def remove(index, Balls, Genomes, Nets):
 #     Balls.pop(index)
 #     Genomes.pop(index)
 #     Nets.pop(index)
 
-
-
-
 # def debug(SCORE_COUNTER):
 #     print(SCORE_COUNTER)
-
 
 # def gameOver():
 #     global WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
@@ -236,7 +221,6 @@ class Game():
 #                     WAVE_GAP = 0
 #                     game.run_game()
 
-
 # def backgroundMusic():
 #     directory = "./usedMaterial/Music/"
 #     playList = {}
@@ -251,7 +235,6 @@ class Game():
 
 #     backgroundMusicDir = (list(playList.keys())[songNum])[1:]
 #     pygame.mixer.music.load(os.path.abspath(os.getcwd())+backgroundMusicDir)
-
 
 # def optionsMenu():
 
@@ -281,18 +264,11 @@ class Game():
 
 #                     run_game()
 
-
 # def runNeat(configPath):
 #     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
 #                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
 #                          configPath)
 #     pop = neat.Population(config)
-
 #     pop.run(game.run_game, 50)
 
-
-if __name__ == "__main__":
-    backgroundMusic()
-    localDir = os.path.dirname(__file__)
-    configPath = os.path.join(localDir, 'config.txt')
-    runNeat(configPath)
+# endregion
