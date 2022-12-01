@@ -19,7 +19,7 @@ now it is needed to work on the reset function and left collision
 
 make generate wave in a class, that would make pass points_i as a var to the class and deal with the related functions [generateWav(), addPoint(), checkGap(), fillGap()] all with the same var
 
-## 2022.11.5: 
+## 2022.11.5:
 
 the wave not showing when the game reset
 
