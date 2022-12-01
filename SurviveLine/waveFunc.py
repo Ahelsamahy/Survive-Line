@@ -8,6 +8,8 @@ PointsI = 0
 
 
 class Wave():
+    WAVE_COLOUR = (178, 190, 181)
+
     def __init__(self, wDisplay, hDisplay):
         self.WDisplay = wDisplay
         self.HDisplay = hDisplay
