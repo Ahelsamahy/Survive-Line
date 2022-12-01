@@ -38,9 +38,8 @@ class Game():
     def __init__(self, window, wDisplay, hDisplay):
         self.WDisplay = wDisplay
         self.HDisplay = hDisplay
-        self.gameDisplay = GAME_DISPLAY
-        self.scoreFont = SCORE_FONT
-        self.scoreCounter = SCORE_COUNTER
+
+        self.Wave = Wave(wDisplay, hDisplay, counter=0)
 
         self.Ball = Ball(WAVE_GAP, [BALL_CORD_X, BALL_CORD_Y], [random.randint(
             0, 20) / 10 - 1, -3], random.randint(4, 6), GAME_DISPLAY, BALL_CORD_X)
@@ -97,7 +96,7 @@ class Game():
     def reset(self):
         self.Ball.reset()
         self.Wave.reset()
-        self.scoreCounter = 0
+
 
 
 

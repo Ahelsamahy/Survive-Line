@@ -11,7 +11,6 @@ BACKGROUND_COLOUR = (0, 0, 0)
 WHITE = (255, 255, 255)
 WAVE_COLOUR = (178, 190, 181)
 SCORE_COUNTER = 0
-GAME_TIME = 0
 GAME_SPEED = 2
 
 WAVE_GAP = 0                        #Gap between two waves
