@@ -18,7 +18,7 @@ class Wave():
         self.waveFreq = 1  # will change later in difficulty part
         self.WaveGap = 0
         self.GameSpeed = 2  # to increment the difference in time to speed the FPS
-        self.FPS = 30
+        self.FPS = 60
         self.WaveAmplitude = 50
         self.PointsI = 0  # index to loop inside the points list
         self.PointsList = [0]*800
