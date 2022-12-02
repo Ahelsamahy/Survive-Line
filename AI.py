@@ -64,7 +64,9 @@ class SurviveLineGame:
         net = neat.nn.FeedForwardNetwork.create(genome1, config)
 
         run = True
+        clock = pygame.time.Clock()
         while run:
+            clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()
@@ -83,6 +85,7 @@ class SurviveLineGame:
             else:
                 self.game.moveBall(right=True)
 
+            self.game.loop()    
             self.game.draw()
             keepRunning = self.game.collision(run)
             if  keepRunning==False:
@@ -100,8 +103,9 @@ class SurviveLineGame:
 def evalGenomes(genomes, config):
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
-
     for i, (genome_id1, genome1) in enumerate(genomes):
+        genome1.fitness = 0
+        # print(round(i/len(genomes) * 100), end=" ")
         game = SurviveLineGame(window, width, height)
         game.trainAI(genome1, config)
 
@@ -114,7 +118,7 @@ def runNEAT(config):
     p.add_reporter(stats)
     p.add_reporter(neat.Checkpointer(1))
 
-    winner = p.run(evalGenomes, 1)
+    winner = p.run(evalGenomes, 50)
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
@@ -127,7 +131,7 @@ def testAI(config):
         winner = pickle.load(f)
 
     game = SurviveLineGame(window, width, height)
-    game.testAI(winner, config)
+    # game.testAI(winner, config)
 
 
 if __name__ == "__main__":
@@ -139,6 +143,6 @@ if __name__ == "__main__":
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
     e = SurviveLineGame(window, width, height)
-    e.testAI()
-    # runNEAT(config)
+    # e.testAI()
+    runNEAT(config)
     # testAI(config)
