@@ -71,6 +71,10 @@ class SurviveLineGame:
                 if event.type == pygame.QUIT:
                     quit()
 
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_ESCAPE]:
+                    quit()
+
             leftWave = self.Wave.PointsList[245] - 338 + self.Wave.WaveGap
             rightWave = self.Wave.PointsList[245] - 55 - self.Wave.WaveGap+9
             ballCord = self.ball.ballCordX
