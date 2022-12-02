@@ -54,12 +54,12 @@ class Game():
         Wave = self.Wave
         for x in range(240, 255):
             if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap+9):
-                print("hit from " + str(x) + " right")
-                # return runLoop == False
+                # print("hit from " + str(x) + " right")
+                return runLoop == False
 
             if (Wave.PointsList[x] != 0) and ball.left <= Wave.PointsList[x]-338+Wave.WaveGap:
-                print("hit from " + str(x) + " left")
-                # return runLoop == False
+                # print("hit from " + str(x) + " left")
+                return runLoop == False
 
     def draw(self):
         self.window.fill(BACKGROUND_COLOUR)

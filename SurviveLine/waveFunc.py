@@ -34,14 +34,14 @@ class Wave():
         if (self.ScoreCount % (100 * (self.GameSpeed//2)) == 0) and self.FPS < 100:
             self.FPS += 2
             self.GameSpeed *= self.GameSpeed
-            print("incremented speed of game")
+            # print("incremented speed of game")
         return self.FPS, self.GameSpeed
 
     def changeWave(self):
         #self.ScoreCount % (100 * (self.GameSpeed//2)) == 0
         if (self.ScoreCount % 30 == 0) and self.WaveGap < 100:
             self.WaveGap += 1
-            print("Incremented line gap")
+            # print("Incremented line gap")
         if (self.ScoreCount % 50 == 0):
             self.WaveAmplitude = random.randint(50, 51+self.WaveGap)
         return self.WaveGap, self.WaveAmplitude
