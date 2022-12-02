@@ -38,6 +38,7 @@ class Wave():
         return self.FPS, self.GameSpeed
 
     def changeWave(self):
+        #self.ScoreCount % (100 * (self.GameSpeed//2)) == 0
         if (self.ScoreCount % 30 == 0) and self.WaveGap < 50:
             self.WaveGap += 1
             print("Incremented line gap")
@@ -100,21 +101,19 @@ class Wave():
         insideY = self.PointsI
         if (gapDirection):
             # to move the point according to gap
-            self.PointsList[self.PointsI +
-                            gap] = self.PointsList[self.PointsI]
+            self.PointsList[self.PointsI + gap] = self.PointsList[self.PointsI]
             self.PointsList[self.PointsI] = 0
-        for x in range(self.PointsList[self.PointsI-1], self.PointsList[self.PointsI+gap]-1, (gap//gap)):
-            self.PointsList[insideY] = x+1
-            if insideY < 799:
-                insideY += 1
+            for x in range(self.PointsList[self.PointsI-1], self.PointsList[self.PointsI+gap]-1, (gap//gap)):
+                self.PointsList[insideY] = x+1
+                if insideY < 799:
+                    insideY += 1
         else:
-            self.PointsList[self.PointsI +
-                            gap] = self.PointsList[self.PointsI]
+            self.PointsList[self.PointsI + gap] = self.PointsList[self.PointsI]
             self.PointsList[self.PointsI] = 0
-        for x in range(self.PointsList[self.PointsI-1]-1, self.PointsList[self.PointsI+gap], -(gap//gap)):
-            self.PointsList[insideY] = x
-            if insideY < 799:
-                insideY += 1
+            for x in range(self.PointsList[self.PointsI-1]-1, self.PointsList[self.PointsI+gap], -(gap//gap)):
+                self.PointsList[insideY] = x
+                if insideY < 799:
+                    insideY += 1
         self.PointsI = insideY-1
 
     def reset(self):
