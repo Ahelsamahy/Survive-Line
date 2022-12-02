@@ -39,7 +39,7 @@ class Wave():
 
     def changeWave(self):
         #self.ScoreCount % (100 * (self.GameSpeed//2)) == 0
-        if (self.ScoreCount % 30 == 0) and self.WaveGap < 50:
+        if (self.ScoreCount % 30 == 0) and self.WaveGap < 100:
             self.WaveGap += 1
             print("Incremented line gap")
         if (self.ScoreCount % 50 == 0):
