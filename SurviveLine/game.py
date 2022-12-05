@@ -1,9 +1,8 @@
-import sys
+import time
 import os
 import pygame
 import pygame.gfxdraw
-import neat
-import math
+
 
 from .defs import *
 
@@ -35,6 +34,7 @@ class Game():
         self.Wave = Wave(wDisplay, hDisplay)
         self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
         self.window = window
+        self.startTime = time.time()
 
     def updateLabel(self, data,font, x, y, GAME_DISPLAY):
         label = font.render('{}'.format(data), True, DATA_FONT_COLOR)
@@ -51,6 +51,15 @@ class Game():
         gap = 60
         x_pos = self.WDisplay//2 
         self.updateLabel("{0}.{1}".format(genNum,genomeNum),Game.NORMAL_FONT,x_pos, y_pos + gap, self.window)
+                         Game.NORMAL_FONT, x_pos, y_pos + gap, self.window)
+
+    def displayRuntime(self):
+
+        y_pos = self.HDisplay-20
+        x_pos = self.WDisplay-70
+        colour = (100, 100, 100)
+        self.updateLabel("{0} S".format(round(
+            time.time() - self.startTime, 1)), Game.NORMAL_FONT, x_pos, y_pos, self.window, colour)
 
     def collision(self, runLoop):
         ball = self.Ball.drawBall(self.window)
