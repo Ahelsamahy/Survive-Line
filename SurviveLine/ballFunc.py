@@ -5,13 +5,15 @@ import pygame
 
 
 class Ball(object):
+    DISPLAY_W = 400
+    DISPLAY_H = 800
     BALL_MOVE_SPEED = 5
     BALL_RADIUS = 12
     BALL_CORD_Y = 550       # fixed as the ball doesn't go up or down
     BALL_CORD_X = 0         # changes as the ball moves on this axes
 
     def __init__(self, waveGap, gameDisplay, pointsList):
-        self.ballCordX = DISPLAY_W//2
+        self.ballCordX = Ball.DISPLAY_W//2
         self.ballCordY = 550
         self.WaveGap = waveGap
 
@@ -51,5 +53,5 @@ class Ball(object):
 
     def reset(self):
         self.ballCordY = 550
-        self.ballCordX = DISPLAY_W//2
+        self.ballCordX = Ball.DISPLAY_W//2
         self.Particles = []

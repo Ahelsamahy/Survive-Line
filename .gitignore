@@ -4,3 +4,5 @@ test.py
 main.py
 
 SurviveLine/__pycache__/
+
+__pycache__/

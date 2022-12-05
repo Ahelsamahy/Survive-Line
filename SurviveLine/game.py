@@ -23,6 +23,8 @@ fontPath = os.path.join(localDir, './usedMaterial/Nexa-Light.otf')
 
 
 class Game():
+    DISPLAY_W = 400
+    DISPLAY_H = 800
     NORMAL_FONT = pygame.font.Font(fontPath, 18)
     BIG_FONT = pygame.font.Font(fontPath, 30)
     SCORE_FONT = pygame.font.Font(fontPath, 35)
@@ -76,7 +78,7 @@ class Game():
         self.Ball.generateParticles()
 
     def moveBall(self, right=True):
-        if (right and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < DISPLAY_W):
+        if (right and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
             self.Ball.moveBall(right)
             return False
         if (right == False and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
