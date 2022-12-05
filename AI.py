@@ -11,6 +11,7 @@ DISPLAY_H = 800
 
 class SurviveLineGame:
     def __init__(self, window, width, height):
+        self.localDir = os.path.dirname(__file__)
         self.game = Game(window, width, height)
         self.Wave = self.game.Wave
         self.ball = self.game.Ball
@@ -115,7 +116,7 @@ def evalGenomes(genomes, config):
         game.trainAI(genome1, config)
 
 def runNEAT(config):
-    # p = neat.Checkpointer.restore_checkpoint('neat-checkpoint-7')
+    p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
@@ -137,14 +138,15 @@ def testAI(config):
     game.testAI(winner, config)
 
 if __name__ == "__main__":
-    local_dir = os.path.dirname(__file__)
-    configPath = os.path.join(local_dir, "config.txt")
-    config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
-                         neat.DefaultSpeciesSet, neat.DefaultStagnation,
-                         configPath)
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
     e = SurviveLineGame(window, width, height)
+
+    configPath = os.path.join(e.localDir, "config.txt")
+    config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
+                         neat.DefaultSpeciesSet, neat.DefaultStagnation,
+                         configPath)
+
     # e.testAI()
     runNEAT(config)
     testAI(config)
