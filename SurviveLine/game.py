@@ -62,6 +62,9 @@ class Game():
                 return runLoop == False
 
     def draw(self):
+        """
+        Display the score, wave and the particles, make sure the screen will be filled with background
+        """
         self.window.fill(BACKGROUND_COLOUR)
         self.displayScore()
 
@@ -81,6 +84,10 @@ class Game():
         return True
 
     def loop(self):
+        '''
+        main functions that needs to be running always
+        returns: score counter
+        '''
         self.Ball.moveBall()
         self.Wave.ScoreCount += 1
         self.Wave.changeSpeed()
