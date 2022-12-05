@@ -36,21 +36,22 @@ class Game():
         self.window = window
         self.startTime = time.time()
 
-    def updateLabel(self, data,font, x, y, GAME_DISPLAY):
-        label = font.render('{}'.format(data), True, DATA_FONT_COLOR)
+    def updateLabel(self, data, font, x, y, GAME_DISPLAY, fontColour=DATA_FONT_COLOR):
+        label = font.render('{}'.format(data), True, fontColour)
         GAME_DISPLAY.blit(label, (x, y))
 
     def displayScore(self):
         y_pos = 0
         gap = 30
         x_pos = self.WDisplay//2
-        self.updateLabel(self.Wave.ScoreCount//200,Game.SCORE_FONT,x_pos, y_pos + gap, self.window)
-    
-    def displayAINum(self,genNum, genomeNum):
+        self.updateLabel(self.Wave.ScoreCount//200,
+                         Game.SCORE_FONT, x_pos, y_pos + gap, self.window)
+
+    def displayAINum(self, genNum, genomeNum):
         y_pos = 0
         gap = 60
-        x_pos = self.WDisplay//2 
-        self.updateLabel("{0}.{1}".format(genNum,genomeNum),Game.NORMAL_FONT,x_pos, y_pos + gap, self.window)
+        x_pos = self.WDisplay//2
+        self.updateLabel("{0}.{1}".format(genNum, genomeNum),
                          Game.NORMAL_FONT, x_pos, y_pos + gap, self.window)
 
     def displayRuntime(self):
