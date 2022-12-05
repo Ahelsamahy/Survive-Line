@@ -98,7 +98,10 @@ class SurviveLineGame:
             if round(output[0], -1) == round(output[2], -1):
                 fitness += 2
             if keepRunning == False:
-                self.calcFitness(genome1, gameInfo)
+                #if it dies early then punishment would be higher
+                if(fitness<500):
+                    fitness-=50
+                self.calcFitness(genome1, fitness)
                 run = False
             pygame.display.update()
 
