@@ -87,12 +87,14 @@ class Game():
         self.Ball.drawBall(self.window)
         self.Ball.generateParticles()
 
-    def moveBall(self, right=True):
-        if (right and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
-            self.Ball.moveBall(right)
+    def moveBall(self, dir):
+        if (dir =="Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
+            self.Ball.moveBall(right=True)
             return False
-        if (right == False and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
+        elif (dir =="Left" and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
             self.Ball.moveBall(right=False)
+            return False
+        elif  dir == "Center":
             return False
         return True
 

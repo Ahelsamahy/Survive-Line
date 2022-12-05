@@ -83,13 +83,13 @@ class SurviveLineGame:
             decision = output.index(max(output))
 
             if decision == 0:
-                pass
+                self.game.moveBall("Left")
             elif decision == 1:
-                self.game.moveBall(right=False)
-            else:
-                self.game.moveBall(right=True)
+                self.game.moveBall("Center")
+                fitness += 1
+            elif decision == 2:
+                self.game.moveBall("Right")
 
-            self.game.loop()    
             self.game.draw()
             self.game.displayAINum(p.generation, genomeNum)
             keepRunning = self.game.collision(run)
