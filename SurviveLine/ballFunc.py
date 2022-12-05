@@ -53,33 +53,3 @@ class Ball(object):
         self.ballCordY = 550
         self.ballCordX = DISPLAY_W//2
         self.Particles = []
-
-
-#region unused
-
-    # def collision(self, ball):
-    #     global keepGenerating
-    #     ball = pygame.Rect(self.ballCordX, self.ballCordY,
-    #                        Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
-    #     for x in range(245, 255):
-    #         if (self.PointsList[x] != 0) and (ball.right >= self.PointsList[x]-55-self.WaveGap):
-    #             print("hit from " + str(x) + " right")
-    #             return keepGenerating == False
-
-    #         if (self.PointsList[x] != 0) and ball.left <= self.PointsList[x]-338+self.WaveGap:
-    #             print("hit from " + str(x) + " left")
-    #             return keepGenerating == False
-
-# def reset():
-#     global BALL_CORD_Y, BALL_CORD_X, POINTS_LIST, keepGenerating, PARTICLES, SCORE_COUNTER, WAVE_GAP, POINTS_I
-#     BALL_CORD_Y = 550
-#     BALL_CORD_X = DISPLAY_W//2
-#     POINTS_LIST = [0]*800
-#     POINTS_I = 0
-#     keepGenerating = True
-#     PARTICLES.clear()
-#     SCORE_COUNTER = 0
-#     WAVE_GAP = 0
-#     return WAVE_GAP, SCORE_COUNTER, POINTS_LIST, POINTS_I
-
-#endregion
