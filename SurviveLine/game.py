@@ -47,7 +47,12 @@ class Game():
         gap = 30
         x_pos = self.WDisplay//2
         y_pos = self.updateLabel(
-            self.Wave.ScoreCount//200, Game.SCORE_FONT, x_pos, y_pos + gap, self.window)
+    
+    def displayAINum(self,genNum, genomeNum):
+        y_pos = 0
+        gap = 70
+        x_pos = self.WDisplay//2 
+        self.updateLabel("{0}.{1}".format(genNum,genomeNum),Game.NORMAL_FONT,x_pos, y_pos + gap, self.window)
 
     def collision(self,runLoop):
         ball = self.Ball.drawBall(self.window)
