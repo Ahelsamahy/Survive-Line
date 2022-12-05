@@ -94,6 +94,8 @@ class SurviveLineGame:
             self.game.displayAINum(p.generation, genomeNum)
             keepRunning = self.game.collision(run)
             if  keepRunning==False:
+            if keepRunning == False:
+                self.calcFitness(genome1, gameInfo)
                 run = False
             pygame.display.update()
 
