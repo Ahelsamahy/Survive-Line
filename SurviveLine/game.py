@@ -10,9 +10,6 @@ from .defs import *
 from .ballFunc import *
 from .waveFunc import *
 
-# Make a SCREEN to draw on
-# SCREEN = pygame.Surface((DISPLAY_W, DISPLAY_H))
-
 songNum = 1
 
 pygame.init()
@@ -37,24 +34,23 @@ class Game():
         self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
         self.window = window
 
-    def updateLabel(self, data, font, x, y, GAME_DISPLAY):
-        label = font.render('{}'.format(data), 1, DATA_FONT_COLOR)
+    def updateLabel(self, data,font, x, y, GAME_DISPLAY):
+        label = font.render('{}'.format(data), True, DATA_FONT_COLOR)
         GAME_DISPLAY.blit(label, (x, y))
-        return y
 
     def displayScore(self):
-        y_pos = 10
+        y_pos = 0
         gap = 30
         x_pos = self.WDisplay//2
-        y_pos = self.updateLabel(
+        self.updateLabel(self.Wave.ScoreCount//200,Game.SCORE_FONT,x_pos, y_pos + gap, self.window)
     
     def displayAINum(self,genNum, genomeNum):
         y_pos = 0
-        gap = 70
+        gap = 60
         x_pos = self.WDisplay//2 
         self.updateLabel("{0}.{1}".format(genNum,genomeNum),Game.NORMAL_FONT,x_pos, y_pos + gap, self.window)
 
-    def collision(self,runLoop):
+    def collision(self, runLoop):
         ball = self.Ball.drawBall(self.window)
         Wave = self.Wave
         for x in range(240, 255):
@@ -101,8 +97,8 @@ class Game():
             self.Ball.reset()
         elif self.Ball.ballCordX > self.WDisplay:
             self.Ball.reset()
+        return self.Wave.ScoreCount
 
     def reset(self):
         self.Ball.reset()
         self.Wave.reset()
-
