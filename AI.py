@@ -60,9 +60,9 @@ class SurviveLineGame:
 
         pygame.quit()
 
-    def trainAI(self, genome1, config):
+    def trainAI(self, genome1, config, genomeNum):
         net = neat.nn.FeedForwardNetwork.create(genome1, config)
-
+        p = neat.Population(config)
         run = True
         clock = pygame.time.Clock()
         while run:
@@ -91,6 +91,7 @@ class SurviveLineGame:
 
             self.game.loop()    
             self.game.draw()
+            self.game.displayAINum(p.generation, genomeNum)
             keepRunning = self.game.collision(run)
             if  keepRunning==False:
                 run = False
@@ -108,12 +109,13 @@ def evalGenomes(genomes, config):
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
     for i, (genome_id1, genome1) in enumerate(genomes):
-        genome1.fitness = 0
-        GenomeNum = round(i/len(genomes)*60)//2             #double of pop size
-        print(f"genome num = {GenomeNum}")
+
+        # print the genome number
+        genomeNum = round(i/len(genomes)*60)//2 + 1  # double of pop size
+        print(genomeNum, end=" ")
         # print(round(i/len(genomes) * 60)//2, end=" ")
         game = SurviveLineGame(window, width, height)
-        game.trainAI(genome1, config)
+        game.trainAI(genome1, config, genomeNum)
 
 def runNEAT(config):
     p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
