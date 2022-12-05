@@ -93,7 +93,10 @@ class SurviveLineGame:
             self.game.draw()
             self.game.displayAINum(p.generation, genomeNum)
             keepRunning = self.game.collision(run)
-            if  keepRunning==False:
+
+            #reward if the distance for both left and right is the same 
+            if round(output[0], -1) == round(output[2], -1):
+                fitness += 2
             if keepRunning == False:
                 self.calcFitness(genome1, gameInfo)
                 run = False
