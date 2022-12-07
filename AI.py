@@ -16,10 +16,7 @@ class SurviveLineGame:
         self.Wave = self.game.Wave
         self.ball = self.game.Ball
 
-    def testAI(self, genome, config):
-        # 
-        net = neat.nn.FeedForwardNetwork.create(genome, config)
-
+    def normalRun(self):
         run = True
         clock = pygame.time.Clock()
         while run:
@@ -37,21 +34,7 @@ class SurviveLineGame:
             if keys[pygame.K_ESCAPE]:
                 run = False
 
-            leftWave = self.Wave.PointsList[245] - 338 + self.Wave.WaveGap
-            rightWave = self.Wave.PointsList[245] - 55 - self.Wave.WaveGap+9
-            ballCord = self.ball.ballCordX
-            output = net.activate(
-                (ballCord - leftWave, ballCord, rightWave - ballCord))
-            decision = output.index(max(output))
-
-            if decision == 0:
-                pass
-            elif decision == 1:
-                self.game.moveBall(right=False)
-            else:
-                self.game.moveBall(right=True)
-
-            self.game.loop()
+            self.game.loop()        
             self.game.draw()
             keepRunning = self.game.collision(run)
             if  keepRunning==False:
@@ -139,16 +122,6 @@ def runNEAT(config):
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
-def testAI(config):
-    width, height = DISPLAY_W, DISPLAY_H
-    window = pygame.display.set_mode((width, height))
-
-    with open("best.pickle", "rb") as f:
-        winner = pickle.load(f)
-
-    game = SurviveLineGame(window, width, height)
-    game.testAI(winner, config)
-
 if __name__ == "__main__":
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
@@ -159,6 +132,6 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    # e.testAI()
-    runNEAT(config)
-    testAI(config)
+    # e.normalRun()               #run the game without AI
+    runNEAT(config)             #train AI
+    # testAI(config)
