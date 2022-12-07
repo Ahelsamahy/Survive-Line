@@ -43,7 +43,7 @@ class Wave():
             self.WaveGap += 1
             # print("Incremented line gap")
         if (self.ScoreCount % 50 == 0):
-            self.WaveAmplitude = random.randint(50, 51+self.WaveGap)
+            self.WaveAmplitude = random.randint(50, 51+self.WaveGap//2)
         return self.WaveGap, self.WaveAmplitude
 
     def generateWave(self):
