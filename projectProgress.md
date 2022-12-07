@@ -42,7 +42,6 @@ there is ballFun.py and the waveFunc.py files, all the defs that are related to 
 
 There is the main game.py that is responsible of making instance of the game and control the functionality in subClasses like moving the ball or generate wave and move ball. The reason for having it is each genome is an instance of the game with its own vars and classes, and each one of them would be separated in the class.
 
- 
+# 2020.12.05 centre is bad
 
-
-
+Just committing and adding a centre move, the AI wouldn't choose it because there isn't a change in the statues, so i had to increase the fitness for it.
