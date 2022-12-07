@@ -41,18 +41,19 @@ class Game():
         GAME_DISPLAY.blit(label, (x, y))
 
     def displayScore(self):
-        y_pos = 0
+        yPos = 0
         gap = 30
-        x_pos = self.WDisplay//2
+        xPos = self.WDisplay//2
         self.updateLabel(self.Wave.ScoreCount//200,
-                         Game.SCORE_FONT, x_pos, y_pos + gap, self.window)
+                         Game.SCORE_FONT, xPos, yPos + gap, self.window)
 
     def displayAINum(self, genNum, genomeNum):
-        y_pos = 0
-        gap = 60
-        x_pos = self.WDisplay//2
-        self.updateLabel("{0}.{1}".format(genNum, genomeNum),
-                         Game.NORMAL_FONT, x_pos, y_pos + gap, self.window)
+        yPos = 0
+        gap = 70 
+        xPos = self.WDisplay//2
+        # if(len(str(genNum)) or len(str(genomeNum))==1):xPos+=5
+        if(len(str(genNum))==2 or len(str(genomeNum))==2):xPos-=18
+        self.updateLabel("{0}.{1}".format(genNum, genomeNum),Game.NORMAL_FONT, xPos, yPos + gap, self.window)
 
     def displayRuntime(self):
 
@@ -65,7 +66,7 @@ class Game():
     def collision(self, runLoop):
         ball = self.Ball.drawBall(self.window)
         Wave = self.Wave
-        for x in range(240, 255):
+        for x in range(240, 250):
             if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap+9):
                 # print("hit from " + str(x) + " right")
                 return runLoop == False
