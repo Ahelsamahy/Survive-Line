@@ -106,9 +106,7 @@ class SurviveLineGame:
                 run = False
             pygame.display.update()
 
-            if self.Wave.ScoreCount >= 2000:
-                self.calcFitness(genome1, self.Wave.ScoreCount)
-                break
+
 
     def calcFitness(self, genome1, scoreCounter):
         genome1.fitness += scoreCounter
