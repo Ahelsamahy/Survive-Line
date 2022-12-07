@@ -91,7 +91,8 @@ class SurviveLineGame:
                 self.game.moveBall("Right")
 
             self.game.draw()
-            self.game.displayAINum(p.generation, genomeNum)
+                        #"", "" genNum, genomeNum
+            self.game.displayAINum(genNum, genomeNum)
             keepRunning = self.game.collision(run)
 
             #reward if the distance for both left and right is the same 
@@ -112,10 +113,12 @@ class SurviveLineGame:
     def calcFitness(self, genome1, scoreCounter):
         genome1.fitness += scoreCounter
 
-
+genNum = -1
 def evalGenomes(genomes, config):
+    global genNum
     width, height = DISPLAY_W, DISPLAY_H
     window = pygame.display.set_mode((width, height))
+    genNum+=1
     for i, (genome_id1, genome1) in enumerate(genomes):
 
         # print the genome number
@@ -123,7 +126,7 @@ def evalGenomes(genomes, config):
         print(genomeNum, end=" ")
         # print(round(i/len(genomes) * 60)//2, end=" ")
         game = SurviveLineGame(window, width, height)
-        game.trainAI(genome1, config, genomeNum)
+        game.trainAI(genome1, config, genomeNum, genNum)
 
 def runNEAT(config):
     p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
@@ -131,6 +134,7 @@ def runNEAT(config):
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
+    #save a checkpoint after each 1 generation
     p.add_reporter(neat.Checkpointer(1))
 
     winner = p.run(evalGenomes, 50)
