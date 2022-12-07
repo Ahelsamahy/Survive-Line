@@ -28,9 +28,9 @@ class SurviveLineGame:
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_LEFT]:
-                self.game.moveBall(right=False)
+                self.game.moveBall("Left")
             if keys[pygame.K_RIGHT]:
-                self.game.moveBall(right=True)
+                self.game.moveBall("Right")
             if keys[pygame.K_ESCAPE]:
                 run = False
 
