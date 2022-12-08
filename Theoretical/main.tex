@@ -1,0 +1,46 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\begin{document}
+	
+	\author{TeXstudio Team}
+	\title{Simple Book Example}
+	\date{January 2013}
+	
+	
+	\maketitle
+	\tableofcontents
+	
+%	\chapter*{Abstract}
+%	Abstract goes here
+%	
+%	\chapter*{Dedication}
+%	To mum and dad
+%	
+%	\chapter*{Declaration}
+%	I declare that..
+%
+%	\chapter*{Acknowledgements}
+%	I want to thank...
+	
+	\chapter{Introduction}
+	\include{./Chapters/1_Introduction}
+	
+	\chapter{Related work}
+	\include{./Chapters/2_RelatedWork}
+	
+	\chapter{Technologies}
+	\include{./Chapters/3_Technologies}
+	
+	\chapter{Timeline}
+	\include{./Chapters/4_Timeline}
+	
+	\chapter{Testing}
+	\include{./Chapters/5_Testing}
+	
+	\chapter{Summary}
+	\include{./Chapters/6_Summary}
+	
+	
+\end{document}
