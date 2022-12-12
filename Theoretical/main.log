@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.11.25) (preloaded format=pdflatex 2022.12.7)  8 DEC 2022 19:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.11.25) (preloaded format=pdflatex 2022.12.7)  8 DEC 2022 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -58,9 +58,9 @@ dftex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count194
 \l__pdf_internal_box=\box51
-) (main.aux (TeX_files/1_Introduction.aux)
-(TeX_files/2_RelatedWork.aux) (TeX_files/3_Technologies.aux)
-(TeX_files/4_Timeline.aux) (TeX_files/5_Testing.aux) (TeX_files/6_Summary.aux))
+) (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux) (Chapter
+s/3_Technologies.aux) (Chapters/4_Timeline.aux)
+(Chapters/5_Testing.aux) (Chapters/6_Summary.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -118,36 +118,32 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [1
 
-] [2
-
-] [3
-
-] [4
-
-] [5
-
 ]
 Chapter 1.
-[6
+[2
 
 ]
 \openout2 = `./Chapters/1_Introduction.aux'.
 
+ (Chapters/1_Introduction.tex [1
 
-No file ./Chapters/1_Introduction.tex.
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 15.
+) [1]
 Chapter 2.
-[7
-
+[2
 
 
 
 ]
 \openout2 = `./Chapters/2_RelatedWork.aux'.
 
-
-No file ./Chapters/2_RelatedWork.tex.
+ (Chapters/2_RelatedWork.tex)
 Chapter 3.
-[8
+[3
 
 
 
@@ -155,10 +151,9 @@ Chapter 3.
 ]
 \openout2 = `./Chapters/3_Technologies.aux'.
 
-
-No file ./Chapters/3_Technologies.tex.
+ (Chapters/3_Technologies.tex)
 Chapter 4.
-[9
+[4
 
 
 
@@ -166,10 +161,9 @@ Chapter 4.
 ]
 \openout2 = `./Chapters/4_Timeline.aux'.
 
-
-No file ./Chapters/4_Timeline.tex.
+ (Chapters/4_Timeline.tex)
 Chapter 5.
-[10
+[5
 
 
 
@@ -177,10 +171,9 @@ Chapter 5.
 ]
 \openout2 = `./Chapters/5_Testing.aux'.
 
-
-No file ./Chapters/5_Testing.tex.
+ (Chapters/5_Testing.tex)
 Chapter 6.
-[11
+[6
 
 
 
@@ -188,29 +181,32 @@ Chapter 6.
 ]
 \openout2 = `./Chapters/6_Summary.aux'.
 
-
-No file ./Chapters/6_Summary.tex.
-(main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux)
-(Chapters/3_Technologies.aux) (Chapters/4_Timeline.aux) (Chapters/5_Testing.aux
-) (Chapters/6_Summary.aux)) ) 
+ (Chapters/6_Summary.tex) (main.aux (Chapters/1_Introduction.aux)
+(Chapters/2_RelatedWork.aux) (Chapters/3_Technologies.aux)
+(Chapters/4_Timeline.aux) (Chapters/5_Testing.aux) (Chapters/6_Summary.aux)) ) 
 Here is how much of TeX's memory you used:
- 1539 strings out of 475281
- 31256 string characters out of 2773121
- 366035 words of memory out of 3000000
- 23020 multiletter control sequences out of 15000+600000
- 473814 words of font info for 43 fonts, out of 8000000 for 9000
+ 1536 strings out of 475281
+ 31371 string characters out of 2773121
+ 368032 words of memory out of 3000000
+ 23006 multiletter control sequences out of 15000+600000
+ 473982 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,183b,186s stack positions out of 10000i,1000n,20000p,200000b,80000s
-<C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Mahfouz/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Mahfouz/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mahfouz/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/User
-s/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pf
-b>
-Output written on main.pdf (12 pages, 78118 bytes).
+ 55i,8n,62p,380b,186s stack positions out of 10000i,1000n,20000p,200000b,80000s
+<
+C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mbx10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Mahfouz/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Mahfouz/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Mahfouz/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/
+Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><
+C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mtt10.pfb>
+Output written on main.pdf (10 pages, 120664 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
