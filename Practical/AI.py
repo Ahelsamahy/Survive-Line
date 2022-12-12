@@ -20,7 +20,7 @@ class SurviveLineGame:
         run = True
         clock = pygame.time.Clock()
         while run:
-            clock.tick(60)
+            clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
