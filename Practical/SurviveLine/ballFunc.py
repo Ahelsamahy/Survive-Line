@@ -16,7 +16,7 @@ class Ball(object):
         self.ballCordX = Ball.DISPLAY_W//2
         self.ballCordY = 550
         self.WaveGap = waveGap
-
+        #loc,vel,timer
         self.Particles = []
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList
