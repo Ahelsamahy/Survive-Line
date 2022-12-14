@@ -7,7 +7,7 @@ Ended with problem in trying to figure out a way to fill the gap after the first
 ## 2022.10.23:
 
 Gap problem, say that the gap is over the limit of list (800Px), dealing with it before was just to make the gap limited to the end of list, so if the point is at index 797 and the gap is 10 (that means there will be an out of index at extra index 6) so it was just to make it limited to  (gap = DISPLAY_H - POINTS_I - 1) but the problem is that it wouldn't work on high scale when the amplitude gets higher.
-to deal with it is to remote the over-points in gap from the beginning of the list and add empty points of the same amount at the end then make the index go back to the new index, back to the same example,
+to deal with it is to remove the over-points in gap from the beginning of the list and add empty points of the same amount at the end then make the index go back to the new index, back to the same example,
  it will remove 6 points from the beginning of list then add empty 6 points to the end, and shift the index to 6 points in the back so it stays with the new point
 
 ## 2022.10.27: 

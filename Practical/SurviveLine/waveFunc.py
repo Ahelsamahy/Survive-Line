@@ -89,7 +89,7 @@ class Wave():
     def fillGap(self, gap, gapDirection):
         # gapDirection to right is true, left is false
         if self.PointsI + (gap) >= self.HDisplay-1:
-            untilEnd = self.HDisplay-self.PointsI
+            untilEnd = self.HDisplay-1-self.PointsI
             toAddFromStart = abs(gap-untilEnd)
             del self.PointsList[:toAddFromStart]
             toAdd = [0]*toAddFromStart

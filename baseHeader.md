@@ -1,3 +1,5 @@
+# Timeline
+
 The first step of developing the game was choosing a programming language that would be helpful in both showing graphics on screen and implement an AI algorithm, the only option that was convenient enough was python as:
 
 ```
@@ -10,11 +12,35 @@ The first step of developing the game was choosing a programming language that w
 
 Going for a library for the game was the first step as it would define the characteristics, i went for **PyGame** because it was nearly the only one that is good enough with documentation to start with, and quit enough, the main focus isn't about making a game that will have that physics in it and 3d animation, for now, the imagined picture of the game is a rectangle as a screen that will have two main component of the game, wave that is on one side of the screen vertically and the one on the other side with the only difference is 350px (because the starting amplitude is 50px and the screen width is 400px) and a ball that the **only purpose for it is to survive the as much as it can, without hitting any of the sides of the wave**, the accent colour of the game will be between black as a background and white to show the elements, with an additional score counter on the top middle part of screen to keep record of points.
 
+## Develop the game
+
  the files layout of the game will be an `AI.py` file in the root folder, then subfolder named `SurviveLine` with 3 files in it `ballFunc.py` `waveFunc.py` and `game.py`, and to make it easy to make instance of the game, will create a file named `__init__.py` that will only have one line it it `from .game import Game` that means we will have a `Class Game():` in the `game.py` and it is used to call the `game` function as a library in the `AI.py` file (as it is in another folder) and make instance from it, but will get into this later in the AI section.
 
+### Wave functionality
 
+To get the base function of wave there would be a lot of functions to cover like:
 
-# Wave function
+```python
+def draw(self, Display):
+    #increase the FPS of game
+def changeSpeed(self):
+    #change the wave aplitude and increase the wave gap
+def changeWave(self):
+    #generate a new point on Y axis
+def generateWave(self):
+    #add point to the list of points
+def addPoint(self, index, point):
+    #check if there is a gap 
+def checkGap(self):
+    #function to fill it
+def fillGap(self, gap, gapDirection):
+    #reset all the self. variable that are made in __init__ class 
+def reset(self):
+```
+
+most of them are self explanatory, but the ones that need more dive into details are the `generateWave`, `checkGap`and `fillGap`
+
+#### Generate Wave
 
 The starting point of the game, in the `waveFunc.py` to make a main class `Class Wave():` with  an equation that can generate a wave and at the same time I can change in the variables of the wave to make it harder for the player, these variable are 
 wave amplitude\footnote{is the maximum or lowest height the wave can go in one point to up or down} or 
@@ -50,78 +76,74 @@ there have to be more condition to make the points be generated without disorder
 
 there would be a counter in the main game file `game.py` that is incremented by one each time the game takes a loop, so how the game display actually ?
 
-### Display the game
+#### Check gap
 
-there is a main while loop in the `AI.py` file that is controlled by a variable called `run=True`, the reason for it to be a variable not the Boolean `True` is to stop the game once there is a collision then start the next genome after. The functionality for it can be broken into several points.
+after generating a point, with the change in amplitude, the next point that is added to list of points, doesn't have a difference of only 1px with the one before it, so that means that there will be a different line segments in the list and a gap between them, to overcome this, after a point is generated, there is a for loop that checks is there is only one pixel gap between it and the point before it, either it is minus or negative as the gap can be to left side or right side
 
-- paint the background with black
-- have a score counter (1 point each loop)
-- go through all the points in `PointsList` and display all of them
-- draw the ball
-- draw a rectangle surrounding the ball (for collision detection)
-- show particles
+![filledGap](./../../progressMedia/images/filledGap.jpg)
 
-from that you would need a function to take care of the repetitve tasks that nees to be checked during the time of running the game, like collision, show particles and change wave, all of this is being done in the `def loop(self)` at the `game.def` and it basically take care of the functions that are related to the ball and wave, like collision, draw, move ball and display some info while teaching the AI, that was a lot without explaining, will go throguh each one a little
+#### Fill Gap
 
-#### Collision
+if there is one part which took the most in the writing, i would say it is this part, because there were different approaches to solve the problem, first one is either to move the point on y axis by the gap then make a straight line from the old line segment to it, and the second one was to get the point just to be minus on the x axis then be linked to it. the first option was better for the sake of visibility and not effecting the next point respectively. There were lots of ways (or you can say conditions) that needs to be covered in the point list, for example what if the gap is at the end of list?  will throw "out of index error", one way to cover this is by removing amount of points from the start of the list, then add the same amount at the end where you need it,
 
-it gets an instance of the ball as there is a function in PyGame to have a fake (invisible) rectangle around a spirit (that is how players are called) and from that you have a direction points without defining them as a coordinates, for example, the ball starts at the middle of screen( point 200px) and goes 12px as radius, that means 188px for left edge of ball and 212px for the right edge and all of this would need to be stored, imagine doing the same for bottom left, bottom right, top left top right. it would need to store extra variables that aren't needed, so there are `spirit.right` to deal with the right side of the spirit and detect if it **overlaps** another object, it would be usefull in the case of collision as the points are stored in a list, so i don't have to check all of it, just for the radius of the ball, but to make it go further, i reduced the range so it wouldn't make more effort on the CPU during the training.
+Say that the gap is over the limit of list (800Px), dealing with it before was just to make the gap limited to the end of list, so if the point is at index 797 and the gap is 10 (that means there will be an out of index at extra index 6) so it was just to make it limited to  `gap = DISPLAY_H - POINTS_I - 1` but the problem is that it wouldn't work on high scale when the amplitude gets higher.
+to deal with it is to remove the over-points in gap from the beginning of the list and add empty points of the same amount at the end then make the index go back to the new index, back to the same example,
+It will remove 6 points from the beginning of list then add empty 6 points to the end, and shift the index to 6 points in the back so it stays with the new point.
 
 ```python
-def collision(self, runLoop):
-        ball = self.Ball.drawBall(self.window)
-        Wave = self.Wave
-        for x in range(240, 250):
-            if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap+9):
-                # print("hit from " + str(x) + " right")
-                return runLoop == False
-
-            if (Wave.PointsList[x] != 0) and ball.left <= Wave.PointsList[x]-338+Wave.WaveGap:
-                # print("hit from " + str(x) + " left")
-                return runLoop == False
+if self.PointsI + (gap) >= self.HDisplay-1:
+	untilEnd = self.HDisplay-self.PointsI
+	toAddFromStart = abs(gap-untilEnd)
+	del self.PointsList[:toAddFromStart]
+	toAdd = [0]*toAddFromStart
+	self.PointsList.extend(toAdd)
+	self.PointsI -= toAddFromStart
+	gap -= 1
 ```
 
-You would notice that there is a return variable from the function, it is linked to the call in `main.py` just to stop the main while loop and start he next genome.
+with every line here looks like a weird by itself, you would need some explanation:
+
+- Line 2: calculate the difference between the ending point of list and the starting point of gap
+- Line 3: get the difference in gap and the point
+- Line 4: delete the amount of point from the beginning of list
+- Line 5: create empty list with the amount of delete points from beginning of list
+
+Now with the condition being fulfilled, it comes to fill the gap itself, there would be a two options (or ways you can say), but I will discuss one only and the other one have the same implementation with difference being the sign
 
 ```python
-			keepRunning = self.game.collision(run)
-            if keepRunning == False:
-                run = False
-                #which would by then terminate the main while loop of game
+if (gapDirection):
+	# to move the point according to gap
+	self.PointsList[self.PointsI + gap] = self.PointsList[self.PointsI]
+	self.PointsList[self.PointsI] = 0
+    #the step is different for gap direction, as it would be -1 or +1
+	for x in range(self.PointsList[self.PointsI-1], self.PointsList[self.PointsI+gap]-1, (gap//gap)):
+		self.PointsList[insideY] = x+1
+		if insideY < 799:
+			insideY += 1
 ```
 
-#### Move ball
+first it moves the point by the amount of gap then resets the old value of it to zero, secondly is a for loop to fill the points incrementally starting from the last point in the old line segment to the new point.
 
-As I'm still explaning about the borders of game and ball movememnet, it would be a good chance to talk about the ball movement mechanisem, it is controlled by the function `def moveBall()` in the `game.py` as it is the one in control of the main functions of the game, in case there is an output of the neural network to move the ball right then the function would check if the ball is still in the space of screen and the right side of the ball isn't over the screen width, also the left side of ball isn't lower than the screen width
+### Ball functionality
 
-```python
-def moveBall(self, dir):
-        if (dir =="Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
-            self.Ball.moveBall(right=True)
-            return False
-        elif (dir =="Left" and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
-            self.Ball.moveBall(right=False)
-            return False
-        elif  dir == "Center":
-            return False
-        return True
-```
+The main focus when working on the ball was to make it as simple as it can be so a new instance can be done from it without the need to store a self-genome variable, so every genome would have its own variables that can be changed with a new instance made.
 
-the point of having an if statement for centre is that during the learning period of AI, there neural network would always seek a change in its input to get a different output, in case of centre output, that would mean that output is the same, there had to be an extra reward in case of centre output to encourage the neural network to choose it (will discuss it into more details in the AI part)
+#### Draw ball
 
+As the game is based on a **ball** that survives a line, then I need to display a ball and not a circle, there isn't a function to draw a filled ball in one line, so i have to draw an empty circle then fill it, the function `pygame.gfxdraw.aacircle` will draw a  draw an anti-alised circle and `pygame.gfxdraw.filled_circle` draw a filled circle inside of it, then draw a fake rectangle around them with `pygame.Rect` that will deal with the collision (will discuss it in the display game section)
 
+#### Generate particles
 
-####  Particles
-
-this part is a little logic than the other because it was made for the visuallty of the game, no output coming out of it to make the gmae faster or improve something, but it would add a little bit of a characteristic to the game and the vision i have for it.
+This part is a little logic than the other because it was made for the visuality of the game, no output coming out of it to make the game faster or improve something, but it would add a little bit of a characteristic to the game and the vision I have for it.
 
 The particles are made to hold the position of the ball and generate as a way to look like a combustion engine steam coming out ot it, so there are three things to notice her
 
-Location: where the particles will start and ending point
+- Location: where the particles will start and their ending point
 
-Velocity: the amount of particles that will be generated in a second
+- Velocity: the amount of particles that will be generated in a second
 
-Time: how long they will last on the screen
+- Time: how long they will last on the screen
+
 
 With this in consideration, we can start writing a function for it 
 
@@ -152,12 +174,54 @@ The code would add to list of particles a new one with these random starting val
 
 this function is posible thanks to 
 
-[^https://www.youtube.com/watch?v=F69-t33e8tk]:Particles - Pygame Tutorial by  DaFluffyPotato
+[^https://www.youtube.com/watch?v=F69-t33e8tk]: Particles - Pygame Tutorial by  DaFluffyPotato
 
 
 
-\begin{equation}
+########second section of header########
+
+## Display the game
 
 
 
-\end{equation}
+### Update label
+
+
+
+### Display score
+
+
+
+### Display AI number
+
+
+
+### Collision
+
+
+
+### Draw
+
+
+
+### Move ball
+
+
+
+### Loop
+
+
+
+### Reset
+
+
+
+########third section of header########
+
+## Create AI
+
+### What is N.E.A.T ?
+
+### Tweak AI
+
+### Teach AI

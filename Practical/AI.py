@@ -140,6 +140,6 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    # e.normalRun()               #run the game without AI
-    runNEAT(config)             #train AI
+    e.normalRun()               #run the game without AI
+    # runNEAT(config)             #train AI
     # testAI(config)
