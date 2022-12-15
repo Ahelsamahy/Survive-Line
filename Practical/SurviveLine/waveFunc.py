@@ -26,7 +26,7 @@ class Wave():
     def draw(self, Display):
         for Y_CORD in range(len(self.PointsList)):
             pygame.gfxdraw.pixel(
-                Display, self.PointsList[Y_CORD]-55-self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
+                Display, self.PointsList[Y_CORD]-50-self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
             pygame.gfxdraw.pixel(
                 Display, self.PointsList[Y_CORD]-350+self.WaveGap, self.HDisplay-Y_CORD, Wave.WAVE_COLOUR)
 
@@ -54,7 +54,6 @@ class Wave():
         pointsList_XCord = int((self.HDisplay/2) + self.WaveAmplitude*math.sin(
             self.waveFreq * ((float(0)/-self.WDisplay)*(2*math.pi) + (time.time()))))
 
-        # make the dot only to the right half of screen, elif for the left part
         if pointsList_XCord - self.WaveAmplitude - self.WaveGap > self.WDisplay:
             pointsList_XCord = self.WDisplay + 50 + self.WaveGap
         elif pointsList_XCord - 350 - self.WaveGap > self.WDisplay:
@@ -64,10 +63,23 @@ class Wave():
         if (pointsList_XCord < self.WDisplay//2):
             pointsList_XCord = self.WDisplay//2
 
+        pointsList_XCord = self.shiftOnXAxis(pointsList_XCord)
+        
         self.addPoint(self.PointsI, pointsList_XCord)
         self.checkGap()
         self.PointsI += 1
 
+    def shiftOnXAxis(self, newPoint):
+        if self.PointsI not in range(0, 5):
+            if self.PointsList[-1] != 0:
+                diff = newPoint - self.PointsList[799]
+            else:
+                diff = newPoint - self.PointsList[self.PointsI-1]
+            if(diff < -1):
+                newPoint -= diff+1
+            if(diff > 1):
+                newPoint -= diff-1
+        return newPoint
     def addPoint(self, index, point):
         if self.PointsList[-1] != 0:
             self.PointsList.pop(0)
