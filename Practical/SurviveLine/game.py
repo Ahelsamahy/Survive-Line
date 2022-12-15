@@ -111,7 +111,8 @@ class Game():
 
         self.Ball.drawBall(self.window)
         self.Ball.generateParticles()
-
+        if vision:
+            self.countDistance()
     def moveBall(self, dir):
         if (dir == "Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
             self.Ball.moveBall(right=True)
