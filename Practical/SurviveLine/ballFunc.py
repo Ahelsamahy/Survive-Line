@@ -22,7 +22,8 @@ class Ball(object):
         self.PointsList = pointsList
 
     def drawBall(self, SCREEN):
-        self.ballRect = pygame.Rect(self.ballCordX, self.ballCordY, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
+        self.ballRect = pygame.Rect(self.ballCordX-Ball.BALL_RADIUS, self.ballCordY-Ball.BALL_RADIUS, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
+        # pygame.draw.rect(SCREEN,(125,125,125), self.ballRect)
         pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,
                                 self.ballCordY, Ball.BALL_RADIUS, WHITE)
         pygame.gfxdraw.filled_circle(
