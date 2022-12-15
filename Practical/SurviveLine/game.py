@@ -45,11 +45,13 @@ class Game():
 
     def displayAINum(self, genNum, genomeNum):
         yPos = 0
-        gap = 70 
+        gap = 70
         xPos = self.WDisplay//2
         # if(len(str(genNum)) or len(str(genomeNum))==1):xPos+=5
-        if(len(str(genNum))==2 or len(str(genomeNum))==2):xPos-=18
-        self.updateLabel("{0}.{1}".format(genNum, genomeNum),Game.NORMAL_FONT, xPos, yPos + gap, self.window)
+        if(len(str(genNum)) == 2 or len(str(genomeNum)) == 2):
+            xPos -= 18
+        self.updateLabel("{0}.{1}".format(genNum, genomeNum),
+                         Game.NORMAL_FONT, xPos, yPos + gap, self.window)
 
     def displayRuntime(self):
 
@@ -62,16 +64,42 @@ class Game():
     def collision(self, runLoop):
         ball = self.Ball.drawBall(self.window)
         Wave = self.Wave
-        for x in range(240, 250):
-            if (Wave.PointsList[x] != 0) and (ball.right >= Wave.PointsList[x]-55-Wave.WaveGap+9):
-                # print("hit from " + str(x) + " right")
+        #                          226          ,             250
+        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
+            if (Wave.PointsList[YCord] != 0) and (ball.right >= Wave.PointsList[YCord]-50-Wave.WaveGap):
+                # print("hit from " + str(YCord) + " right")
                 return runLoop == False
 
-            if (Wave.PointsList[x] != 0) and ball.left <= Wave.PointsList[x]-338+Wave.WaveGap:
-                # print("hit from " + str(x) + " left")
+            if (Wave.PointsList[YCord] != 0) and ball.left <= Wave.PointsList[YCord]-350+Wave.WaveGap:
+                # print("hit from " + str(YCord) + " left") 338
                 return runLoop == False
 
-    def draw(self):
+    def countDistance(self):
+        ball = self.Ball.drawBall(self.window)
+        Wave = self.Wave
+        rightList = []
+        leftList = []
+        lineToWaveColour = (219,199,184)
+        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
+            for y in range(0, ball.width):
+                dxR = pow(Wave.PointsList[YCord]-50 - ball.bottomright[0]+y, 2)
+                dxL = pow(Wave.PointsList[YCord]-350 - ball.bottomleft[0]+y, 2)
+                # dx = abs(Wave.PointsList[desPoint]-55 - DISPLAY_W//2) #yes
+                dy = pow(YCord - ball.bottomright[1]+y, 2)
+                # dy = abs((desPoint) - 562)                            #yes
+                rightList.append(math.sqrt(dxR+dy))
+                leftList.append(math.sqrt(dxL+dy))
+
+                if(Wave.PointsList[YCord] != 0):
+                    pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (
+                        ball.centerx, ball.centery), (Wave.PointsList[YCord]-50-Wave.WaveGap, 800-YCord), 2)
+
+                    pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (
+                        ball.centerx, ball.centery), (Wave.PointsList[YCord]-350+Wave.WaveGap, 800-YCord), 2)
+
+        return rightList, leftList
+
+    def draw(self, vision):
         """
         Display the score, wave and the particles, make sure the screen will be filled with background
         """
@@ -85,13 +113,13 @@ class Game():
         self.Ball.generateParticles()
 
     def moveBall(self, dir):
-        if (dir =="Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
+        if (dir == "Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
             self.Ball.moveBall(right=True)
             return False
-        elif (dir =="Left" and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
+        elif (dir == "Left" and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
             self.Ball.moveBall(right=False)
             return False
-        elif  dir == "Center":
+        elif dir == "Center":
             return False
         return True
 
