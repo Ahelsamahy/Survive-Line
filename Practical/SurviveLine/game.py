@@ -9,12 +9,8 @@ from .defs import *
 from .ballFunc import *
 from .waveFunc import *
 
-songNum = 1
-
 pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
-# [, pygame.NOFRAME]
-# GAME_DISPLAY = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 pygame.display.set_caption('Survive line')
 
 localDir = os.path.dirname(__file__)
