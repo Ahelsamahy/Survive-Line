@@ -45,3 +45,11 @@ There is the main game.py that is responsible of making instance of the game and
 # 2020.12.05 centre is bad
 
 Just committing and adding a centre move, the AI wouldn't choose it because there isn't a change in the statues, so i had to increase the fitness for it.
+
+# 2020.12.14 what's up gap?
+
+so, the old problem I had is that there would be a need for a check gap function to check with the point that is newly made with the one before it and them referee to fillGap to shift the first point in the new line segment by the amount of gap then make a line between the old line segment and the new one, then an idea came to me, what if instead of shifting the point on y axis, I can then shift it on x-axis?
+
+hear me out, in the old way you would need to shift and make a line to keep the ball going on the x-axis without having a gap, but if I can know the gap (which I already know) then decrease the new point by the amount of gap + 1 (if it is a positive gap) and will be -1 if it is a negative gap , you may ask, "why didn't you use absolute value for amount of gap as left is the same as right?" because then this would mean that the wave would increment in one way which depends if it is +1 or -1
+
+the newely implemented function is called `def shiftOnXAxis(self, newPoint)` in `waveFunc.py`
