@@ -130,13 +130,13 @@ The main focus when working on the ball was to make it as simple as it can be so
 
 #### Draw ball
 
-As the game is based on a **ball** that survives a line, then I need to display a ball and not a circle, there isn't a function to draw a filled ball in one line, so i have to draw an empty circle then fill it, the function `pygame.gfxdraw.aacircle` will draw a  draw an anti-alised circle and `pygame.gfxdraw.filled_circle` draw a filled circle inside of it, then draw a fake rectangle around them with `pygame.Rect` that will deal with the collision (will discuss it in the display game section)
+As the game is based on a **ball** that survives a line, then I need to display a ball and not a circle, there isn't a function to draw a filled ball in one line, so i have to draw an empty circle then fill it, the function `pygame.gfxdraw.aacircle` will draw a  draw an anti-aliased circle and `pygame.gfxdraw.filled_circle` draw a filled circle inside of it, then draw a fake rectangle around them with `pygame.Rect` that will deal with the collision (will discuss it in the display game section)
 
 #### Generate particles
 
-This part is a little logic than the other because it was made for the visuality of the game, no output coming out of it to make the game faster or improve something, but it would add a little bit of a characteristic to the game and the vision I have for it.
+This part is little on logic than the other because it was made for the visuality of the game, no output coming out of it to make the game faster or improve something, but it would add a little bit of a characteristic to the game and the vision I have for it.
 
-The particles are made to hold the position of the ball and generate as a way to look like a combustion engine steam coming out ot it, so there are three things to notice her
+The particles are made to hold the position of the ball and generate as a way to look like a combustion engine steam coming out ot it, so there are three things to notice here
 
 - Location: where the particles will start and their ending point
 
@@ -164,7 +164,7 @@ def generateParticles(self):
                 self.Particles.remove(particle)
 ```
 
-in the vel variable deceleration part, it makes sure that the value we would get, would be a random number between {-1,1} and timer to give chaos to the particles so not all of them are released at the same time.
+in the `Vel `variable deceleration part, it makes sure that the value we would get, would be a random number between {-1, 1} and the `Timer ` to give chaos to the particles so not all of them are released at the same time.
 
 The code would add to list of particles a new one with these random starting values, then the for loop process each value on its own.
 
@@ -184,23 +184,23 @@ this function is posible thanks to
 
 
 
-### Update label
+### Draw
 
 
 
-### Display score
+#### Update label
 
 
 
-### Display AI number
+#### Display score
+
+
+
+#### Display AI number
 
 
 
 ### Collision
-
-
-
-### Draw
 
 
 
