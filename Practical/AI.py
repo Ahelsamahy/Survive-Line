@@ -19,12 +19,17 @@ class SurviveLineGame:
     def normalRun(self):
         run = True
         clock = pygame.time.Clock()
+        vision = False
         while run:
             clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_v:
+                        vision = not vision
                 if event.type == pygame.QUIT:
                     run = False
                     break
+
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_LEFT]:
@@ -35,7 +40,7 @@ class SurviveLineGame:
                 run = False
 
             self.game.loop()        
-            self.game.draw()
+            self.game.draw(vision)
             keepRunning = self.game.collision(run)
             if keepRunning == False:
                 run = False
@@ -43,16 +48,19 @@ class SurviveLineGame:
 
         pygame.quit()
 
-    def trainAI(self, genome1, config, genomeNum,genNum):
+    def trainAI(self, genome1, config, genomeNum, genNum):
         net = neat.nn.FeedForwardNetwork.create(genome1, config)
-        g=neat.StdOutReporter(True)
+        g = neat.StdOutReporter(True)
         g.start_generation
         run = True
         clock = pygame.time.Clock()
-
+        vision = False
         while run:
             clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_v:
+                        vision = not vision
                 if event.type == pygame.QUIT:
                     quit()
 
@@ -78,7 +86,7 @@ class SurviveLineGame:
             elif decision == 2:
                 self.game.moveBall("Right")
 
-            self.game.draw()
+            self.game.draw(vision)
                         #"", "" genNum, genomeNum
             self.game.displayAINum(genNum, genomeNum)
             self.game.displayRuntime()
