@@ -15,13 +15,14 @@ class SurviveLineGame:
         self.game = Game(window, width, height)
         self.Wave = self.game.Wave
         self.ball = self.game.Ball
+        self.clock = pygame.time.Clock()
 
     def normalRun(self):
         run = True
         clock = pygame.time.Clock()
         vision = False
         while run:
-            clock.tick(self.Wave.FPS)
+            self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
@@ -58,7 +59,7 @@ class SurviveLineGame:
         clock = pygame.time.Clock()
         vision = False
         while run:
-            clock.tick(self.Wave.FPS)
+            self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
