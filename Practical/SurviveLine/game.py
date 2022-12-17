@@ -123,6 +123,11 @@ class Game():
         self.Wave.generateWave()
 
         self.countDistance()
+
+        if vision:
+            self.showVision()
+        if particles:
+            self.Ball.generateParticles()
         self.Ball.drawBall(self.window)
         self.Ball.moveBall()
 

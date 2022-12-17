@@ -26,6 +26,8 @@ class SurviveLineGame:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
                         vision = not vision
+                    if event.key == pygame.K_p:
+                        particles = not particles
                 if event.type == pygame.QUIT:
                     run = False
                     break
@@ -61,8 +63,8 @@ class SurviveLineGame:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
                         vision = not vision
-                if event.type == pygame.QUIT:
-                    quit()
+                    if event.key == pygame.K_p:
+                        particles = not particles
 
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_ESCAPE]:
@@ -111,9 +113,10 @@ class SurviveLineGame:
 genNum = -1
 def evalGenomes(genomes, config):
     global genNum
-    width, height = DISPLAY_W, DISPLAY_H
+    width, height = 400, 800
+    # , pygame.NOFRAME
     window = pygame.display.set_mode((width, height))
-    genNum+=1
+    genNum += 1
     for i, (genome_id1, genome1) in enumerate(genomes):
 
         # print the genome number
@@ -139,7 +142,8 @@ def runNEAT(config):
         pickle.dump(winner, f)
 
 if __name__ == "__main__":
-    width, height = DISPLAY_W, DISPLAY_H
+    width, height = 400, 800
+    # , pygame.NOFRAME
     window = pygame.display.set_mode((width, height))
     e = SurviveLineGame(window, width, height)
 
