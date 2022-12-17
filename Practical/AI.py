@@ -4,11 +4,6 @@ import neat
 import os
 import pickle
 
-
-DISPLAY_W = 400
-DISPLAY_H = 800
-
-
 class SurviveLineGame:
     def __init__(self, window, width, height):
         self.localDir = os.path.dirname(__file__)
@@ -17,10 +12,11 @@ class SurviveLineGame:
         self.ball = self.game.Ball
         self.clock = pygame.time.Clock()
 
+
     def normalRun(self):
         run = True
-        clock = pygame.time.Clock()
         vision = False
+        particles = False
         while run:
             self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
@@ -33,7 +29,6 @@ class SurviveLineGame:
                     run = False
                     break
 
-
             keys = pygame.key.get_pressed()
             if keys[pygame.K_LEFT]:
                 self.game.moveBall("Left")
@@ -42,76 +37,74 @@ class SurviveLineGame:
             if keys[pygame.K_ESCAPE]:
                 run = False
 
-            self.game.loop()        
-            self.game.draw(vision)
+            self.game.loop()
+            self.game.draw(vision,particles)
+
             keepRunning = self.game.collision(run)
-            if keepRunning == False:
-                run = False
+            # if keepRunning == False:
+            #     run = False
             pygame.display.update()
 
         pygame.quit()
 
     def trainAI(self, genome1, config, genomeNum, genNum):
         net = neat.nn.FeedForwardNetwork.create(genome1, config)
-        g = neat.StdOutReporter(True)
-        g.start_generation
         run = True
-        clock = pygame.time.Clock()
         vision = False
+        particles = False
         while run:
             self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
                         vision = not vision
                     if event.key == pygame.K_p:
                         particles = not particles
 
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_ESCAPE]:
-                    quit()
-            fitness = self.game.loop()
 
-            leftWave = self.Wave.PointsList[245] - 338 + self.Wave.WaveGap
-            rightWave = self.Wave.PointsList[245] - 55 - self.Wave.WaveGap+9
-            ballCord = self.ball.ballCordX
-            output = net.activate(
-                (ballCord - leftWave, ballCord, rightWave - ballCord))
-            decision = output.index(max(output))
-            # layout for the NN of the winner genome
-            # input for each instance of the list 10 digits
+            ball = self.game.Ball.ballRect()
+            leftWave, rightWave = self.game.countDistance()
+            for leftIn, rightIn in zip (leftWave,rightWave):
+                fitness = self.game.loop()
+                output = net.activate((leftIn, ball.centerx, rightIn))
+                decision = output.index(max(output))
+                # layout for the NN of the winner genome
+                # input for each instance of the list 10 digits
+    
+                if decision == 0:
+                    self.game.moveBall("Left")
+                elif decision == 1:
+                    self.game.moveBall("Center")
+                    fitness += 1
+                elif decision == 2:
+                    self.game.moveBall("Right")
 
-            if decision == 0:
-                self.game.moveBall("Left")
-            elif decision == 1:
-                self.game.moveBall("Center")
-                fitness += 1
-            elif decision == 2:
-                self.game.moveBall("Right")
+                # reward if the distance for both left and right is the same
+                if round(output[0], -1) == round(output[2], -1):
+                    fitness += 2
 
-            self.game.draw(vision)
-                        #"", "" genNum, genomeNum
-            self.game.displayAINum(genNum, genomeNum)
-            self.game.displayRuntime()
-            keepRunning = self.game.collision(run)
-
-            #reward if the distance for both left and right is the same 
-            if round(output[0], -1) == round(output[2], -1):
-                fitness += 2
-            if keepRunning == False:
-                #if it dies early then punishment would be higher
-                if(fitness<300):
-                    fitness-=50
-                self.calcFitness(genome1, fitness)
-                run = False
-                
-            pygame.display.update()
-
+                self.game.draw(vision,particles)
+                self.game.displayAINum(genNum, genomeNum)
+                self.game.displayRuntime()
+                keepRunning = self.game.collision(run)
+    
+    
+                if keepRunning == False:
+                    # if it dies early then punishment would be higher
+                    if(fitness < 300):
+                        fitness -= 50
+                    self.calcFitness(genome1, fitness)
+                    run = False
+    
+                pygame.display.update()
 
     def calcFitness(self, genome1, scoreCounter):
         genome1.fitness += scoreCounter
 
 genNum = -1
+
 def evalGenomes(genomes, config):
     global genNum
     width, height = 400, 800
@@ -136,7 +129,7 @@ def runNEAT(config):
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
-    #save a checkpoint after each 1 generation
+    # save a checkpoint after each 1 generation
     p.add_reporter(neat.Checkpointer(1))
     winner = p.run(evalGenomes, 50)
     with open("best.pickle", "wb") as f:
@@ -153,6 +146,5 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    e.normalRun()               #run the game without AI
-    # runNEAT(config)             #train AI
-    # testAI(config)
+    # e.normalRun()  # run the game without AI
+    runNEAT(config)  # train AI
