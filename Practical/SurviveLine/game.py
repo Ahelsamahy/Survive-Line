@@ -18,8 +18,6 @@ fontPath = os.path.join(localDir, './usedMaterial/Nexa-Light.otf')
 
 
 class Game():
-    DISPLAY_W = 400
-    DISPLAY_H = 800
     NORMAL_FONT = pygame.font.Font(fontPath, 18)
     BIG_FONT = pygame.font.Font(fontPath, 30)
     SCORE_FONT = pygame.font.Font(fontPath, 35)

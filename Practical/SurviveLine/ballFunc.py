@@ -5,15 +5,13 @@ import pygame
 
 
 class Ball(object):
-    DISPLAY_W = 400
-    DISPLAY_H = 800
     BALL_MOVE_SPEED = 5
     BALL_RADIUS = 12
     BALL_CORD_Y = 550       # fixed as the ball doesn't go up or down
     BALL_CORD_X = 0         # changes as the ball moves on this axes
 
     def __init__(self, waveGap, gameDisplay, pointsList):
-        self.ballCordX = Ball.DISPLAY_W//2
+        self.ballCordX = 400//2
         self.ballCordY = 550
         self.WaveGap = waveGap
         #loc,vel,timer
@@ -22,8 +20,7 @@ class Ball(object):
         self.PointsList = pointsList
 
     def drawBall(self, SCREEN):
-        self.ballRect = pygame.Rect(self.ballCordX-Ball.BALL_RADIUS, self.ballCordY-Ball.BALL_RADIUS, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
-        # pygame.draw.rect(SCREEN,(125,125,125), self.ballRect)
+
         pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,
                                 self.ballCordY, Ball.BALL_RADIUS, WHITE)
         pygame.gfxdraw.filled_circle(
@@ -58,5 +55,5 @@ class Ball(object):
 
     def reset(self):
         self.ballCordY = 550
-        self.ballCordX = Ball.DISPLAY_W//2
+        self.ballCordX = 400//2
         self.Particles = []
