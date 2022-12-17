@@ -29,6 +29,7 @@ class Game():
         self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
         self.window = window
         self.startTime = time.time()
+        self.showedLines = []
 
     def updateLabel(self, data, font, x, y, GAME_DISPLAY, fontColour=DATA_FONT_COLOR):
         label = font.render('{}'.format(data), True, fontColour)
@@ -73,31 +74,45 @@ class Game():
                 return runLoop == False
 
     def countDistance(self):
-        ball = self.Ball.drawBall(self.window)
+        """
+        make a list for distance between the bottom edge of ballRect to the corresponding point on the wave 
+        with the same x-axis, then one step up on wave and repeat, and make another loop to do the same with the ballRect
+        """
+        ball = self.Ball.ballRect()
         Wave = self.Wave
         rightList = []
         leftList = []
-        lineToWaveColour = (219,199,184)
-        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
-            for y in range(0, ball.width):
-                dxR = pow(Wave.PointsList[YCord]-50 - ball.bottomright[0]+y, 2)
-                dxL = pow(Wave.PointsList[YCord]-350 - ball.bottomleft[0]+y, 2)
-                # dx = abs(Wave.PointsList[desPoint]-55 - DISPLAY_W//2) #yes
-                dy = pow(YCord - ball.bottomright[1]+y, 2)
-                # dy = abs((desPoint) - 562)                            #yes
+        self.showedLines.clear()
+        # the starting point here is the bottom of ball and the end is the top + 20 px for prediction
+        # increased the step size because there was lag for the whole process to be handled
+        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+20, 5):
+            for YBall in range(0, ball.width, 5):
+                dxR = pow(Wave.PointsList[YCord] - 50 - Wave.WaveGap - ball.bottomright[0] + YBall, 2)
+                dxL = pow(Wave.PointsList[YCord] - 350 + Wave.WaveGap - ball.bottomleft[0] + YBall, 2)
+                dy = pow(abs((800-YCord) - ball.bottomright[1]+YBall), 2)
+
                 rightList.append(math.sqrt(dxR+dy))
                 leftList.append(math.sqrt(dxL+dy))
-
-                if(Wave.PointsList[YCord] != 0):
-                    pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (
-                        ball.centerx, ball.centery), (Wave.PointsList[YCord]-50-Wave.WaveGap, 800-YCord), 2)
-
-                    pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (
-                        ball.centerx, ball.centery), (Wave.PointsList[YCord]-350+Wave.WaveGap, 800-YCord), 2)
-
+                self.showedLines.append(YCord)
         return rightList, leftList
 
-    def draw(self, vision):
+    def showVision(self):
+        '''
+        show the lines that are detected by the ball to the wave
+        '''
+        # PS: it is just visually, the actually line start from the bottom edge of the
+        # ballRect to each point in the wave range, then go one up the ball rect and repeat the same step
+        ball = self.Ball.ballRect()
+        lineToWaveColour = (219, 199, 184)
+        for disLine in range(len(self.showedLines)):
+            xCord = self.showedLines[disLine]
+            if(self.Wave.PointsList[xCord] != 0):
+                pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (ball.centerx, ball.centery),
+                                 (self.Wave.PointsList[xCord]-50-self.Wave.WaveGap, 800-xCord), 2)
+                pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (ball.centerx, ball.centery),
+                                 (self.Wave.PointsList[xCord]-350+self.Wave.WaveGap, 800-xCord), 2)
+
+    def draw(self, vision,particles):
         """
         Display the score, wave and the particles, make sure the screen will be filled with background
         """
@@ -107,34 +122,19 @@ class Game():
         self.Wave.draw(self.window)
         self.Wave.generateWave()
 
+        self.countDistance()
         self.Ball.drawBall(self.window)
-        self.Ball.generateParticles()
-        if vision:
-            self.countDistance()
-    def moveBall(self, dir):
-        if (dir == "Right" and self.Ball.ballCordX + (Ball.BALL_RADIUS*2) < Game.DISPLAY_W):
-            self.Ball.moveBall(right=True)
-            return False
-        elif (dir == "Left" and (self.Ball.ballCordX > 0 + Ball.BALL_RADIUS*2)):
-            self.Ball.moveBall(right=False)
-            return False
-        elif dir == "Center":
-            return False
-        return True
+        self.Ball.moveBall()
 
     def loop(self):
         '''
         main functions that needs to be running always
         returns: score counter
         '''
-        self.Ball.moveBall()
+
         self.Wave.ScoreCount += 1
         self.Wave.changeSpeed()
         self.Wave.changeWave()
-        if self.Ball.ballCordX < 0:
-            self.Ball.reset()
-        elif self.Ball.ballCordX > self.WDisplay:
-            self.Ball.reset()
         return self.Wave.ScoreCount
 
     def reset(self):
