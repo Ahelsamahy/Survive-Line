@@ -76,3 +76,11 @@ Sounds good, but the problem is that the for loop was CPU consuming, imagine the
 | ![](./../../../progressMedia/images/vision 576 line.png) | ![](./../../../progressMedia/images/vision 45 line.png) |
 
 you might ask "will this reduce the vision of the AI ?", quite frankly, I think if it could handle itself with only one point, then  it can do better with 45 line on each side, it even gave more space to add extra point, so it can see the future now (an extra 20 points on wave)
+
+# 2020.12.17: give NN list as input ?!!
+
+A NN would need you to define the amount of input that it will work on, also the output, you can't try to find a way around by using a list and feed it more input that you have defined, which is the problem I ran into after the last log (12.15) is after getting list of distance between the ballRect and the point in wave, i was trying to feed all of it in the NN, and this wouldn't work because you can't multiply a whole list (as all) by an int `TypeError: can't multiply sequence by non-int of type 'float` even when i tried to overcome it by transfering the list to array or a full string so it can be used just as a place holder.
+
+Then i thought about having each point to have its own output decision, the secret key is `zip()` which allows me to loop through two lists parallel, which makes sense in my case (right and left distance), let's count the input again using the old way (distance from ball **left** side to the **left** wave, ball x coordinates, distance from ball **right** side to the **right** wave) so it is the same x coordinates that i would need when going up the wave.
+Turns out that it would work with some tweaks to the wave speed, because the `zip()` made the loop go through extra itirations that made xpoints be generated more than (amount of points in right or left list) usual you can say, that effected the counter that is used to change the wave amplitude and fps of game.
+
