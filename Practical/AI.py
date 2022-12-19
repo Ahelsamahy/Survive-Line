@@ -3,6 +3,7 @@ from SurviveLine import Game
 import neat
 import os
 import pickle
+from collections import Counter
 
 class SurviveLineGame:
     def __init__(self, window, width, height):
@@ -64,21 +65,29 @@ class SurviveLineGame:
                     if event.key == pygame.K_p:
                         particles = not particles
 
-
+            fitness = self.game.loop()
             ball = self.game.Ball.ballRect()
             leftWave, rightWave = self.game.countDistance()
+            decisions = []
             for leftIn, rightIn in zip (leftWave,rightWave):
 
                 output = net.activate((leftIn, ball.centerx, rightIn))
-                decision = output.index(max(output))
+                decisions.append(output.index(max(output)))
                 # layout for the NN of the winner genome
                 # input for each instance of the list 10 digits
+                # reward if the distance for both left and right is the same
+                if((len(str(output[0])) and len(str(output[0]))) > 3 ):
+                    if round(output[0], -1) == round(output[2], -1):
+                        fitness += 2
     
-                if decision == 0:
+            # if (all(i in decisions for i in [1,2])):
+            #     print("there is intersection") # Checks if all items are in the list
+            c =  max(set(decisions), key=decisions.count)
+            if c == 0:
                     self.game.moveBall("Left")
-                elif decision == 1:
+            elif c == 1:
                     self.game.moveBall("Center")
-                    fitness += 1
+            elif c == 2:
                 elif decision == 2:
                     self.game.moveBall("Right")
 
