@@ -15,7 +15,7 @@ class Wave:
         self.WDisplay = wDisplay
         self.HDisplay = hDisplay
         self.ScoreCount = 0  # will come back later for it, in the loop IMPORTANT
-        self.waveFreq = 1  # will change later in difficulty part
+        self.waveFrequency = 1  # will change later in difficulty part
         self.WaveGap = 0
         self.waveSpeed = 1
         self.GameSpeed = 2  # to increment the difference in time to speed the FPS
@@ -47,7 +47,6 @@ class Wave:
                 self.WaveAmplitude +=ampDiff
             elif (WaveAmplitude - self.WaveAmplitude < -ampDiff):
                 self.WaveAmplitude -=ampDiff
-        return self.WaveGap, self.WaveAmplitude
 
     def generateWave(self):
 
@@ -55,7 +54,8 @@ class Wave:
             self.PointsI = 0
 
         pointsList_XCord = int((self.HDisplay / 2) + self.WaveAmplitude * 
-                            math.sin(self.waveFreq* ((float(0) / -self.WDisplay) * (2 * math.pi) +self.waveSpeed* (time.time()))))
+                            math.sin(self.waveFrequency* ((float(0) / -self.WDisplay) 
+                            * (2 * math.pi) +self.waveSpeed* (time.time()))))
 
         if pointsList_XCord - self.WaveAmplitude - self.WaveGap > self.WDisplay:
             pointsList_XCord = self.WDisplay + 50 + self.WaveGap

@@ -7,6 +7,7 @@ from collections import Counter
 
 class SurviveLineGame:
     def __init__(self, window, width, height):
+        self.window = window
         self.localDir = os.path.dirname(__file__)
         self.game = Game(window, width, height)
         self.Wave = self.game.Wave
@@ -19,8 +20,9 @@ class SurviveLineGame:
         vision = False
         showParticles = False
         drawBallRec = False
+        self.Wave.waveSpeed = 4
         while run:
-            self.clock.tick(self.Wave.FPS)
+            self.clock.tick(self.Wave.FPS*self.Wave.waveSpeed)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_v:
@@ -71,6 +73,9 @@ class SurviveLineGame:
                         showParticles = not showParticles
                     if event.key == pygame.K_b:
                         drawBallRec = not drawBallRec
+                    if event.key == pygame.K_ESCAPE:
+                        run = False
+                        quit()
 
             fitness = self.game.loop()
             ball = self.game.Ball.ballRect()
@@ -99,26 +104,26 @@ class SurviveLineGame:
 
             self.game.draw(vision, showParticles, drawBallRec)
             self.game.displayAINum(genNum, genomeNum)
-                self.game.displayRuntime()
-                keepRunning = self.game.collision(run)
-    
-            if(fitness in range(3000, 3003)):
-                print("something good happened here")
+            self.game.displayRuntime()
+            keepRunning = self.game.collision(run)
+
+            # when it reaches 100 = 20000/200 
+            if(fitness in range(20000, 20003)):
                 # print("something good happened here")
                 outputRuntime = True
                 drawBallRec = True
                 # self.game.notificationMusic()
-    
-                if keepRunning == False:
-                    # if it dies early then punishment would be higher
-                    if(fitness < 300):
+
+            if keepRunning == False:
+                # if it dies early then punishment would be higher
+                if(fitness < 300):
                     fitness -= 20
-                    self.calcFitness(genome1, fitness)
-                    run = False
+                self.calcFitness(genome1, fitness)
+                run = False
                 if outputRuntime ==True:
                     print(f"= {self.game.runTime}S ", end= "")
-    
-                pygame.display.update()
+
+            pygame.display.update()
 
     def calcFitness(self, genome1, scoreCounter):
         genome1.fitness += scoreCounter
@@ -149,7 +154,7 @@ def runNEAT(config):
     p.add_reporter(stats)
     # save a checkpoint after each 1 generation
     p.add_reporter(neat.Checkpointer(1))
-    winner = p.run(evalGenomes, 50)
+    winner = p.run(evalGenomes, 100)
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
@@ -164,5 +169,5 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    # e.normalRun()  # run the game without AI
-    runNEAT(config)  # train AI
+    e.normalRun()  # run the game without AI
+    # runNEAT(config)  # train AI
