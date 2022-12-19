@@ -32,6 +32,7 @@ class Game():
         self.Ball = Ball(self.Wave.WaveGap, window, self.Wave.PointsList)
         self.startTime = time.time()
         self.showedLines = []
+        self.runTime = 0
 
     def updateLabel(self, data, font, x, y, GAME_DISPLAY, fontColour=DATA_FONT_COLOR):
         label = font.render('{}'.format(data), True, fontColour)
@@ -56,8 +57,8 @@ class Game():
         y_pos = self.HDisplay-20
         x_pos = self.WDisplay-70
         colour = (100, 100, 100)
-        self.updateLabel("{0} S".format(round(
-            time.time() - self.startTime, 1)), Game.NORMAL_FONT, x_pos, y_pos, self.window, colour)
+        self.runTime = round(time.time() - self.startTime)
+        self.updateLabel("{0} S".format(self.runTime, 1), Game.NORMAL_FONT, x_pos, y_pos, self.window, colour)
 
     def collision(self, runLoop):
         ball = self.Ball.ballRect()
