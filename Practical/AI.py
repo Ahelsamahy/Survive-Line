@@ -52,8 +52,9 @@ class SurviveLineGame:
         run = True
         vision = False
         particles = False
+        self.Wave.waveSpeed = 4
         while run:
-            self.clock.tick(self.Wave.FPS)
+            self.clock.tick(self.Wave.FPS*self.Wave.waveSpeed)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     quit()

@@ -17,6 +17,7 @@ class Wave:
         self.ScoreCount = 0  # will come back later for it, in the loop IMPORTANT
         self.waveFreq = 1  # will change later in difficulty part
         self.WaveGap = 0
+        self.waveSpeed = 1
         self.GameSpeed = 2  # to increment the difference in time to speed the FPS
         self.FPS = 60
         self.WaveAmplitude = 50
@@ -51,7 +52,7 @@ class Wave:
             self.PointsI = 0
 
         pointsList_XCord = int((self.HDisplay / 2) + self.WaveAmplitude * 
-                            math.sin(self.waveFreq* ((float(0) / -self.WDisplay) * (2 * math.pi) + (time.time()))))
+                            math.sin(self.waveFreq* ((float(0) / -self.WDisplay) * (2 * math.pi) +self.waveSpeed* (time.time()))))
 
         if pointsList_XCord - self.WaveAmplitude - self.WaveGap > self.WDisplay:
             pointsList_XCord = self.WDisplay + 50 + self.WaveGap
