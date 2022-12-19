@@ -108,8 +108,8 @@ class Game():
                 dxL = pow(Wave.PointsList[YCord] - 350 + Wave.WaveGap - ball.bottomleft[0] + YBall, 2)
                 dy = pow(abs((800-YCord) - ball.bottomright[1]+YBall), 2)
 
-                rightList.append(math.sqrt(dxR+dy))
-                leftList.append(math.sqrt(dxL+dy))
+                rightList.append(int(math.sqrt(dxR+dy)))
+                leftList.append(int(math.sqrt(dxL+dy)))
                 self.showedLines.append(YCord)
         return rightList, leftList
 
