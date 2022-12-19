@@ -18,6 +18,7 @@ class SurviveLineGame:
         run = True
         vision = False
         showParticles = False
+        drawBallRec = False
         while run:
             self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
@@ -26,6 +27,8 @@ class SurviveLineGame:
                         vision = not vision
                     if event.key == pygame.K_p:
                         showParticles = not showParticles
+                    if event.key == pygame.K_b:
+                        drawBallRec = not drawBallRec
                 if event.type == pygame.QUIT:
                     run = False
                     break
@@ -39,7 +42,7 @@ class SurviveLineGame:
                 run = False
 
             self.game.loop()
-            self.game.draw(vision,showParticles)
+            self.game.draw(vision, showParticles , drawBallRec)
 
             keepRunning = self.game.collision(run)
             # if keepRunning == False:
@@ -54,6 +57,7 @@ class SurviveLineGame:
         vision = True
         showParticles = False
         outputRuntime = False
+        drawBallRec = False
         self.Wave.waveSpeed = 4
         while run:
             self.clock.tick(self.Wave.FPS*self.Wave.waveSpeed)
@@ -65,6 +69,8 @@ class SurviveLineGame:
                         vision = not vision
                     if event.key == pygame.K_p:
                         showParticles = not showParticles
+                    if event.key == pygame.K_b:
+                        drawBallRec = not drawBallRec
 
             fitness = self.game.loop()
             ball = self.game.Ball.ballRect()
@@ -80,19 +86,19 @@ class SurviveLineGame:
                 if((len(str(output[0])) and len(str(output[0]))) > 3 ):
                     if round(output[0], -1) == round(output[2], -1):
                         fitness += 2
-    
+            
             # if (all(i in decisions for i in [1,2])):
             #     print("there is intersection") # Checks if all items are in the list
             c =  max(set(decisions), key=decisions.count)
             if c == 0:
-                    self.game.moveBall("Left")
+                self.game.moveBall("Left")
             elif c == 1:
-                    self.game.moveBall("Center")
+                self.game.moveBall("Center")
             elif c == 2:
-                    self.game.moveBall("Right")
+                self.game.moveBall("Right")
 
-            self.game.draw(vision,showParticles)
-                self.game.displayAINum(genNum, genomeNum)
+            self.game.draw(vision, showParticles, drawBallRec)
+            self.game.displayAINum(genNum, genomeNum)
                 self.game.displayRuntime()
                 keepRunning = self.game.collision(run)
     
@@ -100,6 +106,7 @@ class SurviveLineGame:
                 print("something good happened here")
                 # print("something good happened here")
                 outputRuntime = True
+                drawBallRec = True
                 # self.game.notificationMusic()
     
                 if keepRunning == False:

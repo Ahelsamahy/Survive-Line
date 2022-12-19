@@ -66,11 +66,9 @@ class Game():
         #                              226          ,             250
         for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
             if (Wave.PointsList[YCord] != 0) and (ball.right >= Wave.PointsList[YCord]-50-Wave.WaveGap):
-                # print("hit from " + str(YCord) + " right")
                 return runLoop == False
 
             if (Wave.PointsList[YCord] != 0) and ball.left <= Wave.PointsList[YCord]-350+Wave.WaveGap:
-                # print("hit from " + str(YCord) + " left") 338
                 return runLoop == False
 
     def moveBall(self, dir):
@@ -129,7 +127,7 @@ class Game():
                 pygame.draw.line(self.Ball.GameDisplay, lineToWaveColour, (ball.centerx, ball.centery),
                                  (self.Wave.PointsList[xCord]-350+self.Wave.WaveGap, 800-xCord), 2)
 
-    def draw(self, vision,particles):
+    def draw(self, vision, particles, drawBallRec):
         """
         Display the score, wave and the particles, make sure the screen will be filled with background
         """
@@ -145,7 +143,7 @@ class Game():
             self.showVision()
         if particles:
             self.Ball.generateParticles()
-        self.Ball.drawBall(self.window)
+        self.Ball.drawBall(self.window , drawBallRec)
         self.Ball.moveBall()
 
     def loop(self):

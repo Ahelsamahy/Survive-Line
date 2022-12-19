@@ -19,16 +19,16 @@ class Ball(object):
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList
 
-    def drawBall(self, SCREEN):
+    def drawBall(self, SCREEN, drawRect):
+        if drawRect:
+            ballRect = self.ballRect()
+            pygame.draw.rect(SCREEN,(125,125,125), ballRect)
+        pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,self.ballCordY, Ball.BALL_RADIUS, WHITE)
+        pygame.gfxdraw.filled_circle(SCREEN, self.ballCordX, self.ballCordY, Ball.BALL_RADIUS, WHITE)
 
-        pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,
-                                self.ballCordY, Ball.BALL_RADIUS, WHITE)
-        pygame.gfxdraw.filled_circle(
-            SCREEN, self.ballCordX, self.ballCordY, Ball.BALL_RADIUS, WHITE)
             
     def ballRect(self):
         ballRect = pygame.Rect(self.ballCordX-Ball.BALL_RADIUS, self.ballCordY-Ball.BALL_RADIUS, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
-        # pygame.draw.rect(SCREEN,(125,125,125), ballRect)
         return ballRect
 
     def moveBall(self, right=None):
