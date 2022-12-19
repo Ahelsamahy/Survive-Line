@@ -39,20 +39,18 @@ class Game():
         GAME_DISPLAY.blit(label, (x, y))
 
     def displayScore(self):
-        yPos = 0
-        gap = 30
-        xPos = self.WDisplay//2
-        self.updateLabel(self.Wave.ScoreCount//200,Game.SCORE_FONT, xPos, yPos + gap, self.window)
+        yPos = 40
+        text = Game.SCORE_FONT.render("{0}".format(self.Wave.ScoreCount//200), True, DATA_FONT_COLOR)
+        text_rect = text.get_rect(center=(self.WDisplay/2, yPos))
+        self.window.blit(text, text_rect)
 
     def displayAINum(self, genNum, genomeNum):
-        yPos = 0
-        gap = 70
+        yPos = 70
         xPos = self.WDisplay//2
-        # if(len(str(genNum)) or len(str(genomeNum))==1):xPos+=5
-        if(len(str(genNum)) == 2 or len(str(genomeNum)) == 2):
-            xPos -= 18
-        self.updateLabel("{0}.{1}".format(genNum, genomeNum),Game.NORMAL_FONT, xPos, yPos + gap, self.window)
-
+        text = Game.NORMAL_FONT.render("{0}.{1}".format(genNum, genomeNum), True, DATA_FONT_COLOR)
+        text_rect = text.get_rect(center=(self.WDisplay/2, yPos))
+        self.window.blit(text, text_rect)
+        
     def displayRuntime(self):
         y_pos = self.HDisplay-20
         x_pos = self.WDisplay-70
@@ -81,7 +79,7 @@ class Game():
         elif dir == "Center":
             return False
         return True
-
+    
     def notificationMusic(self):
         directory = os.path.join(Game.localDir,"./usedMaterial/Music/")
         backgroundMusicDir = "yoBaby.mp3"
@@ -100,7 +98,7 @@ class Game():
         self.showedLines.clear()
         # the starting point here is the bottom of ball and the end is the top + 20 px for prediction
         # increased the step size because there was lag for the whole process to be handled
-        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+20, 5):
+        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+50, 5):
             for YBall in range(0, ball.width, 5):
                 dxR = pow(Wave.PointsList[YCord] - 50 - Wave.WaveGap - ball.bottomright[0] + YBall, 2)
                 dxL = pow(Wave.PointsList[YCord] - 350 + Wave.WaveGap - ball.bottomleft[0] + YBall, 2)
