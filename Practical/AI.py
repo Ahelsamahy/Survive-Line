@@ -17,7 +17,7 @@ class SurviveLineGame:
     def normalRun(self):
         run = True
         vision = False
-        particles = False
+        showParticles = False
         while run:
             self.clock.tick(self.Wave.FPS)
             for event in pygame.event.get():
@@ -25,7 +25,7 @@ class SurviveLineGame:
                     if event.key == pygame.K_v:
                         vision = not vision
                     if event.key == pygame.K_p:
-                        particles = not particles
+                        showParticles = not showParticles
                 if event.type == pygame.QUIT:
                     run = False
                     break
@@ -39,7 +39,7 @@ class SurviveLineGame:
                 run = False
 
             self.game.loop()
-            self.game.draw(vision,particles)
+            self.game.draw(vision,showParticles)
 
             keepRunning = self.game.collision(run)
             # if keepRunning == False:
@@ -51,8 +51,9 @@ class SurviveLineGame:
     def trainAI(self, genome1, config, genomeNum, genNum):
         net = neat.nn.FeedForwardNetwork.create(genome1, config)
         run = True
-        vision = False
-        particles = False
+        vision = True
+        showParticles = False
+        outputRuntime = False
         self.Wave.waveSpeed = 4
         while run:
             self.clock.tick(self.Wave.FPS*self.Wave.waveSpeed)
@@ -63,7 +64,7 @@ class SurviveLineGame:
                     if event.key == pygame.K_v:
                         vision = not vision
                     if event.key == pygame.K_p:
-                        particles = not particles
+                        showParticles = not showParticles
 
             fitness = self.game.loop()
             ball = self.game.Ball.ballRect()
@@ -88,31 +89,27 @@ class SurviveLineGame:
             elif c == 1:
                     self.game.moveBall("Center")
             elif c == 2:
-                elif decision == 2:
                     self.game.moveBall("Right")
 
-                # reward if the distance for both left and right is the same
-                if round(output[0], -1) == round(output[2], -1):
-                    fitness += 2
-
-                self.game.draw(vision,particles)
+            self.game.draw(vision,showParticles)
                 self.game.displayAINum(genNum, genomeNum)
                 self.game.displayRuntime()
                 keepRunning = self.game.collision(run)
     
             if(fitness in range(3000, 3003)):
                 print("something good happened here")
+                # print("something good happened here")
                 outputRuntime = True
-                self.game.notificationMusic()
+                # self.game.notificationMusic()
     
                 if keepRunning == False:
                     # if it dies early then punishment would be higher
                     if(fitness < 300):
-                        fitness -= 50
+                    fitness -= 20
                     self.calcFitness(genome1, fitness)
                     run = False
                 if outputRuntime ==True:
-                    print("total runtime is", self.game.runTime)
+                    print(f"= {self.game.runTime}S ", end= "")
     
                 pygame.display.update()
 
@@ -132,15 +129,13 @@ def evalGenomes(genomes, config):
         # print the genome number
         genomeNum = round(i/len(genomes)*60)//2 + 1  # double of pop size
         print(genomeNum, end=" ")
-        # print(round(i/len(genomes) * 60)//2, end=" ")
 
         genome1.fitness = 0
         game = SurviveLineGame(window, width, height)
         game.trainAI(genome1, config, genomeNum, genNum)
 
 def runNEAT(config):
-    # p = neat.Checkpointer.restore_checkpoint(
-    #     e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
+    # p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
