@@ -67,7 +67,7 @@ class SurviveLineGame:
             ball = self.game.Ball.ballRect()
             leftWave, rightWave = self.game.countDistance()
             for leftIn, rightIn in zip (leftWave,rightWave):
-                fitness = self.game.loop()
+
                 output = net.activate((leftIn, ball.centerx, rightIn))
                 decision = output.index(max(output))
                 # layout for the NN of the winner genome
@@ -90,6 +90,10 @@ class SurviveLineGame:
                 self.game.displayRuntime()
                 keepRunning = self.game.collision(run)
     
+            if(fitness in range(3000, 3003)):
+                print("something good happened here")
+                outputRuntime = True
+                self.game.notificationMusic()
     
                 if keepRunning == False:
                     # if it dies early then punishment would be higher
@@ -97,6 +101,8 @@ class SurviveLineGame:
                         fitness -= 50
                     self.calcFitness(genome1, fitness)
                     run = False
+                if outputRuntime ==True:
+                    print("total runtime is", self.game.runTime)
     
                 pygame.display.update()
 

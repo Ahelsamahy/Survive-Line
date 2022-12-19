@@ -14,11 +14,12 @@ pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.display.set_caption('Survive line')
 
-localDir = os.path.dirname(__file__)
-fontPath = os.path.join(localDir, './usedMaterial/Nexa-Light.otf')
+
 
 
 class Game():
+    localDir = os.path.dirname(__file__)
+    fontPath = os.path.join(localDir, './usedMaterial/Nexa-Light.otf')
     NORMAL_FONT = pygame.font.Font(fontPath, 18)
     BIG_FONT = pygame.font.Font(fontPath, 30)
     SCORE_FONT = pygame.font.Font(fontPath, 35)
@@ -81,6 +82,12 @@ class Game():
         elif dir == "Center":
             return False
         return True
+
+    def notificationMusic(self):
+        directory = os.path.join(Game.localDir,"./usedMaterial/Music/")
+        backgroundMusicDir = "yoBaby.mp3"
+        pygame.mixer.music.load(directory+backgroundMusicDir)
+        pygame.mixer.music.play()
 
     def countDistance(self):
         """
