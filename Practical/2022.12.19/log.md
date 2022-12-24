@@ -1,4 +1,6 @@
-94.2 (4.54.28 h.mm.sss) reached 101 points = $101*200=20200$ that is the maximum yet
+94.2 (4.54.28 h.mm.sss) reached 101 points = $101*200=20200$
+
+98. 01 (4.36.28 h.mm.sss) reached 114 points = $114*200=22913$ that is the maximum yet
 
 pygame 2.1.2 (SDL 2.0.18, Python 3.9.0)
 Hello from the pygame community. https://www.pygame.org/contribute.html

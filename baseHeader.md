@@ -319,6 +319,27 @@ calls the reset function in components class in the `Wave` and `Ball` and is tri
 
 ### Tweak AI
 
+The algorithm uses the way of punishemnet and reward to make it learn, there 
+
 ### Teach AI
 
+the goal in this phase is to make an optimised settings for the NN to reach the maximum score it can get to, and tweak the numbers in favour of faster learning and higher fitness score.
+
+#### noted/ observation
+
+As first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point, that made it hard for the ball to find its way or have a futuristic vision you can say as there would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see, as it would calculate the distance between the ball recatangle to the left or right side of wave in more than one point.
+
+To get more into it with numbers, there would be a notice of having the ball a weird sense of getting to know its "new" sense of wider vision diameter, it would take about 20 generation just to start moving in more random left and right and this is made when the ball had only the vison of its radius as a 24 pixel (12px as radius) then extra step of plus 50 pixel, getting this info in nutshell
+
+- One point vision: good as start and better CPU wise
+- Diameter vision + 20: best one in score yet (117 points in generation 89)
+- Diameter +50 points: No learning even after nearly 300 generation
+
+The reason to increase the vision for the ball (even though it was working fine) is i wanted to test how long would it take from the ball to get used to the new (increased) amount of lines, and I can tell you it took long long enough.
+
+At this point of the game, I implemented the increased speed of wave *4 , that is 4 times the normal running time of normal pace of game, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs, it took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score, that means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
+
+![](./usedImages/2022-12-19 89.1.gif)
+
 ### explain the log
+

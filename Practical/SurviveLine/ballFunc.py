@@ -26,7 +26,6 @@ class Ball(object):
         pygame.gfxdraw.aacircle(SCREEN, self.ballCordX,self.ballCordY, Ball.BALL_RADIUS, WHITE)
         pygame.gfxdraw.filled_circle(SCREEN, self.ballCordX, self.ballCordY, Ball.BALL_RADIUS, WHITE)
 
-            
     def ballRect(self):
         ballRect = pygame.Rect(self.ballCordX-Ball.BALL_RADIUS, self.ballCordY-Ball.BALL_RADIUS, Ball.BALL_RADIUS*2, Ball.BALL_RADIUS*2)
         return ballRect
