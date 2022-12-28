@@ -75,6 +75,8 @@ Sounds good, but the problem is that the for loop was CPU consuming, imagine the
 | :------------------------------------------------------: | :-----------------------------------------------------: |
 | ![](./../../../progressMedia/images/vision 576 line.png) | ![](./../../../progressMedia/images/vision 45 line.png) |
 
+<p style="text-align:center;font-size:13px">the amount of new lines isn't fixed and will be changed later</p>
+
 you might ask "will this reduce the vision of the AI ?", quite frankly, I think if it could handle itself with only one point, then  it can do better with 45 line on each side, it even gave more space to add extra point, so it can see the future now (an extra 20 points on wave)
 
 # 2020.12.17: give NN list as input ?!!
@@ -90,3 +92,12 @@ YES, IT DID. the new implementation depends on the `zip()` function to iterate t
 
 
 
+# 2022.12.27 +20 lines, noice 👌
+
+Let's say that this is the sweet spot, and also the new modified version of gap filling, it is way better than the old one, it is good that there is now the need to have a threshold for the genome to stop working, and I'm beginning to think that it is getting to know he pattern of the wave curve, because it isn't that much of change as last time modification of having a limit to it of 6 in `changeWave()` but the ball manages to stay in the middle between the two waves, and this is good.
+
+Also notices that the amount of genomes per generation that reaches more than 50 fitness, increases over generation, that means that the algorithm is going to good way in the improvement.
+
+Will try now to make a new session and see if the amount of genomes in one generation can reach high score of 200 points
+
+Highest it have been now is **2020s**, fitness of **2890 **at generation 26 genome 5 in training session of 2022.12.27
