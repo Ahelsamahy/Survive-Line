@@ -13,6 +13,7 @@ class SurviveLineGame:
         self.Wave = self.game.Wave
         self.ball = self.game.Ball
         self.clock = pygame.time.Clock()
+        self.outputRuntime = False
 
 
     def normalRun(self):
@@ -58,7 +59,6 @@ class SurviveLineGame:
         run = True
         vision = True
         showParticles = False
-        outputRuntime = False
         drawBallRec = False
         self.Wave.waveSpeed = 4
         while run:
@@ -87,6 +87,7 @@ class SurviveLineGame:
                 decisions.append(output.index(max(output)))
                 # layout for the NN of the winner genome
                 # input for each instance of the list 10 digits
+
                 # reward if the distance for both left and right is the same
                 if((len(str(output[0])) and len(str(output[0]))) > 3 ):
                     if round(output[0], -1) == round(output[2], -1):
@@ -107,10 +108,10 @@ class SurviveLineGame:
             self.game.displayRuntime()
             keepRunning = self.game.collision(run)
 
-            # when it reaches 100 = 20000/200 
-            if(fitness in range(20000, 20003)):
+            # when it reaches 50 = 10000/200 
+            if(fitness in range(10000, 10004)):
                 # print("something good happened here")
-                outputRuntime = True
+                self.outputRuntime = True
                 drawBallRec = True
                 # self.game.notificationMusic()
 
@@ -120,8 +121,6 @@ class SurviveLineGame:
                     fitness -= 20
                 self.calcFitness(genome1, fitness)
                 run = False
-                if outputRuntime ==True:
-                    print(f"= {self.game.runTime}S ", end= "")
 
             pygame.display.update()
 
@@ -138,23 +137,24 @@ def evalGenomes(genomes, config):
     genNum += 1
     for i, (genome_id1, genome1) in enumerate(genomes):
 
-        # print the genome number
         genomeNum = round(i/len(genomes)*60)//2 + 1  # double of pop size
-        print(genomeNum, end=" ")
+        # print(genomeNum, end=" ")
 
         genome1.fitness = 0
         game = SurviveLineGame(window, width, height)
         game.trainAI(genome1, config, genomeNum, genNum)
+        if game.outputRuntime == True:
+                print("genome number {0} = {1}S with fitness {2}".format(genomeNum, game.game.runTime, genome1.fitness//200))
 
 def runNEAT(config):
-    # p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.3/"+'neat-checkpoint-7')
+    # p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.19.1/"+'neat-checkpoint-89')
     p = neat.Population(config)
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
     # save a checkpoint after each 1 generation
     p.add_reporter(neat.Checkpointer(1))
-    winner = p.run(evalGenomes, 100)
+    winner = p.run(evalGenomes, 200)
     with open("best.pickle", "wb") as f:
         pickle.dump(winner, f)
 
@@ -169,5 +169,5 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    e.normalRun()  # run the game without AI
-    # runNEAT(config)  # train AI
+    # e.normalRun()  # run the game without AI
+    runNEAT(config)  # train AI
