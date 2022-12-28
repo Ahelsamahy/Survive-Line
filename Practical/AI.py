@@ -120,7 +120,6 @@ class SurviveLineGame:
             if fitness>self.threshold:
                 keepRunning = False
 
-
             if keepRunning == False:
                 # if it dies early then punishment would be higher
                 if(fitness < 300):
@@ -131,29 +130,39 @@ class SurviveLineGame:
             pygame.display.update()
 
     def calcFitness(self, genome1, scoreCounter):
-        genome1.fitness += scoreCounter
+        genome1.fitness = scoreCounter
 
 genNum = -1
-
+highestFitness = 0
+highestGenerationFitness = 0
+highestGenomeFitness = 0
 def evalGenomes(genomes, config):
-    global genNum
+
+    global genNum, highestFitness,highestGenerationFitness,highestGenomeFitness
     width, height = 400, 800
     # , pygame.NOFRAME
     window = pygame.display.set_mode((width, height))
     genNum += 1
-    for i, (genome_id1, genome1) in enumerate(genomes):
+
+    for i, (genome_id, genome) in enumerate(genomes):
 
         genomeNum = round(i/len(genomes)*60)//2 + 1  # double of pop size
         # print(genomeNum, end=" ")
 
-        genome1.fitness = 0
+        genome.fitness = 0
         game = SurviveLineGame(window, width, height)
-        game.trainAI(genome1, config, genomeNum, genNum)
+        game.trainAI(genome, config, genomeNum, genNum)
         if game.outputRuntime == True:
-            if game.threshold < genome1.fitness:
+            if game.threshold < genome.fitness:
                 print("{0} reached the threshold".format(genomeNum))
             else:
-                print("genome number {0} = {1}S with fitness {2}".format(genomeNum, game.game.runTime, genome1.fitness//200))
+                print("genome number {0} = {1}S with fitness {2}".format(genomeNum, game.game.runTime, genome.fitness//200))
+        if genome.fitness > highestFitness:
+            highestFitness = genome.fitness
+            highestGenerationFitness = genNum
+            highestGenomeFitness = genomeNum
+
+    print("highest fitness now is {0} generation {1} genome {2}".format(highestFitness,highestGenerationFitness, highestGenomeFitness))
 
 def runNEAT(config):
     # p = neat.Checkpointer.restore_checkpoint(e.localDir+"/2022.12.19.1/"+'neat-checkpoint-89')
