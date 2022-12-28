@@ -315,6 +315,10 @@ calls the reset function in components class in the `Wave` and `Ball` and is tri
 
 ## Create AI
 
+As the progress of the thesis can be separated into two parts, I can say now that the first part is over with making a fully functional game that satisfied the requirements, now the second part is making AI that can reach a high score in it despite the difficulties that are made into it, such as, changing the amplitude and the increased speed.
+
+There are a lots of algorithms that can be used to develop such a Neural network that is capable of this task with changing the weights and biases without me interfering in it, but first I feel like I'm going over lots of expressions here that needs to be clarified first.
+
 ### What is N.E.A.T ?
 
 ### Tweak AI
