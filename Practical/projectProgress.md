@@ -84,3 +84,9 @@ A NN would need you to define the amount of input that it will work on, also the
 Then i thought about having each point to have its own output decision, the secret key is `zip()` which allows me to loop through two lists parallel, which makes sense in my case (right and left distance), let's count the input again using the old way (distance from ball **left** side to the **left** wave, ball x coordinates, distance from ball **right** side to the **right** wave) so it is the same x coordinates that i would need when going up the wave.
 Turns out that it would work with some tweaks to the wave speed, because the `zip()` made the loop go through extra itirations that made xpoints be generated more than (amount of points in right or left list) usual you can say, that effected the counter that is used to change the wave amplitude and fps of game.
 
+# 2020.12.19 did it work?
+
+YES, IT DID. the new implementation depends on the `zip()` function to iterate through each point in the left and right list at the same time (as I said in the last log) so to make things a little bit smoother, a wave speed gave been added in the loop and is multiplied by the fps to make the training process faster, for example, with normal fps it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times) takes 5 hours 15 second for 100 generation to work and I can say that there is new high score have been reached in this new time, that is 117 points = 22913.00000 fitness in generation 89 genome 1 in training session 2022.12.19.1 , compared to the old one. I went through the video of it frame by frame, and don't know why the collison happened really
+
+
+
