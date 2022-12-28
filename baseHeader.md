@@ -324,6 +324,18 @@ There are a lots of algorithms that can be used to develop such a Neural network
 The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!, it raises some red flags here, but the close it can get to (at least on my humble machine) is make a neural network capable of solving only on task, that is totally different from the human brain being capable of doing multiple tasks in short period of time like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
 To simplify the process of a human brain, since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is the main point in making a AI.
+
+#### Life example
+
+Given example of a child trying to kick the ball, this is the first time a child sees a ball for the first time, and doesn't know yet what to do with it, so the child here is called an agent, and the football is the environment that is trying to solve or in this case kick it as far as it can be (which they don't know yet) the agent try to touch the ball but it isn't the goal they are tying to reach (trying), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
+
+That is the same way AI is learning in this game, the ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not, so the ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
+
+<img src="https://assets-global.website-files.com/5fb24a974499e90dae242d98/60f6feb4be651f666b46194a_AI%20vs%20Machine%20Learning%20vs%20Deep%20Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:25%;" />
+
+<p style="text-align:center;font-size:13px">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
+
+There have to be a reward system for the ball, as mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can here is another unknown expression.
 ### What is N.E.A.T ?
 
 ### Tweak AI
