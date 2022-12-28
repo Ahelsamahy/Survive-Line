@@ -336,6 +336,13 @@ That is the same way AI is learning in this game, the ball (which is agent) is t
 <p style="text-align:center;font-size:13px">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 
 There have to be a reward system for the ball, as mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can here is another unknown expression.
+
+#### Neural network
+
+In order to take a decision, there is an input, then an amount of process are made in between to have an output, this is what is called neural network, and it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output, the small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!) and there are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with over sum being in the output layer.
+
+![how it looks ?](./usedImages/nn.png)
+
 ### What is N.E.A.T ?
 
 ### Tweak AI
