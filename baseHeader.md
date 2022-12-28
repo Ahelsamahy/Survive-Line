@@ -319,6 +319,11 @@ As the progress of the thesis can be separated into two parts, I can say now tha
 
 There are a lots of algorithms that can be used to develop such a Neural network that is capable of this task with changing the weights and biases without me interfering in it, but first I feel like I'm going over lots of expressions here that needs to be clarified first.
 
+### 101 AI
+
+The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!, it raises some red flags here, but the close it can get to (at least on my humble machine) is make a neural network capable of solving only on task, that is totally different from the human brain being capable of doing multiple tasks in short period of time like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
+
+To simplify the process of a human brain, since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is the main point in making a AI.
 ### What is N.E.A.T ?
 
 ### Tweak AI
