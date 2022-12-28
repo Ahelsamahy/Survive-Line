@@ -14,6 +14,7 @@ class SurviveLineGame:
         self.ball = self.game.Ball
         self.clock = pygame.time.Clock()
         self.outputRuntime = False
+        self.threshold = 200*200
 
 
     def normalRun(self):
@@ -115,6 +116,11 @@ class SurviveLineGame:
                 drawBallRec = True
                 # self.game.notificationMusic()
 
+            #stop the genome at this point, as it already reached a high score of 200
+            if fitness>self.threshold:
+                keepRunning = False
+
+
             if keepRunning == False:
                 # if it dies early then punishment would be higher
                 if(fitness < 300):
@@ -144,6 +150,9 @@ def evalGenomes(genomes, config):
         game = SurviveLineGame(window, width, height)
         game.trainAI(genome1, config, genomeNum, genNum)
         if game.outputRuntime == True:
+            if game.threshold < genome1.fitness:
+                print("{0} reached the threshold".format(genomeNum))
+            else:
                 print("genome number {0} = {1}S with fitness {2}".format(genomeNum, game.game.runTime, genome1.fitness//200))
 
 def runNEAT(config):
