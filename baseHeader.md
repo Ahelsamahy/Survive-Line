@@ -405,11 +405,31 @@ They designed N.E.A.T to specifically address each one of the above characterist
 
 ### Tweak AI
 
-The algorithm uses the way of punishemnet and reward to make it learn, there 
+After the base was made for the algorithm to work properly, there are tweaks that had to be made to it, as the algorithm itself takes the input from the `config.txt` file, there are some expressions that are needed to be explained in the file to know what to change.
 
 ```
+[NEAT]
+fitness_criterion     = max
+fitness_threshold     = 1000000
+pop_size              = 30
+reset_on_extinction   = False
+```
 
-the goal in this phase is to make an optimised settings for the NN to reach the maximum score it can get to, and tweak the numbers in favour of faster learning and higher fitness score.
+These are the most important values to look for in this file, as they define when the algorithm will stop, and the size for it.
+
+1. `fitness_criterion` state when will the algorithm stop regarding the threshold and there are three values for it `min`, `max`, and `mean`, if it is `max `then it will stop once there is at least one genome which managed to reach the threshold and define it as the winner then terminate the process.
+2. `fitness_threshold` is the high score that the algorithm is learning to reach to, the value written in the file equals 5000 points in the game.
+3. `pop_size` how many genomes can be in one population, in case it is more, the learning time for the algorithm will be increased.
+
+```
+[DefaultGenome]
+# node activation options
+activation_default      = relu
+activation_mutate_rate  = 1.0
+activation_options      = relu
+```
+
+Going to the activation function, the one that define the effect from one neuron to another, the value is between 0 and 1 more info about it in [Activation function](#activation-function) section.  
 
 ### Observation
 
