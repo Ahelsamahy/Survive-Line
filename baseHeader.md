@@ -335,6 +335,31 @@ That is the same way AI is learning in this game, the ball (which is agent) is t
 
 As mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can, here is another unknown expression.
 
+#### Fitness function
+
+There must be a way to reward or punish the AI according to its behave during the game, the more the ball survive the wave, the higher the fitness score for it will get(better quality it is), meanwhile if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation, so the possibility for it to be mutated into future generation will be lowered.
+
+Applying this method in the game here, there is a way of reward, if the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less venerable to hit into it.
+
+```python
+leftDis = int (output[0])
+rightDis = int (output[2])
+if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
+    if round(leftDis, -1) == round(rightDis, -1):
+        fitness += 2
+```
+
+Explained from inside out, the fitness is increased by 2, if the rounded output for left order == rounded output to right order, but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
+
+As for the punishment, if the genome dies at the beginning of where it was, and without any movement from it to survive, the fitness score will be reduced, the point here is try to find the good punishment for it and not over do it, so it can be balanced.
+
+```python
+if(fitness < 300):
+	fitness -= 20
+```
+
+There was an early implementation to add reward in case the ball takes the output of staying in the middle and not wiggle around with right and left only, but the ball managed to overcome it and also waggle(as it sought a change in the input more than the reward it would get), so the other way, was to make the distance equal on both left and right sides is the reward.
+
 #### Neural network
 
 In order to take a decision, there is an input, then an amount of process are made in between to have an output, this is what is called neural network, it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output, the small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!) and there are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with the summation being in the output layer.
