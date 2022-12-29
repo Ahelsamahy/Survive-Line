@@ -6,9 +6,9 @@ The first step of developing the game was choosing a programming language that w
 - It is OOP, which means i can have a class for each component of the game easily to make an instance for the AI to train from.
 - A library to draw graphic on screen while it won't need heavy CPU usage that won't throttle the process of AI learning 
 
-Going for a library for the game was the first step as it would define the characteristics, i went for **PyGame** because it was nearly the only one that is good enough with documentation to start with, and quit enough, the main focus isn't about making a game that will have that physics in it and 3d animation, for now, the imagined picture of the game is a rectangle as a screen that will have two main component of the game, wave that is on one side of the screen vertically and the one on the other side with the only difference is 350px (because the starting amplitude is 50px and the screen width is 400px) and a ball that the **only purpose for it is to survive the as much as it can, without hitting any of the sides of the wave**.
+Going for a library for the game was the first step as it would define the characteristics, i went for **PyGame** because it was nearly the only one that is good enough with documentation to start with, and quit enough, the main focus isn't about making a game that will have that much of physics in it and 3d animation, for now, the imagined picture of the game is a rectangle as a screen that will have two main component of the game, a wave that is on one side of the screen vertically and one on the other side with the only difference is 350px (the starting amplitude is 50px and the screen width is 400px) and a ball that the **only purpose for it is to survive the as much as it can, without hitting any of the sides of the wave**.
 
-I'm minimilist when it comes to developing things, like there wouldn't be splash screen all over, and hard controls, not even hard rules, and it will be the approach i'm following with the game disnplay, to break it into steps
+I'm minimalist when it comes to developing things, like there wouldn't be splash screen all over, and hard controls, not even hard rules, and it will be the approach I'm following with the game, to break it into steps
 
 1. The accent colour of the game will be black as a background
 2. White will be used to show elements 
@@ -85,7 +85,7 @@ There have to be more condition to make the points be generated without disorder
 
 After generating a point, with the change in amplitude, the next point that is added to list of points, doesn't have a difference of only 1px with the one before it, so that means that there will be a different line segments in the list and a gap between the old point and the new one, to overcome this, after a point is generated, there is a `for loop` that checks is there is only one pixel gap between it and the point before it, either it is minus or negative as the gap can be to left side or right side
 
-![filledGap](./../../progressMedia/images/filledGap.jpg)
+<img src="./../../progressMedia/images/filledGap.jpg" alt="filledGap" style="zoom:50%;" />
 
 #### Fill Gap
 
@@ -247,7 +247,7 @@ there will be buttons assigned to each movement in the class to get the ball aro
 
 You might ask me, "why make the parameter for function a string and not a Boolean variable as there are two types of movement only?", I'm not going to lie, I had it during the whole game to be as a Boolean variable, until the implementation of AI, then I changed it to string, why? because in first place i thought the Neural network would have 2 output (left and right movement) but there would be a third one as not moving, or centre, to make the ball steady during the training and not wiggling around.
 
-### Count Distance
+### Count distance
 
 As of the early implementation of the AI, the input was (from left to right) the:
 
@@ -311,35 +311,33 @@ There are some functions that need to be always working during the game, like ch
 
 calls the reset function in components class in the `Wave` and `Ball` and is triggered once the collision happens
 
-########third section of header########
-
 ## Create AI
 
-As the progress of the thesis can be separated into two parts, I can say now that the first part is over with making a fully functional game that satisfied the requirements, now the second part is making AI that can reach a high score in it despite the difficulties that are made into it, such as, changing the amplitude and the increased speed.
+As the progress of the thesis can be separated into two parts, I can say now that the first part is over with making a fully functional game that satisfies the requirements, now the second part is making AI that can reach a high score in it despite the difficulties that are made with the ball surviving through the game more, such as, changing the amplitude and the increased speed.
 
-There are a lots of algorithms that can be used to develop such a Neural network that is capable of this task with changing the weights and biases without me interfering in it, but first I feel like I'm going over lots of expressions here that needs to be clarified first.
+There are a lots of algorithms that can be used to develop such a neural network that is capable of this task with changing the weights and biases without me interfering in it, but first, I feel like I'm going over lots of expressions here that needs to be clarified first.
 
 ### 101 AI
 
-The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!, it raises some red flags here, but the close it can get to (at least on my humble machine) is make a neural network capable of solving only on task, that is totally different from the human brain being capable of doing multiple tasks in short period of time like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
+The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!, it raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task, that is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
-To simplify the process of a human brain, since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is the main point in making a AI.
+To simplify the process of a human brain, since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes that is called **Reinforcement learning**  <a href="[Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat](https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/)" target="__blank">types of AI</a>, and this type is the main point in making the AI.
 
 #### Life example
 
-Given example of a child trying to kick the ball, this is the first time a child sees a ball for the first time, and doesn't know yet what to do with it, so the child here is called an agent, and the football is the environment that is trying to solve or in this case kick it as far as it can be (which they don't know yet) the agent try to touch the ball but it isn't the goal they are tying to reach (trying), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
+Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know **yet** what to do with it, so the child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet) the agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
 
 That is the same way AI is learning in this game, the ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not, so the ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
 
-<img src="https://assets-global.website-files.com/5fb24a974499e90dae242d98/60f6feb4be651f666b46194a_AI%20vs%20Machine%20Learning%20vs%20Deep%20Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:25%;" />
+<img src="https://assets-global.website-files.com/5fb24a974499e90dae242d98/60f6feb4be651f666b46194a_AI%20vs%20Machine%20Learning%20vs%20Deep%20Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:50%;" />
 
-<p style="text-align:center;font-size:13px">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
+<p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 
-There have to be a reward system for the ball, as mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can here is another unknown expression.
+As mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can, here is another unknown expression.
 
 #### Neural network
 
-In order to take a decision, there is an input, then an amount of process are made in between to have an output, this is what is called neural network, and it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output, the small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!) and there are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with over sum being in the output layer.
+In order to take a decision, there is an input, then an amount of process are made in between to have an output, this is what is called neural network, it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output, the small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!) and there are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with the summation being in the output layer.
 
 ![how it looks ?](./usedImages/nn.png)
 
@@ -349,11 +347,11 @@ In order to take a decision, there is an input, then an amount of process are ma
 
 The algorithm uses the way of punishemnet and reward to make it learn, there 
 
-### Teach AI
+```
 
 the goal in this phase is to make an optimised settings for the NN to reach the maximum score it can get to, and tweak the numbers in favour of faster learning and higher fitness score.
 
-#### noted/ observation
+### Observation
 
 As first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point, that made it hard for the ball to find its way or have a futuristic vision you can say as there would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see, as it would calculate the distance between the ball recatangle to the left or right side of wave in more than one point.
 
