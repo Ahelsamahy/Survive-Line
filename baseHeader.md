@@ -433,19 +433,29 @@ Going to the activation function, the one that define the effect from one neuron
 
 ### Observation
 
-As first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point, that made it hard for the ball to find its way or have a futuristic vision you can say as there would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see, as it would calculate the distance between the ball recatangle to the left or right side of wave in more than one point.
+At first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point, that made it hard for the ball to find its way (or have a futuristic vision you can say) as there would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see, as it would calculate the distance between the ball rectangle to the left or right side of wave in more than one point.
 
-To get more into it with numbers, there would be a notice of having the ball a weird sense of getting to know its "new" sense of wider vision diameter, it would take about 20 generation just to start moving in more random left and right and this is made when the ball had only the vison of its radius as a 24 pixel (12px as radius) then extra step of plus 50 pixel, getting this info in nutshell
+To get more into it with numbers, there would be a notice of the ball having a weird sense of getting to know its "new" sense of wider vision diameter, it would take about 20 generation just to start moving in more random left and right and this is made when the ball had only the vison of its radius as a 24 pixel (12px as radius) then extra step of plus 50 pixel, getting this info in nutshell
 
 - One point vision: good as start and better CPU wise
 - Diameter vision + 20: best one in score yet (117 points in generation 89)
 - Diameter +50 points: No learning even after nearly 300 generation
 
-The reason to increase the vision for the ball (even though it was working fine) is i wanted to test how long would it take from the ball to get used to the new (increased) amount of lines, and I can tell you it took long long enough.
+The reason to increase the vision for the ball (even though it was working fine) is I wanted to test how long would it take from the ball to get used to the new (increased) amount of lines, and I can tell you it took long long enough.
 
-At this point of the game, I implemented the increased speed of wave *4 , that is 4 times the normal running time of normal pace of game, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs, it took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score, that means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
+At this point of the game, I implemented the increased speed of wave *4 that improved the learning speed, with normal fps, it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times, not more) takes 5 hours 15 second for 100 generation to work, that is 4 times the normal running time of normal pace of game for a human to play it, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs, it took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score, that means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
 
-![](./usedImages/2022-12-19 89.1.gif)
+![](./usedImages/2022-12-28 18-41-06 13.gif)
+
+<p style="text-align: center;font-size: 13px;font-style: italic;">from 2022.12.28 second training session</p>
+
+There is a small box that is shown around the ball, it is called ballRect and mentioned a lot in the [Count Distance](#Count-distance) and [Collision](#collision), to check if the genome did terminate for an actual collision or because it reached the threshold, like the case here in this video
+
+In order to save as much as CPU power during the learning process, the box is shown only when fitness is over 50, in addition to some extra visuals in the game, such as the particles behind the ball, but all of them can be viewed again with a key for each one:
+
+- `v Key` to shown **v**ision
+- `b key` to show the **b**allRect
+- `p key` to show the **p**articles
 
 ### explain the log
 
