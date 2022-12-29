@@ -4,6 +4,7 @@ import neat
 import os
 import pickle
 from collections import Counter
+import math
 
 class SurviveLineGame:
     def __init__(self, window, width, height):
@@ -14,7 +15,7 @@ class SurviveLineGame:
         self.ball = self.game.Ball
         self.clock = pygame.time.Clock()
         self.outputRuntime = False
-        self.threshold = 200*200
+        self.threshold = 200*101
 
 
     def normalRun(self):
@@ -90,8 +91,10 @@ class SurviveLineGame:
                 # input for each instance of the list 10 digits
 
                 # reward if the distance for both left and right is the same
-                if((len(str(output[0])) and len(str(output[0]))) > 3 ):
-                    if round(output[0], -1) == round(output[2], -1):
+                leftDis = int(output[0])
+                rightDis = int (output[2])
+                if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
+                    if round(leftDis, -1) == round(rightDis, -1):
                         fitness += 2
             
             # if (all(i in decisions for i in [1,2])):
