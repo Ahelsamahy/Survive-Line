@@ -369,6 +369,19 @@ In order to take a decision, there is an input, then an amount of process are ma
 #### Weight and biases
 
 In the early stages of the ball when it is learning how to control its movement, the first steps are either going totally to left or right, which isn't really paying off to make it go far, so each neuron have to tweak the parameters it gets from the one before it, the weights and biases are the one responsible for this, going back to the child example, the brain consists of little neurons that are responsible of making every decision the child take, and it changes over time, and it is the case here, the brain changes a little bit on the decision and try different approach too the problem, one time hit the ball hard to left side, one time with little power to right side "**Weights** control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." [ref](https://machine-learning.paperspace.com/wiki/weights-and-biases)
+
+#### Activation function
+
+The connection between neurons and each others, have weights and biases to alter in them, but let's say that there is one neurons that the value from it isn't important and can be used when the input is different, even to say that it doesn't exist at all, but only to one specific neuron in the layer after it, if it was to be removed, it would change the value to all the neurons after it.
+
+That is what activation function is for, alter the value for one specific neuron and decide if it will have more (or less) impact on the neuron that is after it with the connection in between, as the name state "Activation" the value for it is between 0 and 1 for each neuron.
+
+You might ask "why use an Activation function, isn't it changing in the numbers as the same way the weights and biases are doing ?" yes and no, so the weights and biases alter the number **that is going from one neuron** to another, but activation function **change the effect** of the neuron to the one after it.
+
+![](./usedImages/NEURONS-IN-NUERAL-NETWORK.gif)
+
+<p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
+
 ### What is N.E.A.T ?
 
 ### Tweak AI
