@@ -382,6 +382,10 @@ You might ask "why use an Activation function, isn't it changing in the numbers 
 
 <p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 
+#### Genome
+
+All the info about the previous parts above can be collected into one thing here, the genome is the collected part for all of this, it works on neural network that relies on  weight and biases to change the input until output and uses a fitness function, one population exists of a pre-defined number of genome inside of it, it can be called also children of the generation.
+
 ### What is N.E.A.T ?
 
 ### Tweak AI
