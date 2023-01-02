@@ -457,5 +457,39 @@ In order to save as much as CPU power during the learning process, the box is sh
 - `b key` to show the **b**allRect
 - `p key` to show the **p**articles
 
-### explain the log
+### Explain the log
 
+During the runtime of AI training session ,the algorithm displays statistics at the end of every generation, to have a better insight of what is going behind the curtains, the one here is taken from training session on the 2nd of Jan 2023.
+
+```
+ ****** Running generation 99 ****** 
+14 reached the threshold
+genome number 15 = 57S with fitness 82
+highest fitness now is 20206 generation 37 genome 1
+Population's average fitness: 3039.20000 stdev: 4602.73985
+Best fitness: 20201.00000 - size: (4, 7) - species 1 - id 2564
+Average adjusted fitness: 0.140
+Mean genetic distance 1.803, standard deviation 0.759
+Population of 30 members in 2 species:
+   ID   age  size  fitness  adj fit  stag
+  ====  ===  ====  =======  =======  ====
+     1   99    16  20201.0    0.146    62
+     2   99    14   8545.0    0.135    78
+Total extinctions: 0
+Generation time: 324.005 sec (364.069 average)
+Saving checkpoint to neat-checkpoint-99
+```
+
+There are only **three** lines in this log that I made them to be printed during the process, as it would make it easier to check the genome behaviour from the recorded video, and they are:
+
+- line 2 says that from this generation, only genome number 14 managed to reach the threshold that was 101 points.
+- line 3: there is if statement to output genomes running time that exceed a specific score (was 50).
+- line 4: store the highest fitness of the genome from the beginning of session, in this case it got the first threshold so I can know if my input is being optimized with every generation or not.
+
+Starting from line 5, all that comes, is made by the `reporting()` class in the algorithm source code, what will be written here is try to explain every part of it (and heavily taken from [Glossary — NEAT-Python 0.92 documentation](https://neat-python.readthedocs.io/en/latest/glossary.html)):
+
+- line 5 => `stdev`: is the standard deviation of each genome to the over of all mean fitness in the generation, so higher it is, the more difference there is [How to Calculate Standard Deviation - YouTube](https://www.youtube.com/watch?v=WVx3MYd-Q9w), [Standard Deviation - Explained and Visualized - YouTube](https://www.youtube.com/watch?v=MRqtXL2WX2M) 
+
+- line 6=>`species 1` "Subdivisions of the population into groups of similar (by the [genomic distance](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance) measure) individuals ([genomes](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome)), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes", more can be found in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+- line 8=> `Mean genetic distance` is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation, as they might have been populated from parents that aren't in the previous generation exactly, check "Meaningful crossover" in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+- line 16=>  `Saving checkpoint to neat-checkpoint-99`: so I can come back and get e live feed from the same generation (it is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable )
