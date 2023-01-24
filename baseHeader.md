@@ -299,41 +299,41 @@ The speed of learning during the AI would be faster than a human can play a game
 
 ### Loop
 
-There are some functions that need to be always working during the game, like changing the wave amplitude,increase the `ScoreCount` by one and change the game speed as in FPS, this is just a holder for them so it doesn't get missy in the AI part  
+There are some functions that need to be always working during the game. Changing the wave amplitude, increase the `ScoreCount` by one and change the game speed as in FPS. `ScoreCount`  is just a holder for them so it doesn't get missy in the AI part .
 
 ### Reset
 
-calls the reset function in components class in the `Wave` and `Ball` and is triggered once the collision happens
+Calls the reset function in components class in the `Wave` and `Ball` and is triggered once the collision happens.
 
 ## Create AI
 
-As the progress of the thesis can be separated into two parts, I can say now that the first part is over with making a fully functional game that satisfies the requirements, now the second part is making AI that can reach a high score in it despite the difficulties that are made with the ball surviving through the game more, such as, changing the amplitude and the increased speed.
+As the progress of the thesis can be separated into two parts. I can say now that the first part is over with making a fully functional game that satisfies the requirements. Now the second part, making AI that can reach a high score in it, despite the difficulties that are made with the ball surviving through the game more, such as, changing the amplitude and the increased speed.
 
-There are a lots of algorithms that can be used to develop such a neural network that is capable of this task with changing the weights and biases without me interfering in it, but first, I feel like I'm going over lots of expressions here that needs to be clarified first.
+There are a lots of algorithms, that can be used to develop such a neural network that is capable of this task. Changing the weights and biases without me interfering in it. I feel like I'm going over lots of expressions here that needs to be clarified first.
 
 ### 101 AI
 
-The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!, it raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task, that is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
+The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!. It raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task. That is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
-To simplify the process of a human brain, since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes that is called **Reinforcement learning**  <a href="[Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat](https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/)" target="__blank">types of AI</a>, and this type is the main point in making the AI.
+To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called **Reinforcement learning**  <a href="[Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat](https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/)" target="__blank">types of AI</a>, and this type is the main point in making the AI.
 
 #### Life example
 
-Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know **yet** what to do with it, so the child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet) the agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
+Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know **yet** what to do with it. The child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet). The agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
 
-That is the same way AI is learning in this game, the ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not, so the ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
+That is the same way AI is learning in this game. The ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not. The ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
 
 <img src="https://assets-global.website-files.com/5fb24a974499e90dae242d98/60f6feb4be651f666b46194a_AI%20vs%20Machine%20Learning%20vs%20Deep%20Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:50%;" />
 
 <p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 
-As mentioned in [counter part](#display-score) there is a counter in the game, it will be used as what is called "fitness function" that measures how good is our genome doing, and an input for the ball in order to give a proper output of movement to survive as far as it can, here is another unknown expression.
+As mentioned in [counter part](#display-score), there is a counter in the game, it will be used as what is called "fitness function". A "Fitness function" measures how good is our genome doing with a good input for the ball to give a proper output of movement, so the ball survive as far as it can, here is another unknown expression.
 
 #### Fitness function
 
-There must be a way to reward or punish the AI according to its behave during the game, the more the ball survive the wave, the higher the fitness score for it will get(better quality it is), meanwhile if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation, so the possibility for it to be mutated into future generation will be lowered.
+There must be a way to reward or punish the AI according to its behave during the game. The more the ball survives the wave, the higher the fitness score for it will get (better quality it is), meanwhile, if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation. The possibility for low fitness-genome to be mutated into future generation will be lowered.
 
-Applying this method in the game here, there is a way of reward, if the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less venerable to hit into it.
+Applying this method in the game here, there is a way of reward. If the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less venerable to hit into it.
 
 ```python
 leftDis = int (output[0])
@@ -343,34 +343,34 @@ if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
         fitness += 2
 ```
 
-Explained from inside out, the fitness is increased by 2, if the rounded output for left order == rounded output to right order, but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
+Explained from inside out. The fitness is increased by 2, if the rounded output for left distance== rounded output to right distance (the ball is in the middle), but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
 
-As for the punishment, if the genome dies at the beginning of where it was, and without any movement from it to survive, the fitness score will be reduced, the point here is try to find the good punishment for it and not over do it, so it can be balanced.
+As for the punishment. If the genome dies at the beginning of where it was, and without any movement from it to survive, the fitness score will be reduced. The point here is try to find the good punishment for it and not over do it, so it can be balanced.
 
 ```python
 if(fitness < 300):
 	fitness -= 20
 ```
 
-There was an early implementation to add reward in case the ball takes the output of staying in the middle and not wiggle around with right and left only, but the ball managed to overcome it and also waggle(as it sought a change in the input more than the reward it would get), so the other way, was to make the distance equal on both left and right sides is the reward.
+There was an early implementation, to add reward in case the ball takes the output of staying in the middle and not wiggle around with right and left only. But the ball managed to overcome it and also waggle (as it sought a change in the input more than the reward it would get), so the other way, was to make the distance equal on both left and right sides is the reward.
 
 #### Neural network
 
-In order to take a decision, there is an input, then an amount of process are made in between to have an output, this is what is called neural network, it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output, the small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!) and there are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with the summation being in the output layer.
+In order to take a decision, there is an input, then an amount of process are made in between to have an output. This is what is called neural network, it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output. The small fundamental creating piece for NN is called a **neurons** , same as in human brain (but not the same amount!). There are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with the summation being in the output layer.
 
 ![how it looks ?](./usedImages/nn.png)
 
 #### Weight and biases
 
-In the early stages of the ball when it is learning how to control its movement, the first steps are either going totally to left or right, which isn't really paying off to make it go far, so each neuron have to tweak the parameters it gets from the one before it, the weights and biases are the one responsible for this, going back to the child example, the brain consists of little neurons that are responsible of making every decision the child take, and it changes over time, and it is the case here, the brain changes a little bit on the decision and try different approach too the problem, one time hit the ball hard to left side, one time with little power to right side "**Weights** control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." [ref](https://machine-learning.paperspace.com/wiki/weights-and-biases)
+In the early stages of the ball when it is learning how to control its movement, the first steps are either going totally to left or right. Which isn't really paying off to make it go far. Each neuron have to tweak the parameters it gets from the one before it, the weights and biases are the one responsible for this, going back to the child example. The brain consists of little neurons that are responsible of making every decision the child take, it changes over time, and it is the case here. The brain changes a little bit on the decision and try different approach to the problem. One time hit the ball hard to left side, one time with little power to right side. "**Weights** control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." [ref](https://machine-learning.paperspace.com/wiki/weights-and-biases)
 
 #### Activation function
 
-The connection between neurons and each others, have weights and biases to alter in them, but let's say that there is one neurons that the value from it isn't important and can be used when the input is different, even to say that it doesn't exist at all, but only to one specific neuron in the layer after it, if it was to be removed, it would change the value to all the neurons after it.
+The connection between neurons and each others, have weights and biases to alter in them. Let's say that there is one neurons that the value from it isn't important and can be used when the input is different, even to say that it doesn't exist at all, but only to one specific neuron in the layer after it. If it was to be removed, it would change the value to all the neurons after it.
 
-That is what activation function is for, alter the value for one specific neuron and decide if it will have more (or less) impact on the neuron that is after it with the connection in between, as the name state "Activation" the value for it is between 0 and 1 for each neuron.
+That is what activation function is for. Change the value for one specific neuron and decide if it will have more (or less) impact on the neuron that is after it with the connection in between. As the name state "Activation", the value for it is between 0 and 1 for each neuron.
 
-You might ask "why use an Activation function, isn't it changing in the numbers as the same way the weights and biases are doing ?" yes and no, so the weights and biases alter the number **that is going from one neuron** to another, but activation function **change the effect** of the neuron to the one after it.
+You might ask "why use an Activation function, isn't it changing in the numbers as the same way the weights and biases are doing ?" Yes and no. The weights and biases change the number **that is going from one neuron** to another, but activation function **change the effect** of the neuron to the one after it.
 
 ![](./usedImages/NEURONS-IN-NUERAL-NETWORK.gif)
 
@@ -378,28 +378,28 @@ You might ask "why use an Activation function, isn't it changing in the numbers 
 
 #### Genome
 
-All the info about the previous parts above can be collected into one thing here, the genome is the collected part for all of this, it works on neural network that relies on  weight and biases to change the input until output and uses a fitness function, one population exists of a pre-defined number of genome inside of it, it can be called also children of the generation.
+All the info about the previous parts above can be collected into one thing here. The genome is the collected part for all of this, it works on neural network that relies on weight and biases to change the input until output and uses a fitness function. One population exists of a pre-defined number of genome inside of it, it can be called also children of the generation.
 
 ### What is N.E.A.T ?
 
-"**N**euro **E**volution of **A**ugmented **T**opologies. And this is what's known as a genetic algorithm"[Python Pong AI Tutorial - Using NEAT - YouTube](https://www.youtube.com/watch?v=2f6TmKm7yx0) think of it as the way that is used in humans to learn (going back to the example of kid and ball) also the natural selection of the ones that perform good as humans and smarter, they managed to reproduce until today, unlike the others who were not fortune enough to have what it takes to survive in different scenarios .
+"**N**euro **E**volution of **A**ugmented **T**opologies. And this is what's known as a genetic algorithm"[Python Pong AI Tutorial - Using NEAT - YouTube](https://www.youtube.com/watch?v=2f6TmKm7yx0). Think of it as the way that is used in humans to learn (going back to the example of kid and ball) also the natural selection of the ones that perform good as humans and smarter, they managed to reproduce until today. Unlike the others who were not fortune enough to have what it takes to survive in different scenarios.
 
-In other words to explain it, "there is a larger category called TWEANNS stands for topology and weight evolving artificial neural networks" [A.I. Learns to Play Sonic the Hedgehog - NEAT Explained! - YouTube](https://www.youtube.com/watch?v=5RR1T_-zVws&) "these are algorithms that not only evolve the strength of the connection weight for a fixed network topology but actually evolves both the topology of the network and its weights" the scientists behind the neat algorithm identified three major challenges for tweanns:
+In other words to explain it "There is a larger category called TWEANNS stands for topology and weight evolving artificial neural networks" [A.I. Learns to Play Sonic the Hedgehog - NEAT Explained! - YouTube](https://www.youtube.com/watch?v=5RR1T_-zVws&) "these are algorithms that not only evolve the strength of the connection weight for a fixed network topology, but actually evolves both the topology of the network and its weights" the scientists behind the neat algorithm identified three major challenges for tweanns:
 
-1. Meaningful crossover : by tracking genes through historical markings.
-   This stops the algorithm from blindly crossing over the genomes of two neural networks and creating unnormal mutated neural networks, as there are two way to progresses through a user-specified number of generations, "with each generation being produced by reproduction (either sexual or asexual) and mutation of the most fit individuals of the previous generation" [NEAT Overview](https://neat-python.readthedocs.io/en/latest/neat_overview.html).
-   - Sexual means that the new generation will be made out of the best performed genomes **from the previous generation**
-   - Asexual: algorithm will **generate a random genome** to reproduce with the highest fitness score genomes to make the new generation
-2. Speciation : protecting structural innervation through speciation.
-   That protects new structures as they are typically low on hidden networks numbers, allowing them to optimize with each other on their own, you can say category before we eliminate them and this is done by splitting up the population into several species based on the similarity of topology, connections between neurons and their weights and biases, they only compete within their species because some of them who aren't performing well at present, can perform well in the future after the right mutatuon with each other without the need to eliminate them now.
-3. Structure complexity : incrementally growing from minimal structure.
-   It holds the algorithm from creating complex networks at the beginning of the new generation that may have to later, reduce the number of nodes and connections. They did this by starting all networks with no hidden layers between input and output layer, it only has a series of connection genes between them and if it is found to be useful and necessary to tweak the output a little, then it can involve in complexity.
+1. Meaningful crossover: by tracking genes through historical markings.
+   This stops the algorithm from blindly crossing over the genomes of two neural networks and creating unnormal mutated neural networks. There are two way to progresses through a user-specified number of generations, "with each generation being produced by reproduction (either sexual or asexual) and mutation of the most fit individuals of the previous generation" [NEAT Overview](https://neat-python.readthedocs.io/en/latest/neat_overview.html).
+   - Sexual: means that the new generation will be made out of the best performed genomes **from the previous generation**.
+   - Asexual: algorithm will **generate a random genome** to reproduce with the highest fitness score genomes to make the new generation.
+2. Speciation: protecting structural innervation through speciation.
+   That protects new structures as they are typically low on hidden networks numbers, allowing them to optimize with each other on their own. You can say category before we eliminate them. This is done by splitting up the population into several species based on the similarity of topology, connections between neurons and their weights and biases. They only compete within their species because some of them who aren't performing well at present, can perform well in the future after the right mutatuon with each other without the need to eliminate them now.
+3. Structure complexity: incrementally growing from minimal structure.
+   It holds the algorithm from creating complex networks at the beginning of the new generation that may have to later, reduce the number of nodes and connections. They did this by starting all networks with no hidden layers between input and output layer. NN only has a series of connection genes between them and if it is found to be useful and necessary to tweak the output a little, then it can involve in complexity.
 
-They designed N.E.A.T to specifically address each one of the above characteristics and point (2) and (3) will be explained more in details at the [explain the log](#explain-the-log) part.
+They designed N.E.A.T to specifically address each one of the above characteristics. Point (2) and (3) will be explained more in details at the [explain the log](#explain-the-log) part.
 
 ### Tweak AI
 
-After the base was made for the algorithm to work properly, there are tweaks that had to be made to it, as the algorithm itself takes the input from the `config.txt` file, there are some expressions that are needed to be explained in the file to know what to change.
+After the base was made for the algorithm to work properly, there are tweaks that had to be made to it. The algorithm itself takes the input from the `config.txt` file, there are some expressions that are needed to be explained in the file to know what to change.
 
 ```
 [NEAT]
@@ -409,10 +409,10 @@ pop_size              = 30
 reset_on_extinction   = False
 ```
 
-These are the most important values to look for in this file, as they define when the algorithm will stop, and the size for it.
+These are the most important values to look for in this file. They define when the algorithm will stop, and the size for it.
 
-1. `fitness_criterion` state when will the algorithm stop regarding the threshold and there are three values for it `min`, `max`, and `mean`, if it is `max `then it will stop once there is at least one genome which managed to reach the threshold and define it as the winner then terminate the process.
-2. `fitness_threshold` is the high score that the algorithm is learning to reach to, the value written in the file equals 5000 points in the game.
+1. `fitness_criterion` state when will the algorithm stop regarding the threshold. There are three values for it `min`, `max`, and `mean`. If it is `max `then it will stop once there is at least one genome which managed to reach the threshold and define it as the winner then terminate the process.
+2. `fitness_threshold` is the high score that the algorithm is learning to reach to. The value written in the file equals 5000 points in the game.
 3. `pop_size` how many genomes can be in one population, in case it is more, the learning time for the algorithm will be increased.
 
 ```
@@ -427,25 +427,25 @@ Going to the activation function, the one that define the effect from one neuron
 
 ### Observation
 
-At first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point, that made it hard for the ball to find its way (or have a futuristic vision you can say) as there would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see, as it would calculate the distance between the ball rectangle to the left or right side of wave in more than one point.
+At first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point. That made it hard for the ball to find its way (or have a futuristic vision you can say). There would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see. It would calculate the distance between the ball rectangle to the left or right side of wave in more than one point.
 
-To get more into it with numbers, there would be a notice of the ball having a weird sense of getting to know its "new" sense of wider vision diameter,#### it would take about 20 generation just to start moving in more random left and right and this is made when the ball had only the vision of its 24-pixel diameter (12px as radius) then extra step of plus 50 pixel, getting this info in nutshell
+To get more into it with numbers, there would be a notice of the ball having a weird sense of getting to know its "new" sense of wider vision diameter. The ball would take about 20 generations just to start moving in more random left and right. This is made when the ball had only the vision of its 24-pixel diameter (12px as radius) then extra step of plus 50 pixels, getting this info in nutshell
 
-- One point vision: good as start and better CPU wise
-- Diameter vision + 20: best one in score yet (117 points in generation 89)
-- Diameter +50 points: No learning even after nearly 300 generation
+- One point vision: good as start and better CPU wise.
+- Diameter vision + 20: best one in score yet (117 points in generation 89).
+- Diameter +50 points: No learning even after nearly 300 generation.
 
-The reason to increase the vision for the ball (even though it was working fine) is I wanted to test how long would it take from the ball to get used to the new (increased) amount of lines, and I can tell you it took long long enough.
+The reason to increase the vision for the ball (even though it was working fine) is I wanted to test how long would it take from the ball to get used to the new (increased) amount of lines. I can tell you it took long long enough.
 
-At this point of the game, I implemented the increased speed of wave *4 that improved the learning speed, with normal fps, it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times, not more) takes 5 hours 15 second for 100 generation to work, that is 4 times the normal running time of normal pace of game for a human to play it, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs, it took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score, that means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
+At this point of the game, I implemented the increased speed of wave *4 that improved the learning speed. With normal fps, it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times speed, not more) takes 5 hours 15 second for 100 generation to work. That is 4 times the normal running time of normal pace of game for a human to play it, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs. It took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score. That means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
 
 ![](./usedImages/2022-12-28 18-41-06 13.gif)
 
 <p style="text-align: center;font-size: 13px;font-style: italic;">from 2022.12.28 second training session</p>
 
-There is a small box that is shown around the ball, it is called ballRect and mentioned a lot in the [Count Distance](#Count-distance) and [Collision](#collision), to check if the genome did terminate for an actual collision or because it reached the threshold, like the case here in this video
+There is a small box that is shown around the ball, it is called ballRect and mentioned a lot in the [Count Distance](#Count-distance) and [Collision](#collision). ballRect is shown to check if the genome did terminate for an actual collision or because it reached the threshold, like the case here in this video.
 
-In order to save as much as CPU power during the learning process, the box is shown only when fitness is over 50, in addition to some extra visuals in the game, such as the particles behind the ball, but all of them can be viewed again with a key for each one:
+In order to save as much as CPU power during the learning process, the box is shown only when fitness is over 50. In addition to some extra visuals in the game, such as the particles behind the ball, but all of them can be viewed again with a key for each one:
 
 - `v Key` to shown **v**ision
 - `b key` to show the **b**allRect
@@ -453,7 +453,7 @@ In order to save as much as CPU power during the learning process, the box is sh
 
 ### Explain the log
 
-During the runtime of AI training session ,the algorithm displays statistics at the end of every generation, to have a better insight of what is going behind the curtains, the one here is taken from training session on the 2nd of Jan 2023.
+During the runtime of AI training session ,the algorithm displays statistics at the end of every generation. To have a better insight of what is going behind the curtains, the one here is taken from training session on the 2nd of Jan 2023.
 
 ```
  ****** Running generation 99 ****** 
@@ -474,16 +474,16 @@ Generation time: 324.005 sec (364.069 average)
 Saving checkpoint to neat-checkpoint-99
 ```
 
-There are only **three** lines in this log that I made them to be printed during the process, as it would make it easier to check the genome behaviour from the recorded video, and they are:
+There are only **three** lines in this log that I made them to be printed during the process. It would make it easier to check the genome behaviour from the recorded video, and they are:
 
-- line 2 says that from this generation, only genome number 14 managed to reach the threshold that was 101 points.
-- line 3: there is if statement to output genomes running time that exceed a specific score (was 50).
-- line 4: store the highest fitness of the genome from the beginning of session, in this case it got the first threshold so I can know if my input is being optimized with every generation or not.
+- line 2: says that from this generation, only genome number 14 managed to reach the threshold that was 101 points.
+- line 3: there is an if statement, to output genomes running time that exceed a specific score (was 50).
+- line 4: store the highest fitness of the genome from the beginning of session. It got the first threshold so I can know if my input is being optimized with every generation or not.
 
-Starting from line 5, all that comes, is made by the `reporting()` class in the algorithm source code, what will be written here is try to explain every part of it (and heavily taken from [Glossary — NEAT-Python 0.92 documentation](https://neat-python.readthedocs.io/en/latest/glossary.html)):
+Starting from line 5, all that comes, is made by the `reporting()` class in the algorithm source code. What will be written here is try to explain every part of it (and heavily taken from [Glossary — NEAT-Python 0.92 documentation](https://neat-python.readthedocs.io/en/latest/glossary.html)):
 
 - line 5 => `stdev`: is the standard deviation of each genome to the over of all mean fitness in the generation, so higher it is, the more difference there is [How to Calculate Standard Deviation - YouTube](https://www.youtube.com/watch?v=WVx3MYd-Q9w), [Standard Deviation - Explained and Visualized - YouTube](https://www.youtube.com/watch?v=MRqtXL2WX2M) 
 
-- line 6=>`species 1` "Subdivisions of the population into groups of similar (by the [genomic distance](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance) measure) individuals ([genomes](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome)), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes", more can be found in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
-- line 8=> `Mean genetic distance` is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation, as they might have been populated from parents that aren't in the previous generation exactly, check "Meaningful crossover" in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
-- line 16=>  `Saving checkpoint to neat-checkpoint-99`: so I can come back and get e live feed from the same generation (it is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable )
+- line 6=>`species 1` "Subdivisions of the population into groups of similar (by the [genomic distance](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance) measure) individuals ([genomes](https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome)), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+- line 8=> `Mean genetic distance` is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation. As they might have been populated from parents that aren't in the previous generation exactly, check "Meaningful crossover" in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+- line 16=>  `Saving checkpoint to neat-checkpoint-99`: so I can come back and get e live feed from the same generation. It is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable. That is why recording the sessions with OBS was useful.
