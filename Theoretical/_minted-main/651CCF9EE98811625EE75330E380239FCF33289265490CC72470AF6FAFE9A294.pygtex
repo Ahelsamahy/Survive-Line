@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{wDisplay}\PYG{p}{,} \PYG{n}{hDisplay}\PYG{p}{):}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{WDisplay} \PYG{o}{=} \PYG{n}{wDisplay}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{HDisplay} \PYG{o}{=} \PYG{n}{hDisplay}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ScoreCount} \PYG{o}{=} \PYG{l+m+mi}{0}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{waveFreq} \PYG{o}{=} \PYG{l+m+mi}{1}  \PYG{c+c1}{\PYGZsh{} changes difficulty part}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{WaveGap} \PYG{o}{=} \PYG{l+m+mi}{0}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{GameSpeed} \PYG{o}{=} \PYG{l+m+mi}{2}  \PYG{c+c1}{\PYGZsh{} to increment the difference in time to speed the FPS}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{FPS} \PYG{o}{=} \PYG{l+m+mi}{60}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{WaveAmplitude} \PYG{o}{=} \PYG{l+m+mi}{50}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI} \PYG{o}{=} \PYG{l+m+mi}{0}  \PYG{c+c1}{\PYGZsh{} index to loop inside the points list}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{800}
+\end{Verbatim}

@@ -27,13 +27,76 @@ During the writing here, I will raise some questions that might come to your min
 
 \section{Develop the game}\label{develop-the-game}
 
+The files layout of the game will be an \inlineCode{AI.py} file in the root folder, then subfolder named \inlineCode{SurviveLine} with 3 files in it \inlineCode{ballFunc.py}, \inlineCode{waveFunc.py} and \inlineCode{game.py}. To make it easy to make instance of the game, will create a file named \inlineCode{\_\_init\_\_.py} that will only have one line it it \inlineCode{from .game import Game} that means we will have a \inlineCode{Class Game():} in the \inlineCode{game.py} and it is used to call the \inlineCode{game} function as a library in the \inlineCode{AI.py} file (as it is in another folder) and make instance from it. Every major component will have its own class in file to refer later. 
+
+\subsection{Wave Functionality}\label{wave-functionality}
+To get the base function of wave, there would be a lot of functions to cover like:
+
+\begin{minted}{python}
+def draw(self, Display):
+	#increase the FPS of game
+def changeSpeed(self):
+	#change the wave aplitude and increase the wave gap
+def changeWave(self):
+	#generate a new point on Y axis
+def generateWave(self):
+	#add point to the list of points
+def addPoint(self, index, point):
+	#check if there is a gap 
+def checkGap(self):
+	#function to fill it
+def fillGap(self, gap, gapDirection):
+	#reset all the self. variable that are made in __init__ class 
+def reset(self):
+\end{minted}
+
+most of them are self explanatory, but the ones that need more dive into details are the \inlineCode{generateWave}, \inlineCode{checkGap} and \inlineCode{fillGap}.
+
+\subsubsection{Generate wave}
+The starting point of the game, in the \inlineCode{waveFunc.py} to make a main class \inlineCode{Class Wave():} with an equation that can generate a wave and at the same time I can change in the variables of the wave to make it harder for the player. These variable are wave amplitude\footnote{is the maximum or lowest height the wave can go in one point to up or down.} or wave frequency\footnote{a number of waves that can go through a fixed distance in amount of time.}.
+
+With all of this in calculation which means that I can make the game harder by making the behaviour unexpected for the next move, also to go extra step, there will be a decrease in the gap between the two waves to limit the player's movement.
+
+\begin{minted}{python}
+pointsList_XCord = int((self.HDisplay/2) + self.WaveAmplitude* math.sin(self.waveFreq * ((float(0)/-self.WDisplay)*(2*math.pi) + (time.time()))))
+\end{minted}
+as you can see, there are some variables that have the \inlineCode{self.} before, that are defined as:
+
+\begin{listing}[!ht]
+\begin{minted}{python}
+	def __init__(self, wDisplay, hDisplay):
+		self.WDisplay = wDisplay
+		self.HDisplay = hDisplay
+		self.ScoreCount = 0  
+		self.waveFreq = 1  # changes difficulty part
+		self.WaveGap = 0
+		self.GameSpeed = 2  # to increment the difference in time to speed the FPS
+		self.FPS = 60
+		self.WaveAmplitude = 50
+		self.PointsI = 0  # index to loop inside the points list
+		self.PointsList = [0]*800
+\end{minted}
+\caption{the self variable in waveFunc file.}
+\label{code:waveFunc self}
+\end{listing}
+
+
+These are the variables that are only (and not specifically) linked to the wave functions, and this is where an important functionality of OOP comes in. Encapsulation is the OOP functionality which means to get all the related data to a class (which is wave class at this point), if it is needed in other classes, then an instance of class wave can be made then the new variable can be used from it.
+
+The equation in figure \ref{code:waveFunc self}  is going to store the X axis coordinates in a list called \inlineCode{PointsList} for the sake of adding points to it once they are generated and show them on screen one by one as if it is loading, because if there isn't a list, then the wave would be a steady visual sine wave (without changing amplitude or frequency yet), this part of code is placed in \inlineCode{def generateWave(self)} function.
+
+There have to be more condition to make the points be generated without disorder, like one point won't be in the other half of screen, which means that when the 350px is added to it, it will be out of the borders of the display.
 
 \section{Display the game}\label{display-the-game}
+
+
 \section{Create AI}\label{create-ai}
 
 \subsection{101 AI}\label{101-ai}
 
+
 \subsection{What is N.E.A.T?}\label{what-is-neat}
+
  
 \subsection{Tweak AI}\label{tweak-ai}
 

@@ -7,6 +7,7 @@
 \setlist[enumerate,1]{label=\arabic*}
 \setlist[enumerate,2]{label=\theenumi.\arabic*}
 \setlist[enumerate,3]{label=\theenumii.\arabic*}
+
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{realboxes} % needed for \Colorbox
@@ -15,7 +16,12 @@
 
 \usepackage{listings}
 
-\usepackage{xcolor}
+\usepackage{xcolor} % border shade ofr inline code
+
+%\usepackage{pythonhighlight}
+
+\usepackage{minted}
+\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt}
 
 \newcommand{\inlineCode}[1]{{\colorbox{lightgray}{#1}}} % Highlight text that has been added
 

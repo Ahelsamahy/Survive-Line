@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{draw}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{Display}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}increase the FPS of game}
+\PYG{k}{def} \PYG{n+nf}{changeSpeed}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}change the wave aplitude and increase the wave gap}
+\PYG{k}{def} \PYG{n+nf}{changeWave}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}generate a new point on Y axis}
+\PYG{k}{def} \PYG{n+nf}{generateWave}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}add point to the list of points}
+\PYG{k}{def} \PYG{n+nf}{addPoint}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{index}\PYG{p}{,} \PYG{n}{point}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}check if there is a gap}
+\PYG{k}{def} \PYG{n+nf}{checkGap}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}function to fill it}
+\PYG{k}{def} \PYG{n+nf}{fillGap}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{gap}\PYG{p}{,} \PYG{n}{gapDirection}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{}reset all the self. variable that are made in \PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{} class}
+\PYG{k}{def} \PYG{n+nf}{reset}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+\end{Verbatim}
