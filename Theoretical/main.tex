@@ -1,6 +1,24 @@
 \documentclass{report}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{enumitem}
+% for nested enumration
+\setlist[enumerate,1]{label=\arabic*}
+\setlist[enumerate,2]{label=\theenumi.\arabic*}
+\setlist[enumerate,3]{label=\theenumii.\arabic*}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{realboxes} % needed for \Colorbox
+
+\usepackage{amsmath,amsfonts}
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+\newcommand{\inlineCode}[1]{{\colorbox{lightgray}{#1}}} % Highlight text that has been added
+
 
 \begin{document}
 	
