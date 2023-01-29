@@ -21,7 +21,7 @@ class SurviveLineGame:
         vision = False
         showParticles = False
         drawBallRec = False
-        self.Wave.waveSpeed = 4
+        self.Wave.waveSpeed = 1
         while run:
             self.clock.tick(self.Wave.FPS*self.Wave.waveSpeed)
             for event in pygame.event.get():
