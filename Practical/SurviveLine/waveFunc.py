@@ -37,15 +37,10 @@ class Wave:
         return self.FPS, self.GameSpeed
 
     def changeWave(self):
-        ampDiff = 6
         if (self.ScoreCount % 30 == 0) and self.WaveGap < 100:
             self.WaveGap += 1
         if self.ScoreCount % 50 == 0:
             self.WaveAmplitude = random.randint(50, 51 + self.WaveGap // 2)
-            # if WaveAmplitude - self.WaveAmplitude > ampDiff:
-            #     self.WaveAmplitude +=ampDiff
-            # elif (WaveAmplitude - self.WaveAmplitude < -ampDiff):
-            #     self.WaveAmplitude -=ampDiff
 
     def generateWave(self):
 
