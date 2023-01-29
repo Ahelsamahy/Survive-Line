@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI} \PYG{o}{+} \PYG{p}{(}\PYG{n}{gap}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{HDisplay}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}
+	\PYG{n}{untilEnd} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{HDisplay}\PYG{o}{\PYGZhy{}}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI}
+	\PYG{n}{toAddFromStart} \PYG{o}{=} \PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{gap}\PYG{o}{\PYGZhy{}}\PYG{n}{untilEnd}\PYG{p}{)}
+	\PYG{k}{del} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[:}\PYG{n}{toAddFromStart}\PYG{p}{]}
+	\PYG{n}{toAdd} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n}{toAddFromStart}
+	\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{o}{.}\PYG{n}{extend}\PYG{p}{(}\PYG{n}{toAdd}\PYG{p}{)}
+	\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI} \PYG{o}{\PYGZhy{}=} \PYG{n}{toAddFromStart}
+	\PYG{n}{gap} \PYG{o}{\PYGZhy{}=} \PYG{l+m+mi}{1}
+\end{Verbatim}

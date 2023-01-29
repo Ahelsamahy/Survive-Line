@@ -1,6 +1,8 @@
 \documentclass{report}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\graphicspath{ {./usedImages/} }
+
 \usepackage{titlesec}
 \usepackage{enumitem}
 % for nested enumration
@@ -16,14 +18,16 @@
 
 \usepackage{listings}
 
-\usepackage{xcolor} % border shade ofr inline code
+
 
 %\usepackage{pythonhighlight}
 
 \usepackage{minted}
-\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt}
+\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt,xleftmargin=20pt,linenos}
 
-\newcommand{\inlineCode}[1]{{\colorbox{lightgray}{#1}}} % Highlight text that has been added
+\usepackage{tcolorbox} % border shade for inline code
+\newtcbox{\myovalbox}{on line,colback=lightgray,boxrule=0pt,arc=2pt, boxsep=2pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
+\newcommand{\inlineCode}[1]{{\myovalbox{#1}}} % Highlight text that has been added
 
 
 \begin{document}

@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{generateParticles}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+	\PYG{n}{Loc} \PYG{o}{=}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ballCordX}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ballCordY}\PYG{p}{]}
+	\PYG{n}{Vel} \PYG{o}{=} \PYG{p}{[}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{10} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{]}
+	\PYG{n}{Timer} \PYG{o}{=} \PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)}
+	\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Particles}\PYG{o}{.}\PYG{n}{append}\PYG{p}{([}\PYG{n}{Loc}\PYG{p}{,} \PYG{n}{Vel}\PYG{p}{,} \PYG{n}{Timer}\PYG{p}{])}
+	\PYG{k}{for} \PYG{n}{particle} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Particles}\PYG{p}{:}
+		\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}
+		\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
+		\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{l+m+mf}{0.1}
+		
+		\PYG{n}{pygame}\PYG{o}{.}\PYG{n}{draw}\PYG{o}{.}\PYG{n}{circle}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{GameDisplay}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{255}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{),} \PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{])],} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]))}
+		\PYG{k}{if} \PYG{n}{particle}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{0}\PYG{p}{:}
+			\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Particles}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{particle}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{gapDirection}\PYG{p}{):}
+\PYG{c+c1}{\PYGZsh{} to move the point according to gap}
+	\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI} \PYG{o}{+} \PYG{n}{gap}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI}\PYG{p}{]}
+	\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+	\PYG{c+c1}{\PYGZsh{}the step is different for gap direction, as it would be \PYGZhy{}1 or +1}
+	\PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsI}\PYG{o}{+}\PYG{n}{gap}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{(}\PYG{n}{gap}\PYG{o}{//}\PYG{n}{gap}\PYG{p}{)):}
+		\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{PointsList}\PYG{p}{[}\PYG{n}{insideY}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x}\PYG{o}{+}\PYG{l+m+mi}{1}
+		\PYG{k}{if} \PYG{n}{insideY} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{799}\PYG{p}{:}
+			\PYG{n}{insideY} \PYG{o}{+=} \PYG{l+m+mi}{1}
+\end{Verbatim}

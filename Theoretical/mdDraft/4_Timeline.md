@@ -49,9 +49,12 @@ most of them are self explanatory, but the ones that need more dive into details
 
 #### Generate Wave
 
-The starting point of the game, in the `waveFunc.py` to make a main class `Class Wave():` with an equation that can generate a wave and at the same time I can change in the variables of the wave to make it harder for the player,. These variable are 
-wave amplitude\footnote{is the maximum or lowest height the wave can go in one point to up or down} or 
-wave frequency \footnote{the number of waves that can go through a fixed distance in amount of time} with all of this in calculation which means that I can make the game harder by making the behaviour unexpected for the next move, also to go extra step, there will be a decrease in the gap between the two waves to limit the player's movement.
+The starting point of the game, in the `waveFunc.py` to make a main class `Class Wave():` with an equation that can generate a wave and at the same time I can change in the variables of the wave to make it harder for the player. These variable are 
+
+[^wave amplitude]:is the maximum or lowest height the wave can go in one point to up or down or
+[^wave frequency]:the number of waves that can go through a fixed distance in amount of time w
+
+ith all of this in calculation which means that I can make the game harder by making the behaviour unexpected for the next move, also to go extra step, there will be a decrease in the gap between the two waves to limit the player's movement.
 
 ```python
 pointsList_XCord = int((self.HDisplay/2) + self.WaveAmplitude* math.sin(self.waveFreq * ((float(0)/-self.WDisplay)*(2*math.pi) + (time.time()))))
@@ -134,7 +137,7 @@ Fill the gap was basically working on the base of shifting the point on Y-axis, 
 
 Thinking that it will take more effort to move the point in new line segment in the position that corresponds to the gap, then make a line between the old line segment and the new one. That is a lot to think about, there can be a different way. What if we change the point on x-axis? just to make it close to the old one, I know it is a bit of cheating, but as long as it works, then it is good.
 
-The idea is that, if I can calculate the gap (which I already know) then decrease the new point by the amount of gap + 1 (if it is a positive gap) ###ref to the figure) and will be -1 if it is a negative gap, you may ask, "why didn't you use absolute value for amount of gap as left is the same as right?" because then this would mean that the wave would increment in one way which depends if it is +1 or -1.
+The idea is that, if I can calculate the gap (which I already know) then decrease the new point by the amount of gap + 1 (if it is a positive gap) and will be -1 if it is a negative gap, you may ask, "why didn't you use absolute value for amount of gap as left is the same as right?" because then this would mean that the wave would increment in one way which depends if it is +1 or -1.
 
 The newly implemented function is called `def shiftOnXAxis(self, newPoint)` in `waveFunc.py`
 
@@ -323,7 +326,7 @@ Given example of a child trying to kick the ball, this is the first time a child
 
 That is the same way AI is learning in this game. The ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not. The ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
 
-<img src="https://assets-global.website-files.com/5fb24a974499e90dae242d98/60f6feb4be651f666b46194a_AI%20vs%20Machine%20Learning%20vs%20Deep%20Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:50%;" />
+<img src="./usedImages/AI vs Machine Learning vs Deep Learning.jpg" alt="Deep Learning vs. Machine Learning – What's The Difference?" style="zoom:50%;" />
 
 <p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 
@@ -372,7 +375,7 @@ That is what activation function is for. Change the value for one specific neuro
 
 You might ask "why use an Activation function, isn't it changing in the numbers as the same way the weights and biases are doing ?" Yes and no. The weights and biases change the number **that is going from one neuron** to another, but activation function **change the effect** of the neuron to the one after it.
 
-![](./usedImages/NEURONS-IN-NUERAL-NETWORK.gif)
+![](./usedImages/neuronsNN.png)
 
 <p style="text-align:center;font-size:13px;font-style: italic;">Deep Learning vs. Machine Learning – What’s The Difference? via. levity.ai</p>
 

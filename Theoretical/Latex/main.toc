@@ -1,0 +1,22 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}{}%
+\contentsline {chapter}{\numberline {2}Related work}{2}{}%
+\contentsline {chapter}{\numberline {3}Technologies}{3}{}%
+\contentsline {chapter}{\numberline {4}Timeline}{4}{}%
+\contentsline {section}{\numberline {4.1}Develop the game}{5}{}%
+\contentsline {subsection}{\numberline {4.1.1}Wave functionality}{6}{}%
+\contentsline {subsubsection}{Generate wave}{6}{}%
+\contentsline {subsubsection}{Check gap}{7}{}%
+\contentsline {subsubsection}{Fill gap}{8}{}%
+\contentsline {subsubsection}{ Second way to fill the gap}{10}{}%
+\contentsline {subsection}{\numberline {4.1.2}Ball functionality}{10}{}%
+\contentsline {subsubsection}{Draw ball}{10}{}%
+\contentsline {subsubsection}{Generate particles}{10}{}%
+\contentsline {section}{\numberline {4.2}Display the game}{12}{}%
+\contentsline {section}{\numberline {4.3}Create AI}{12}{}%
+\contentsline {subsection}{\numberline {4.3.1}101 AI}{12}{}%
+\contentsline {subsection}{\numberline {4.3.2}What is N.E.A.T?}{12}{}%
+\contentsline {subsection}{\numberline {4.3.3}Tweak AI}{12}{}%
+\contentsline {subsection}{\numberline {4.3.4}Observation}{12}{}%
+\contentsline {subsection}{\numberline {4.3.5}Explain the log}{12}{}%
+\contentsline {chapter}{\numberline {5}Testing}{13}{}%
+\contentsline {chapter}{\numberline {6}Summary}{14}{}%
