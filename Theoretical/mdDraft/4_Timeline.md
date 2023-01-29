@@ -383,22 +383,7 @@ You might ask "why use an Activation function, isn't it changing in the numbers 
 
 All the info about the previous parts above can be collected into one thing here. The genome is the collected part for all of this, it works on neural network that relies on weight and biases to change the input until output and uses a fitness function. One population exists of a pre-defined number of genome inside of it, it can be called also children of the generation.
 
-### What is N.E.A.T ?
 
-"**N**euro **E**volution of **A**ugmented **T**opologies. And this is what's known as a genetic algorithm"[Python Pong AI Tutorial - Using NEAT - YouTube](https://www.youtube.com/watch?v=2f6TmKm7yx0). Think of it as the way that is used in humans to learn (going back to the example of kid and ball) also the natural selection of the ones that perform good as humans and smarter, they managed to reproduce until today. Unlike the others who were not fortune enough to have what it takes to survive in different scenarios.
-
-In other words to explain it "There is a larger category called TWEANNS stands for topology and weight evolving artificial neural networks" [A.I. Learns to Play Sonic the Hedgehog - NEAT Explained! - YouTube](https://www.youtube.com/watch?v=5RR1T_-zVws&) "these are algorithms that not only evolve the strength of the connection weight for a fixed network topology, but actually evolves both the topology of the network and its weights" the scientists behind the neat algorithm identified three major challenges for tweanns:
-
-1. Meaningful crossover: by tracking genes through historical markings.
-   This stops the algorithm from blindly crossing over the genomes of two neural networks and creating unnormal mutated neural networks. There are two way to progresses through a user-specified number of generations, "with each generation being produced by reproduction (either sexual or asexual) and mutation of the most fit individuals of the previous generation" [NEAT Overview](https://neat-python.readthedocs.io/en/latest/neat_overview.html).
-   - Sexual: means that the new generation will be made out of the best performed genomes **from the previous generation**.
-   - Asexual: algorithm will **generate a random genome** to reproduce with the highest fitness score genomes to make the new generation.
-2. Speciation: protecting structural innervation through speciation.
-   That protects new structures as they are typically low on hidden networks numbers, allowing them to optimize with each other on their own. You can say category before we eliminate them. This is done by splitting up the population into several species based on the similarity of topology, connections between neurons and their weights and biases. They only compete within their species because some of them who aren't performing well at present, can perform well in the future after the right mutatuon with each other without the need to eliminate them now.
-3. Structure complexity: incrementally growing from minimal structure.
-   It holds the algorithm from creating complex networks at the beginning of the new generation that may have to later, reduce the number of nodes and connections. They did this by starting all networks with no hidden layers between input and output layer. NN only has a series of connection genes between them and if it is found to be useful and necessary to tweak the output a little, then it can involve in complexity.
-
-They designed N.E.A.T to specifically address each one of the above characteristics. Point (2) and (3) will be explained more in details at the [explain the log](#explain-the-log) part.
 
 ### Tweak AI
 
