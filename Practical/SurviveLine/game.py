@@ -97,7 +97,7 @@ class Game():
         self.showedLines.clear()
         # the starting point here is the bottom of ball and the end is the top + 20 px for prediction
         # increased the step size because there was lag for the whole process to be handled
-        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+50, 5):
+        for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+20, 5):
             for YBall in range(0, ball.width, 5):
                 dxR = pow(Wave.PointsList[YCord] - 50 - Wave.WaveGap - ball.bottomright[0] + YBall, 2)
                 dxL = pow(Wave.PointsList[YCord] - 350 + Wave.WaveGap - ball.bottomleft[0] + YBall, 2)
