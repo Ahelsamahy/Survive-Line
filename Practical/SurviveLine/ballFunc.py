@@ -12,7 +12,7 @@ class Ball(object):
 
     def __init__(self, waveGap, gameDisplay, pointsList):
         self.ballCordX = 400//2
-        self.ballCordY = 550
+        self.ballCordY = Ball.BALL_CORD_Y
         self.WaveGap = waveGap
         #loc,vel,timer
         self.Particles = []
@@ -53,6 +53,6 @@ class Ball(object):
                 self.Particles.remove(particle)
 
     def reset(self):
-        self.ballCordY = 550
+        self.ballCordY = Ball.BALL_CORD_Y
         self.ballCordX = 400//2
         self.Particles = []
