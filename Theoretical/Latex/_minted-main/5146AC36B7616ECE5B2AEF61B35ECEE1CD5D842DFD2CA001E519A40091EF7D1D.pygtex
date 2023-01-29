@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ ****** Running generation 99 ******
+14 reached the threshold
+genome number 15 = 57S with fitness 82
+highest fitness now is 20206 generation 37 genome 1
+Population\PYGZsq{}s average fitness: 3039.20000 stdev: 4602.73985
+Best fitness: 20201.00000 \PYGZhy{} size: (4, 7) \PYGZhy{} species 1 \PYGZhy{} id 2564
+Average adjusted fitness: 0.140
+Mean genetic distance 1.803, standard deviation 0.759
+Population of 30 members in 2 species:
+ID   age  size  fitness  adj fit  stag
+====  ===  ====  =======  =======  ====
+1   99    16  20201.0    0.146    62
+2   99    14   8545.0    0.135    78
+Total extinctions: 0
+Generation time: 324.005 sec (364.069 average)
+Saving checkpoint to neat\PYGZhy{}checkpoint\PYGZhy{}99
+\end{Verbatim}

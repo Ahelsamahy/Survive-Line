@@ -1,33 +1,46 @@
 \documentclass{report}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\graphicspath{ {./usedImages/} }
-
-\usepackage{titlesec}
+\usepackage{graphicx} %include images
+\usepackage{listings}
+\usepackage{minted} %write code snippets
+\usepackage{tcolorbox} % border shade for inline code
+\usepackage{amsmath,amsfonts}
+\usepackage{titlesec} % make arpitary amound of nested header with numbers
 \usepackage{enumitem}
+
+\usepackage{hyperref}
+
 % for nested enumration
 \setlist[enumerate,1]{label=\arabic*}
 \setlist[enumerate,2]{label=\theenumi.\arabic*}
 \setlist[enumerate,3]{label=\theenumii.\arabic*}
+\setcounter{secnumdepth}{6}
 
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{realboxes} % needed for \Colorbox
 
-\usepackage{amsmath,amsfonts}
+\graphicspath{ {./usedImages/} }
 
-\usepackage{listings}
-
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 
 
 %\usepackage{pythonhighlight}
 
-\usepackage{minted}
-\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt,xleftmargin=20pt,linenos}
 
-\usepackage{tcolorbox} % border shade for inline code
+\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt, xleftmargin=\parindent}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+}
+
+
 \newtcbox{\myovalbox}{on line,colback=lightgray,boxrule=0pt,arc=2pt, boxsep=2pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
 \newcommand{\inlineCode}[1]{{\myovalbox{#1}}} % Highlight text that has been added
+
+
 
 
 \begin{document}
@@ -58,10 +71,8 @@
 	\chapter{Related work}
 	\include{./Chapters/2_RelatedWork}
 	
-	\chapter{Technologies}
 	\include{./Chapters/3_Technologies}
 	
-	\chapter{Timeline}
 	\include{./Chapters/4_Timeline}
 	
 	\chapter{Testing}

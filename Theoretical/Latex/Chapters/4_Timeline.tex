@@ -1,4 +1,5 @@
 
+\chapter{Timeline}
 The first step of developing the game was choosing a programming language that would be helpful in both showing graphics on screen and implement an AI algorithm. The only option that was convenient enough was python as:
 
 \begin{enumerate}
@@ -203,23 +204,307 @@ The code would add to the list of particles a new particle with these random sta
 This function is possible thanks to [Particles - Pygame Tutorial - YouTube](https://www.youtube.com/watch?v=F69-t33e8tk)
 
 \section{Display the game}\label{display-the-game}
+Getting all of the parts coming together is based on logic, as there are lots of changes in it with variables in each game component \inlineCode{waveFunc} and \inlineCode{ballFunc} but the basics are made in the game. Now about displaying them from the \inlineCode{game.py} file that will deal as an instance of all game component, like the string that will keep all of them tide up.
+
+\subsection{Draw}\label{draw}
+There are basic things in the game that a user would need to always see during the runtime of it, like the ball to know the position of it and the wave so the ball won't hit it, maybe the particles to add some visuality to the game and the score on the top. Most of these functions are already made in the components class but needs to be called here, in the \inlineCode{game.py} file.
+
+\subsubsection{title}{Update label}
+
+In order to type anything on the screen in PyGame, you need to:
+\begin{enumerate}
+	\item Instantiate first the font you will use, how big it will be.
+	\item Decide what to write then make a position for it on the screen.
+	\item Blit (show on screen).
+\end{enumerate}
+
+It can be thought of as a harder way just to write a simple text, but it gives more freedom to customize the text before writing it and it's also CPU consuming wise when it comes to graphics options that you might not need, like anti aliasing.
+
+\subsubsection{Display score} \label{display-score}
+There is a need for a counter in the game, to be incremented each time the main \inlineCode{While} loop in the game makes a new round, so it would work as a way  to measure the score of the game (also fitness for AI). This \inlineCode{ScoreCount} will be the way to measure it, but as every loop, that is +60 (FPS of game) points in every second. I think it might be a little bit over, so I will divide it by 200 and place it on the middle top part of the screen, now first part of the game requirement is over, with displaying score.
+
+\subsubsection{ Display AI number}
+
+As a way to keep record of the training sessions of AI is to find the generation number and genome number, but if you don't understand these expressions, it is ok, I don't also, but I will read about them once I reach the AI part and tell you more there. During the learning period, I won't be staring in my screen the whole time, so there have to be some way I can know which genome did better and the time for it. The log will be in CMD after every genome and will use OBS to record the game window only, so I return to the video at anytime.
+
+\subsection{Collision}\label{sec:collision}
+Basics of collision coming ahead. When there is an object that overlaps another one and they shouldn't. To implement this on the game, a collision would be triggered if the ball overlaps any point of the wave points that corresponds to the same x-axis points with it.
+
+In the Ball component class there is a \inlineCode{ballRect} functions, that returns an invisible rectangle that surrounds the ball with lots of important functionality in it. Basically I can access all the coordinates of every edge in this rectangle that would help in the collision, and this will be the way of detection for the ball.
+As for the collision function working mechanism, it loops through every point in the wave with the range of the ball, in this case it is  calculated by the full height of screen (800 px) minus the bottom of the ball (238 x-cord for it) $800-562 = 238$ this is the starting range. Ending range will be the the top of ball, $800-538 = 262$, for the right side of ball, if the x value for it is over or equal the x-axis of the points list with the same axis -50 - the wave gap then it will be collision. On left side, if the x-axis of left side of ball is less or equal the x-axis of  the points list with the same axis - 350 - the wave gap then it will be collision. 
 
 
+%##make a illustrition
 
+
+\begin{listing}
+\begin{minted}{python}
+#                              238          ,             262
+for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
+if (Wave.PointsList[YCord] != 0) and (ball.right >= Wave.PointsList[YCord]-50-Wave.WaveGap):
+return runLoop == False
+
+if (Wave.PointsList[YCord] != 0) and (ball.left <= Wave.PointsList[YCord]-350+Wave.WaveGap):
+return runLoop == False
+\end{minted}
+\end{listing}
+
+You might ask, why make a rectangle be responsible for the detection of a ball object? The problem is limitation in the library itself. To choose object that you want to have detection with, even pixel wise, it is 5 pixels on the top for each side that decreases way down until the middle of ball, so it isn't that much to think about.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{usedImages/colliison}
+	\caption{relation between the ballRect and the normal wave}
+	\label{fig:colliison}
+\end{figure}
+
+
+\subsection{Move ball}
+Remember what I said about OOP and every class should make what is limited to? that is when it comes in handy, as here I can set the limitation I want for the ball movement, and not in the ball class.
+
+There will be buttons assigned to each movement in the class to get the ball around the x-axis only. If the function gets "right" as a parameter, then it will call the \inlineCode{moveball} function in \inlineCode{ballFunc.py} file to add to the x-axis of the ball, the amount of steps that is 5px, also the same with left side. Limitation is not to get the ball out side the borders of screen and an extra half of the radius of ball because it wasn't looking good having the whole ball stuck to the screen side as a limit.
+
+You might ask me. "why make the parameter for function a string and not a Boolean variable as there are two types of movement only?", I'm not going to lie, I had it during the whole game to be as a boolean variable, until the implementation of AI, I changed it to string. Why? because in first place I thought the neural network would have 2 outputs (left and right movement) but there would be a third one, as not moving, or centre in other words, to make the ball steady during the training and not wiggling around.
+
+\subsection{Count distance}\label{sec:count-distance}
+As of the early implementation of the AI, the input was (the order from left to right):
+\begin{itemize}
+\item distance between the centre of ball to the point in wave with the same x cord both left and right.
+\item ball x cord.
+\end{itemize}
+
+But the problem is the collision covers the whole ballRect (that is 24 pixel) and the NN can only have input of the centre, to solve it you would need to pass a list of the distance between the points on ballRect and the wave on the side, here is a big dive into it.
+
+To work on the right distance, there is ballRect that covers the whole ball and responsible for the collision detection, and there are points with the corresponding x axis on the wave. If any point on the ballRect overlap one of the points (with same x-axis) on the wave, the collision will be triggered and this genome will be over. To think more into details, I need to check first with the point on the bottom right side of the ballRect with the one same as x axis on the wave, then move one point up on wave and calculate it (using Pythagoras). When the points on the wave in the vision for the ball are over, then move one pixel up the ballRect and repeat the same on the wave.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"usedImages/vision 576 lines"}
+	\caption{keep in mind that the starting point is in the middle of the ball in the image, but it is just a simple way to say that there is a vision}
+	\label{fig:vision-576-lines}
+\end{figure}
+
+\begin{listing}
+	\begin{minted}{python}
+def countDistance(self):
+"""
+make a list for distance between the bottom edge of ballRect to the corresponding point on the wave 
+with the same x-axis, then one step up on wave and repeat, and make another loop to do the same with the left side
+"""
+	ball = self.Ball.ballRect()
+	Wave = self.Wave
+	rightList = []
+	leftList = []
+	self.showedLines.clear()
+	# the starting point here is the bottom of ball and the end is the top + 20 px for prediction
+	# increased the step size because there was lag for the whole process to be handled
+	for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top+20, 5):
+		for YBall in range(0, ball.width, 5):
+			dxR = pow(Wave.PointsList[YCord] - 50 - Wave.WaveGap - ball.bottomright[0] + YBall, 2)
+			dxL = pow(Wave.PointsList[YCord] - 350 + Wave.WaveGap - ball.bottomleft[0] + YBall, 2)
+			dy = pow(abs((800-YCord) - ball.bottomright[1]+YBall), 2)
+
+			rightList.append(int(math.sqrt(dxR+dy)))
+			leftList.append(int(math.sqrt(dxL+dy)))
+			self.showedLines.append(YCord)
+		return rightList, leftList
+	\end{minted}
+\end{listing}
+
+Sounds good, but the problem is the two for loops were CPU consuming, imagine there are 24 pixel then repeat it again for the wave ones (a two inner for loops) $24^2 = 576$ and another one for the left side $576*2 = 1152$,  and to process them again on the AI input , that is $1152*2 = 2304$ times, all is made in one second, not to add the particles that are being made behind the ball, all of this was a lot. To make a little better, I reduced the step size to be 5 for each loop, made it to 45 in each list and got the inserted value to be as integer.
+
+\begin{table}[]
+	\centering
+\begin{tabular}{|c|c|}
+	\hline
+	576 lines on each side	& 45 on each side \\ \hline
+		\includegraphics[width=0.5\linewidth]{"usedImages/vision 576 lines"}& \includegraphics[width=0.5\linewidth]{"usedImages/vision 45 lines"} \\ \hline
+	\end{tabular}
+\end{table}
+
+You might ask "will this reduce the vision of the AI ?", quite frankly, I think if it could handle itself with only one point in the past, then it can do better with 45 line on each side. It even gave more space to add extra point, so it can see the future now (an extra 20 points on wave).
+
+\subsection{Show Vision}
+The speed of learning during the AI would be faster than a human can play a game, and due to the amount of loops that are made every time in the main loop \inlineCode{while}, the calculation time is a lot to take, so to make the things smoother, there are vision lines of the ball that would help in viewing what the ball is actually seeing (or detecting) on the wave, but there would be a control for it in the \inlineCode{draw()} method so it doesn't slow the process of game by pressing the \inlineCode{v key} it would switch it on or off. 
+
+\subsection{Loop}
+There are some functions that need to be always working during the game. Changing the wave amplitude, increase the \inlineCode{ScoreCount} by one and change the game speed as in FPS. \inlineCode{ScoreCount} is just a holder for them so it doesn't get missy in the AI part .
+
+\subsection{Reset}
+Calls the reset function in components class in the \inlineCode{Wave} and \inlineCode{Ball} and is triggered once the collision happens.
 
 \section{Create AI}\label{create-ai}
 
+As the progress of the thesis can be separated into two parts. I can say now that the first part is over with making a fully functional game that satisfies the requirements. Now the second part, making AI that can reach a high score in it, despite the difficulties that are made with the ball surviving through the game more, such as, changing the amplitude and the increased speed.
+
+There are a lots of algorithms, that can be used to develop such a neural network that is capable of this task. Changing the weights and biases without me interfering in it. I feel like I'm going over lots of expressions here that needs to be clarified first.
+
 \subsection{101 AI}\label{101-ai}
+The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!. It raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task. That is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
+To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \href{https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/}{Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat} , and this type is the main point in making the AI.
 
-\subsection{What is N.E.A.T?}\label{what-is-neat}
+\subsubsection{Life example}
+Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know \textbf{yet} what to do with it. The child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet). The agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
 
+That is the same way AI is learning in this game. The ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not. The ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"usedImages/AI vs Machine Learning vs Deep Learning"}
+	\caption{}
+	\label{fig:ai-vs-machine-learning-vs-deep-learning}
+\end{figure}
+
+As mentioned in \hyperref[display-score]{counter part}, there is a counter in the game, it will be used as what is called \inlineCode{fitness function}. A \inlineCode{Fitness function} measures how good is our genome doing with a good input for the ball to give a proper output of movement, so the ball survive as far as it can, here is another unknown expression.
  
+\subsubsection{Fitness function}
+There must be a way to reward or punish the AI according to its behave during the game. The more the ball survives the wave, the higher the fitness score for it will get (better quality it is), meanwhile, if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation. The possibility for low fitness-genome to be mutated into future generation will be lowered.
+
+Applying this method in the game here, there is a way of reward. If the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less venerable to hit into it.
+
+\begin{listing}[H]
+\begin{minted}{python}
+leftDis = int (output[0])
+rightDis = int (output[2])
+if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
+	if round(leftDis, -1) == round(rightDis, -1):
+		fitness += 2
+\end{minted}
+\end{listing}
+
+Explained from inside out. The fitness is increased by 2, if the rounded output for left distance== rounded output to right distance (the ball is in the middle), but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
+
+As for the punishment. If the genome dies at the beginning of where it was, and without any movement from it to survive, the fitness score will be reduced. The point here is try to find the good punishment for it and not over do it, so it can be balanced.
+
+\begin{listing}[H]
+	\begin{minted}{python}
+if(fitness < 300):
+	fitness -= 20
+	\end{minted}
+\end{listing}
+
+There was an early implementation, to add reward in case the ball takes the output of staying in the middle and not wiggle around with right and left only. But the ball managed to overcome it and also waggle (as it sought a change in the input more than the reward it would get), so the other way, was to make the distance equal on both left and right sides is the reward.
+
+\subsubsection{Neural network}
+In order to take a decision, there is an input, then an amount of process are made in between to have an output. This is what is called neural network, it consists of layers that modify the input along the way to decide what it will be at the end of it, as an output. The small fundamental creating piece for NN is called a \textbf{neurons} , same as in human brain (but not the same amount!). There are input neurons that are found in the first layer, then processed to the second layer and modified to the third one, with the summation being in the output layer.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{usedImages/nn}
+	\caption{}
+	\label{fig:nn}
+\end{figure}
+
+\subsubsection{Weight and biases}
+
+In the early stages of the ball when it is learning how to control its movement, the first steps are either going totally to left or right. Which isn't really paying off to make it go far. Each neuron have to tweak the parameters it gets from the one before it, the weights and biases are the one responsible for this, going back to the child example. The brain consists of little neurons that are responsible of making every decision the child take, it changes over time, and it is the case here. The brain changes a little bit on the decision and try different approach to the problem. One time hit the ball hard to left side, one time with little power to right side. "\textbf{Weights} control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." \href{https://machine-learning.paperspace.com/wiki/weights-and-biases}{difference}
+
+\subsubsection{Activation function} \label{sec:activation-function}
+The connection between neurons and each others, have weights and biases to alter in them. Let's say that there is one neurons that the value from it isn't important and can be used when the input is different, even to say that it doesn't exist at all, but only to one specific neuron in the layer after it. If it was to be removed, it would change the value to all the neurons after it.
+
+That is what activation function is for. Change the value for one specific neuron and decide if it will have more (or less) impact on the neuron that is after it with the connection in between. As the name state "Activation", the value for it is between 0 and 1 for each neuron.
+
+You might ask "why use an Activation function, isn't it changing in the numbers as the same way the weights and biases are doing ?" Yes and no. The weights and biases change the number \textbf{that is going from one neuron} to another, but activation function \textbf{change the effect} of the neuron to the one after it.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{usedImages/neuronsNN}
+	\caption{}
+	\label{fig:neuronsnn}
+\end{figure}
+
+\subsubsection{Genome}\label{sec:genome}
+All the info about the previous parts above can be collected into one thing here. The genome is the collected part for all of this, it works on neural network that relies on weight and biases to change the input until output and uses a fitness function. One population exists of a pre-defined number of genome inside of it, it can be called also children of the generation.
+
+
+
 \subsection{Tweak AI}\label{tweak-ai}
 
-\subsection{Observation}\label{Observation}
+After the base was made for the algorithm to work properly, there are tweaks that had to be made to it. The algorithm itself takes the input from the \inlineCode{config.txt} file, there are some expressions that are needed to be explained in the file to know what to change.
 
-\subsection{Explain the log}\label{explain-the-log]}
+\begin{listing}[H]
+\begin{minted}{python}
+[NEAT]
+fitness_criterion     = max
+fitness_threshold     = 1000000
+pop_size              = 30
+reset_on_extinction   = False
+\end{minted}
+\end{listing}
+
+These are the most important values to look for in this file. They define when the algorithm will stop, and the size for it.
+
+\begin{enumerate}
+\item \inlineCode{fitness{\_}criterion} state when will the algorithm stop regarding the threshold. There are three values for it \inlineCode{min}, \inlineCode{max}, and \inlineCode{mean}. If it is \inlineCode{max} then it will stop once there is at least one genome which managed to reach the threshold and define it as the winner then terminate the process.
+
+\item \inlineCode{fitness\_threshold} is the high score that the algorithm is learning to reach to. The value written in the file equals 5000 points in the game.
+
+\item \inlineCode{pop\_size} how many genomes can be in one population, in case it is more, the learning time for the algorithm will be increased.
+
+\end{enumerate}
+
+\begin{listing}[H]
+\begin{minted}{python}
+[DefaultGenome]
+# node activation options
+activation_default      = relu
+activation_mutate_rate  = 1.0
+activation_options      = relu
+\end{minted}
+\end{listing}
+
+Going to the activation function, the one that define the effect from one neuron to another, the value is between 0 and 1. More info about it in \hyperref[sec:activation-function]{Activation function} section.  
+
+
+
+\subsection{Observation}\label{Observation}
+At first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point. That made it hard for the ball to find its way (or have a futuristic vision you can say). There would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see. It would calculate the distance between the ball rectangle to the left or right side of wave in more than one point.
+
+To get more into it with numbers, there would be a notice of the ball having a weird sense of getting to know its "new" sense of wider vision diameter. The ball would take about 20 generations just to start moving in more random left and right. This is made when the ball had only the vision of its 24-pixel diameter (12px as radius) then extra step of plus 50 pixels, getting this info in nutshell
+\begin{itemize}
+\item One point vision: good as start and better CPU wise.
+\item Diameter vision + 20: best one in score yet (117 points in generation 89).
+\item Diameter +50 points: No learning even after nearly 300 generation.
+\end{itemize}
+
+The reason to increase the vision for the ball (even though it was working fine) is I wanted to test how long would it take from the ball to get used to the new (increased) amount of lines. I can tell you it took long long enough.
+
+At this point of the game, I implemented the increased speed of wave *4 that improved the learning speed. With normal fps, it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times speed, not more) takes 5 hours 15 second for 100 generation to work. That is 4 times the normal running time of normal pace of game for a human to play it, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs. It took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score. That means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
+
+There is a small box that is shown around the ball, it is called ballRect and mentioned a lot in the \hyperref[sec:count-distance]{Count Distance} and \hyperref[sec:collision]{Collision}. ballRect is shown to check if the genome did terminate for an actual collision or because it reached the threshold, like the case here in this video.
+
+In order to save as much as CPU power during the learning process, the box is shown only when fitness is over 50. In addition to some extra visuals in the game, such as the particles behind the ball, but all of them can be viewed again with a key for each one:
+\begin{itemize}
+\item \inlineCode{v Key} to shown \textbf{v}ision
+\item \inlineCode{b key} to show the \textbf{b}allRect
+\item \inlineCode{p key} to show the \textbf{p}articles
+\end{itemize}
+
+\subsection{Explain the log}\label{sec:explain-the-log]}
+
+During the runtime of AI training session ,the algorithm displays statistics at the end of every generation. To have a better insight of what is going behind the curtains, the one here is taken from training session on the 2nd of Jan 2023.
+
+\begin{listing}[H]
+\begin{minted}{text}
+ ****** Running generation 99 ****** 
+14 reached the threshold
+genome number 15 = 57S with fitness 82
+highest fitness now is 20206 generation 37 genome 1
+Population's average fitness: 3039.20000 stdev: 4602.73985
+Best fitness: 20201.00000 - size: (4, 7) - species 1 - id 2564
+Average adjusted fitness: 0.140
+Mean genetic distance 1.803, standard deviation 0.759
+Population of 30 members in 2 species:
+ID   age  size  fitness  adj fit  stag
+====  ===  ====  =======  =======  ====
+1   99    16  20201.0    0.146    62
+2   99    14   8545.0    0.135    78
+Total extinctions: 0
+Generation time: 324.005 sec (364.069 average)
+Saving checkpoint to neat-checkpoint-99
+\end{minted}
+\end{listing}
+
  
  
  

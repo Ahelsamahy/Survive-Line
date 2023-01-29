@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{[}\PYG{n}{DefaultGenome}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} node activation options}
+\PYG{n}{activation\PYGZus{}default}      \PYG{o}{=} \PYG{n}{relu}
+\PYG{n}{activation\PYGZus{}mutate\PYGZus{}rate}  \PYG{o}{=} \PYG{l+m+mf}{1.0}
+\PYG{n}{activation\PYGZus{}options}      \PYG{o}{=} \PYG{n}{relu}
+\end{Verbatim}
