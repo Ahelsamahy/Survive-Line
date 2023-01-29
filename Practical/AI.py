@@ -3,8 +3,6 @@ from SurviveLine import Game
 import neat
 import os
 import pickle
-from collections import Counter
-import math
 
 class SurviveLineGame:
     def __init__(self, window, width, height):

@@ -1,7 +1,6 @@
 import math
 import time
 from numpy import random
-import numpy as np
 import pygame
 
 # from defs import *

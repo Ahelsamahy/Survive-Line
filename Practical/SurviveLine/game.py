@@ -2,7 +2,6 @@ import time
 import os
 import pygame
 import pygame.gfxdraw
-import numpy
 
 
 from .defs import *
