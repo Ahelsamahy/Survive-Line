@@ -343,7 +343,7 @@ The way for AI to work is try to make mimic the way of human brain to work, but 
 
 To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \href{https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/}{Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat} , and this type is the main point in making the AI.
 
-\subsubsection{Life example}
+\subsubsection{Life example}\label{sec:ai-life-example}
 Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know \textbf{yet} what to do with it. The child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet). The agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
 
 That is the same way AI is learning in this game. The ball (which is agent) is trying to survive as much as it can between the two waves (environment) but it doesn't know if touching any of waves will end it or not. The ball try to use one of the three controls it have (left, centre, right) and if it goes totally left, it dies, same as right, but if it stays in the middle, it will survive the most, at least for now.
@@ -351,7 +351,7 @@ That is the same way AI is learning in this game. The ball (which is agent) is t
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"usedImages/AI vs Machine Learning vs Deep Learning"}
-	\caption{}
+	\caption{how deep learning is connected to machine learning}
 	\label{fig:ai-vs-machine-learning-vs-deep-learning}
 \end{figure}
 
@@ -391,7 +391,7 @@ In order to take a decision, there is an input, then an amount of process are ma
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{usedImages/nn}
-	\caption{}
+	\caption{relation between input, hidden and output layers}
 	\label{fig:nn}
 \end{figure}
 
@@ -409,7 +409,7 @@ You might ask "why use an Activation function, isn't it changing in the numbers 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{usedImages/neuronsNN}
-	\caption{}
+	\caption{how weights, biases and activation function effect each neurons}
 	\label{fig:neuronsnn}
 \end{figure}
 
@@ -480,7 +480,7 @@ In order to save as much as CPU power during the learning process, the box is sh
 \item \inlineCode{p key} to show the \textbf{p}articles
 \end{itemize}
 
-\subsection{Explain the log}\label{sec:explain-the-log]}
+\subsection{Explain the log}\label{sec:explain-the-log}
 
 During the runtime of AI training session ,the algorithm displays statistics at the end of every generation. To have a better insight of what is going behind the curtains, the one here is taken from training session on the 2nd of Jan 2023.
 
@@ -504,7 +504,6 @@ Generation time: 324.005 sec (364.069 average)
 Saving checkpoint to neat-checkpoint-99
 \end{minted}
 \end{listing}
-
  There are only \textbf{three} lines in this log that I made them to be printed during the process. It would make it easier to check the genome behaviour from the recorded video, and they are:
  \begin{itemize}
 \item line 2: says that from this generation, only genome number 14 managed to reach the threshold that was 101 points.
@@ -519,14 +518,12 @@ Starting from line 5, all that comes, is made by the \inlineCode{reporting()} cl
 \item line 5 $\rightarrow$\inlineCode{stdev}: is the standard deviation of each genome to the over of all mean fitness in the generation, so higher it is, the more difference there is.
 
 
-\item line 6 $\rightarrow$\inlineCode{species 1} "Subdivisions of the population into groups of similar (by the \href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance}{genomic distance} measure) individuals (\href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome}{genomes}), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the 
+\item line 6 $\rightarrow$\inlineCode{species 1} "Subdivisions of the population into groups of similar (by the \href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance}{genomic distance} measure) individuals (\href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome}{genomes}), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the \hyperref[sec:ai-library-neat-algorithm]{AI library (N.E.A.T Algorithm)}
 
-% [What is N.E.A.T ?](#What is N.E.A.T ?) section.
 
-\item line 8 $\rightarrow$\inlineCode{Mean genetic distance} is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation. As they might have been populated from parents that aren't in the previous generation exactly,
-% check "Meaningful crossover" in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+\item line 8 $\rightarrow$\inlineCode{Mean genetic distance} is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation. As they might have been populated from parents that aren't in the previous generation exactly, check \hyperref[list:3tweanns]{"Meaningful crossover"} in the \hyperref[sec:ai-library-neat-algorithm]{AI library (N.E.A.T Algorithm)} section.
 
-\item line 16 $\rightarrow$\inlineCode{Saving checkpoint to neat-checkpoint-99}: so I can come back and get e live feed from the same generation. It is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable. That is why recording the sessions with OBS was useful.
+\item line 16 $\rightarrow$\inlineCode{Saving checkpoint to neat-checkpoint-99}: so I can come back and get a live feed from the same generation. It is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable. That is why recording the sessions with OBS was useful.
 \end{itemize}
  
  

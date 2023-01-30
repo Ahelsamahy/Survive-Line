@@ -1,0 +1,5 @@
+# thanking
+
+As this journey of three years coming to an end, it didn't come to this point in the period of only these years. It is the sum of my life until coming to this point. This is why I want to thank by far, my parents, for being the important part of me and making me the person I'm today. Thanking my mom for taking care of me with all the characteristics (good and bad ones) in myself.  The idea of having an AI that beats the game is inspired from my dad winning over me when I was a child in racing games. I decided to make a game where I won't have to touch the controller to get higher score over him. From my heart, I thank both of you.
+
+Now with the emotional part is over. There are people who shaped the programmer inside of me today, to the point who is capable of developing the thesis that is in front of you, my classmates and my supervisor, **Dr. Kovásznai Gergely**. His work with me through the studying period, nothing really can make it up for him. Not only by guiding, but also for giving me the steps of what to do. 

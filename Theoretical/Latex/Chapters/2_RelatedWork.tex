@@ -1,0 +1,42 @@
+\chapter{Related work}
+
+The project itself was purely an idea I got as application for AI. There would be a need still for sources to help me get the idea into a real thing that is applicable. The problem I had mostly with the implementation was getting the documentation of PyGame and know what is the best implementation for each function I want to implement. While making an a game for PC, you have to think wisely about the sources and how to use them in your favour.
+
+\section{ Running library (PyGame)}
+The base for the game is made on \href{(https://www.pygame.org/wiki/about}{PyGame} library. It is "a set of Python modules designed for writing video games. PyGame allows you to create fully featured games and multimedia programs in the python language". You can also control anything in the game itself, as you would have a main loop that you can think about as the frames per second of the game. Getting to know the library was easy, because of my old experience in python, and the documentation was easy. The library have been around for some time now, which made it easy to get a 101 guide on how to get the basics.
+
+
+
+There was one main part while making the game, developing the GUI. Making the interface for the game was a little hard as it would take much time to know the draw function, such as writing a text on the screen. During the AI training, there are info that show on the screen to make reading the log is easy, like the \textbf{score} and \textbf{generation number} along side with \textbf{genome ID}. Writing the info isn't a easy drag and drop like most of gaming engines, but everything have to coded on the screen with x and y coordinates.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{usedImages/scoreFrame}
+	\caption{illustration for info on the score side	}
+	\label{fig:scoreframe}
+\end{figure}
+
+What is good about PyGame library is that it allowed me to make the game dimensions to be dynamic. The screen resolution for the game while developing it was $400*800$, but as most of the components on the scree are made in relation to the screen resolution the user define from the code, then you wouldn't have to change every component location form the code, the game will do it already by itself. 
+
+\section{AI library (N.E.A.T Algorithm)}\label{sec:ai-library-neat-algorithm}
+"\textbf{N}euro \textbf{E}volution of \textbf{A}ugmented \textbf{T}opologies. And this is what's known as a genetic algorithm"\href{https://www.youtube.com/watch?v=2f6TmKm7yx0}{[Python Pong AI Tutorial - Using NEAT - YouTube}. Think of it as the way that is used in humans to learn (going back to the example of \hyperref[sec:ai-life-example]{kid and ball}) also the natural selection of the ones that perform good as humans and smarter, they managed to reproduce until today. Unlike the others who were not fortune enough to have what it takes to survive in different scenarios.
+
+In other words to explain it "There is a larger category called TWEANNS stands for topology and weight evolving artificial neural networks"\href{https://www.youtube.com/watch?v=5RR1T_-zVws&}{A.I. Learns to Play Sonic the Hedgehog - NEAT Explained! - YouTube} "these are algorithms that not only evolve the strength of the connection weight for a fixed network topology, but actually evolves both the topology of the network and its weights" the scientists behind the neat algorithm identified three major challenges for tweanns:
+
+\begin{enumerate} \label{list:3tweanns}
+\item Meaningful crossover: by tracking genes through historical markings.\\
+This stops the algorithm from blindly crossing over the genomes of two neural networks and creating unnormal mutated neural networks. There are two way to progresses through a user-specified number of generations, "with each generation being produced by reproduction (either sexual or asexual) and mutation of the most fit individuals of the previous generation" \href{https://neat-python.readthedocs.io/en/latest/neat_overview.html}{NEAT Overview}.
+\begin{itemize}
+\item Sexual: means that the new generation will be made out of the best performed genomes\textbf{ from the previous generation}.
+\item Asexual: algorithm will \textbf{generate a random genome} to reproduce with the highest fitness score genomes to make the new generation.
+\end{itemize}
+
+\item Speciation: protecting structural innervation through speciation.\\
+That protects new structures as they are typically low on hidden networks numbers, allowing them to optimize with each other on their own. You can say category before we eliminate them. This is done by splitting up the population into several species based on the similarity of topology, connections between neurons and their weights and biases. They only compete within their species because some of them who aren't performing well at present, can perform well in the future after the right mutation with each other without the need to eliminate them now.
+\item Structure complexity: incrementally growing from minimal structure.\\
+It holds the algorithm from creating complex networks at the beginning of the new generation that may have to later, reduce the number of nodes and connections. They did this by starting all networks with no hidden layers between input and output layer. NN only has a series of connection genes between them and if it is found to be useful and necessary to tweak the output a little, then it can involve in complexity.
+\end{enumerate}
+
+They designed N.E.A.T to specifically address each one of the above characteristics. Point (2) and (3) will be explained more in details at the \hyperref[sec:explain-the-log]{explain the log} from timeline chapter.
+
+
+
