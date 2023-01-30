@@ -505,7 +505,29 @@ Saving checkpoint to neat-checkpoint-99
 \end{minted}
 \end{listing}
 
- 
+ There are only \textbf{three} lines in this log that I made them to be printed during the process. It would make it easier to check the genome behaviour from the recorded video, and they are:
+ \begin{itemize}
+\item line 2: says that from this generation, only genome number 14 managed to reach the threshold that was 101 points.
+\item line 3: there is an if statement, to output genomes running time that exceed a specific score (was 50).
+\item line 4: store the highest fitness of the genome from the beginning of session. It got the first threshold so I can know if my input is being optimized with every generation or not.
+ \end{itemize}
+
+Starting from line 5, all that comes, is made by the \inlineCode{reporting()} class in the algorithm source code. What will be written here is try to explain every part of it (and heavily taken from \href{https://neat-python.readthedocs.io/en/latest/glossary.html}{Glossary — NEAT-Python 0.92 documentation}):
+
+
+\begin{itemize}
+\item line 5 $\rightarrow$\inlineCode{stdev}: is the standard deviation of each genome to the over of all mean fitness in the generation, so higher it is, the more difference there is.
+
+
+\item line 6 $\rightarrow$\inlineCode{species 1} "Subdivisions of the population into groups of similar (by the \href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance}{genomic distance} measure) individuals (\href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome}{genomes}), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the 
+
+% [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+
+\item line 8 $\rightarrow$\inlineCode{Mean genetic distance} is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation. As they might have been populated from parents that aren't in the previous generation exactly,
+% check "Meaningful crossover" in the [What is N.E.A.T ?](#What is N.E.A.T ?) section.
+
+\item line 16 $\rightarrow$\inlineCode{Saving checkpoint to neat-checkpoint-99}: so I can come back and get e live feed from the same generation. It is only valid with the same settings that were used during running it first time, any changes on the configuration will make it unusable. That is why recording the sessions with OBS was useful.
+\end{itemize}
  
  
  

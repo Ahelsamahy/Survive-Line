@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  29 JAN 2023 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  30 JAN 2023 13:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -748,7 +748,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip61
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 37.
+Package hyperref Info: Option `colorlinks' set `true' on input line 38.
 runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > ma
 in.aex <nul: /p x=^%~$PATH:i>> main.aex)...executed.
 
@@ -765,24 +765,24 @@ s/3_Technologies.aux) (Chapters/4_Timeline.aux)
 (Chapters/5_Testing.aux) (Chapters/6_Summary.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
@@ -813,19 +813,19 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
 \c@lstlisting=\count348
-Package hyperref Info: Link coloring ON on input line 46.
+Package hyperref Info: Link coloring ON on input line 47.
 
 (main.out) (main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -843,7 +843,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.68 	\chapter
+l.69 	\chapter
               {Introduction} [1
 
 ]
@@ -866,7 +866,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.69 	\include{./Chapters/1_Introduction}
+l.70 	\include{./Chapters/1_Introduction}
                                           [1]
 Chapter 2.
 
@@ -874,7 +874,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.72 	\include{./Chapters/2_RelatedWork}
+l.73 	\include{./Chapters/2_RelatedWork}
                                          [2
 
 
@@ -931,7 +931,7 @@ pygtex)
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 82.
  [6]
-<./usedImages//filledGap.jpg, id=192, 609.477pt x 626.34pt>
+<./usedImages//filledGap.jpg, id=193, 609.477pt x 626.34pt>
 File: ./usedImages//filledGap.jpg Graphic file (type jpg)
 <use ./usedImages//filledGap.jpg>
 Package pdftex.def Info: ./usedImages//filledGap.jpg  used on input line 98.
@@ -968,13 +968,13 @@ Tu-to-rial - YouTube](https://www.youtube.com/watch?v=F69-
 
 (_minted-main/015EED303E5584C1B19F5486C2F36C56CF33289265490CC72470AF6FAFE9A294.
 pygtex)
-<usedImages/colliison.jpg, id=225, 412.54124pt x 420.57124pt>
+<usedImages/colliison.jpg, id=226, 412.54124pt x 420.57124pt>
 File: usedImages/colliison.jpg Graphic file (type jpg)
 <use usedImages/colliison.jpg>
 Package pdftex.def Info: usedImages/colliison.jpg  used on input line 256.
 (pdftex.def)             Requested size: 241.49895pt x 246.20325pt.
  [12] [13 <./usedImages/colliison.jpg>]
-<usedImages/vision 576 lines.png, id=236, 302.3295pt x 122.859pt>
+<usedImages/vision 576 lines.png, id=237, 302.3295pt x 122.859pt>
 File: usedImages/vision 576 lines.png Graphic file (type png)
 <use usedImages/vision 576 lines.png>
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 28
@@ -994,7 +994,7 @@ File: usedImages/vision 576 lines.png Graphic file (type png)
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 32
 0.
 (pdftex.def)             Requested size: 172.5pt x 70.0997pt.
-<usedImages/vision 45 lines.png, id=237, 503.8825pt x 204.765pt>
+<usedImages/vision 45 lines.png, id=238, 503.8825pt x 204.765pt>
 File: usedImages/vision 45 lines.png Graphic file (type png)
 <use usedImages/vision 45 lines.png>
 Package pdftex.def Info: usedImages/vision 45 lines.png  used on input line 320
@@ -1007,7 +1007,7 @@ Overfull \hbox (24.00003pt too wide) in paragraph at lines 317--322
 
 [14 <./usedImages/vision 576 lines.png (PNG copy)>] [15 <./usedImages/vision 45
  lines.png (PNG copy)>] [16]
-<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=253, 1129.21875pt x
+<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=254, 1129.21875pt x
  1129.21875pt>
 File: usedImages/AI vs Machine Learning vs Deep Learning.jpg Graphic file (type
  jpg)
@@ -1026,13 +1026,13 @@ pygtex)
 
 (_minted-main/B9C6F84DFF5B793B5CA47D93B0CBAFFECF33289265490CC72470AF6FAFE9A294.
 pygtex) [18]
-<usedImages/nn.png, id=267, 697.4055pt x 248.3679pt>
+<usedImages/nn.png, id=268, 697.4055pt x 248.3679pt>
 File: usedImages/nn.png Graphic file (type png)
 <use usedImages/nn.png>
 Package pdftex.def Info: usedImages/nn.png  used on input line 393.
 (pdftex.def)             Requested size: 241.49895pt x 86.00536pt.
  [19 <./usedImages/nn.png>]
-<usedImages/neuronsNN.png, id=278, 551.05875pt x 337.26pt>
+<usedImages/neuronsNN.png, id=279, 551.05875pt x 337.26pt>
 File: usedImages/neuronsNN.png Graphic file (type png)
 <use usedImages/neuronsNN.png>
 Package pdftex.def Info: usedImages/neuronsNN.png  used on input line 411.
@@ -1051,9 +1051,15 @@ pygtex) [21]
 
 
 (_minted-main/5146AC36B7616ECE5B2AEF61B35ECEE1CD5D842DFD2CA001E519A40091EF7D1D.
-pygtex)) [22]
+pygtex) [22]
+Overfull \hbox (5.9727pt too wide) in paragraph at lines 526--528
+[]\OT1/cmr/m/n/10 line 8 $\OMS/cmsy/m/n/10 !$[] \OT1/cmr/m/n/10 is mea-sure-men
+t to the dif-fer-ence (or tweaks)
+ []
+
+) [23]
 Chapter 5.
-[23
+[24
 
 
 
@@ -1062,7 +1068,7 @@ Chapter 5.
 
  (Chapters/5_Testing.tex)
 Chapter 6.
-[24
+[25
 
 
 
@@ -1079,10 +1085,10 @@ runsystem(del main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 24892 strings out of 476375
- 486983 string characters out of 5788031
- 1869299 words of memory out of 5000000
- 44696 multiletter control sequences out of 15000+600000
+ 24905 strings out of 476375
+ 487272 string characters out of 5788031
+ 1870299 words of memory out of 5000000
+ 44708 multiletter control sequences out of 15000+600000
  522369 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,12n,89p,1009b,738s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1096,16 +1102,18 @@ grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Mahfouz/AppData
 uz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/U
 sers/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17
 .pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmr6.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Mahfouz/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Mahfouz/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Mahfo
-uz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (28 pages, 797929 bytes).
+s/cm/cmr5.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr6.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Mahfouz/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Mahfouz/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Mahfouz
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Us
+ers/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.
+pfb>
+Output written on main.pdf (29 pages, 806269 bytes).
 PDF statistics:
- 394 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
+ 406 PDF objects out of 1000 (max. 8388607)
+ 92 named destinations out of 1000 (max. 500000)
  224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

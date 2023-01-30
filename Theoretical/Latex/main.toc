@@ -33,5 +33,5 @@
 \contentsline {subsection}{\numberline {4.3.2}Tweak AI}{20}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Observation}{21}{subsection.4.3.3}%
 \contentsline {subsection}{\numberline {4.3.4}Explain the log}{22}{subsection.4.3.4}%
-\contentsline {chapter}{\numberline {5}Testing}{23}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Summary}{24}{chapter.6}%
+\contentsline {chapter}{\numberline {5}Testing}{24}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Summary}{25}{chapter.6}%
