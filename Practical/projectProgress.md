@@ -1,23 +1,23 @@
-## 2022.10.22:
+# 2022.10.22:
 
- the problem that was found is that list when it is predefined will add elements to it when it is needed, but will make a problem when trying to move the point when a gap is found to move the points forward, as it throw error "out of index" so to make it right, I had to make a predefined list with 800 element inside of it that they are all zero's then before adding element, it will remove the specific zero at its place
+the problem that was found is that list when it is predefined will add elements to it when it is needed, but will make a problem when trying to move the point when a gap is found to move the points forward, as it throw error "out of index" so to make it right, I had to make a predefined list with $800$ element inside of it that they are all zero's then before adding element, it will remove the specific zero at its place
 
-Ended with problem in trying to figure out a way to fill the gap after the first wave (8ooPx) are generated as filling the gaps doesn't wok after it, problem with adding it to the function addPoint(), is that it will make it a recursive function calling when it ends up in filling the gap with for loop
+Ended with problem in trying to figure out a way to fill the gap after the first wave (8ooPx) are generated as filling the gaps doesn't wok after it, problem with adding it to the function `addPoint()`, is that it will make it a recursive function calling when it ends up in filling the gap with for loop
 
 ## 2022.10.23:
 
-Gap problem, say that the gap is over the limit of list (800Px), dealing with it before was just to make the gap limited to the end of list, so if the point is at index 797 and the gap is 10 (that means there will be an out of index at extra index 6) so it was just to make it limited to  (gap = DISPLAY_H - POINTS_I - 1) but the problem is that it wouldn't work on high scale when the amplitude gets higher.
+Gap problem, say that the gap is over the limit of list (800Px), dealing with it before was just to make the gap limited to the end of list, so if the point is at index 797 and the gap is 10 (that means there will be an out of index at extra index 6) so it was just to make it limited to  `(gap = DISPLAY_H - POINTS_I - 1)` but the problem is that it wouldn't work on high scale when the amplitude gets higher.
 to deal with it is to remove the over-points in gap from the beginning of the list and add empty points of the same amount at the end then make the index go back to the new index, back to the same example,
  it will remove 6 points from the beginning of list then add empty 6 points to the end, and shift the index to 6 points in the back so it stays with the new point
 
 ## 2022.10.27: 
 
 filling the gap after the first wave
-the function does on the first time because the whole list is defined with 0 so there is a gap to go through it and fill, but after the first wave is over, whoever there is a point generated, the addPoint() removes one point from the start to add the new point to the end, so gap can't work at this point and can only keep going after it generates enough points to be extended at, so lets say taht the gap is 20, the wave will generate more than 20 points while the gap is still visible, then run the fillGap() for it
+the function does on the first time because the whole list is defined with 0 so there is a gap to go through it and fill, but after the first wave is over, whoever there is a point generated, the `addPoint() `removes one point from the start to add the new point to the end, so gap can't work at this point and can only keep going after it generates enough points to be extended at, so lets say that the gap is 20, the wave will generate more than 20 points while the gap is still visible, then run the `fillGap()` for it
 
 now it is needed to work on the reset function and left collision
 
-make generate wave in a class, that would make pass points_i as a var to the class and deal with the related functions [generateWav(), addPoint(), checkGap(), fillGap()] all with the same var
+make generate wave in a class, that would make pass `points_i `as a var to the class and deal with the related functions [`generateWav()`, `addPoint()`, `checkGap()`, `fillGap()`] all with the same var
 
 ## 2022.11.5:
 
@@ -28,11 +28,11 @@ what i did is the same with points_i, made a new var for the list in the class c
 
 ## 2022.11.25: changing the layout:
 
-so, before, i was making the classes based on the the object, anything that is related to the ball, would be in the ball class, and the same for wave, turns out it is better to have only the basics for the object to instantiate it then the functions such as collision should be inn the game so they can have a return value. so far what i have been doing is implementing the AI in the game, but made another version of the game working by itself without the AI
+so, before, i was making the classes based on the the object, anything that is related to the ball, would be in the ball class, and the same for wave. Turns out, it is better to have only the basics for the object to instantiate it then the functions such as collision should be in the game, so they can have a return value. So far what I have been doing is implementing the AI in the game, but made another version of the game working by itself without the AI
 
-implemented the game file from the pong game to the class in survivalline
+Implemented the game file from the pong game to the class in survivalline
 
-something i had before is the problem of having one file that does the functionality for all components of the game, for instance, the reset function that exsisted in ball func, it is responsible for resetting the whole game including wave related vars, it is better to have a class for the wave then in it have function to reset the related vars for it, then you can call it whenever you want, as for my opinion, this is better because i would get confusing with the vars to call
+Something i had before is the problem of having one file that does the functionality for all components of the game, for instance, the reset function that exsisted in ball func, it is responsible for resetting the whole game including wave related vars, it is better to have a class for the wave then in it have function to reset the related vars for it, then you can call it whenever you want, as for my opinion, this is better because i would get confusing with the vars to call
 
 ## 2022.12.1: first working after AI
 
@@ -88,13 +88,13 @@ Turns out that it would work with some tweaks to the wave speed, because the `zi
 
 # 2020.12.19 did it work?
 
-YES, IT DID. the new implementation depends on the `zip()` function to iterate through each point in the left and right list at the same time (as I said in the last log) so to make things a little bit smoother, a wave speed gave been added in the loop and is multiplied by the fps to make the training process faster, for example, with normal fps it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times) takes 5 hours 15 second for 100 generation to work and I can say that there is new high score have been reached in this new time, that is 117 points = 22913.00000 fitness in generation 89 genome 1 in training session 2022.12.19.1 , compared to the old one. I went through the video of it frame by frame, and don't know why the collison happened really
+YES, IT DID. the new implementation depends on the `zip()` function to iterate through each point in the left and right list at the same time (as I said in the last log) so to make things a little bit smoother, a wave speed gave been added in the loop and is multiplied by the fps to make the training process faster, for example, with normal fps it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times) takes 5 hours 15 second for 100 generation to work and I can say that there is new high score have been reached in this new time, that is 117 points = $22913 $ fitness in generation 89 genome 1 in training session 2022.12.19.1 , compared to the old one. I went through the video of it frame by frame, and don't know why the collison happened really
 
 
 
 # 2022.12.27 +20 lines, noice 👌
 
-Let's say that this is the sweet spot, and also the new modified version of gap filling, it is way better than the old one, it is good that there is now the need to have a threshold for the genome to stop working, and I'm beginning to think that it is getting to know he pattern of the wave curve, because it isn't that much of change as last time modification of having a limit to it of 6 in `changeWave()` but the ball manages to stay in the middle between the two waves, and this is good.
+Let's say that this is the sweet spot, and also the new modified version of gap filling. It is way better than the old one plus  the need to have a threshold for the genome to stop working. I'm beginning to think that it is getting to know he pattern of the wave curve. The ball doesn't move on x-axis that much of change. The difference is modification I made of having a limit to it of 6 (diff between the old value and the new random one) in `changeWave()` but the ball manages to stay in the middle between the two waves, and this is good.
 
 Also notices that the amount of genomes per generation that reaches more than 50 fitness, increases over generation, that means that the algorithm is going to good way in the improvement.
 
