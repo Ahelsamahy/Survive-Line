@@ -1,39 +1,42 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Related work}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1} Running library (PyGame)}{4}{section.2.1}%
-\contentsline {section}{\numberline {2.2}AI library (N.E.A.T Algorithm)}{5}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Timeline}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Develop the game}{8}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Wave functionality}{8}{subsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}Generate wave}{9}{subsubsection.3.1.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.2}Check gap}{10}{subsubsection.3.1.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.1.3}Fill gap}{10}{subsubsection.3.1.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.1.4} Second way to fill the gap}{12}{subsubsection.3.1.1.4}%
-\contentsline {subsection}{\numberline {3.1.2}Ball functionality}{12}{subsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.2.1}Draw ball}{12}{subsubsection.3.1.2.1}%
-\contentsline {subsubsection}{\numberline {3.1.2.2}Generate particles}{13}{subsubsection.3.1.2.2}%
-\contentsline {section}{\numberline {3.2}Display the game}{14}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Draw}{14}{subsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.1}title}{14}{subsubsection.3.2.1.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.2}Display score}{14}{subsubsection.3.2.1.2}%
-\contentsline {subsubsection}{\numberline {3.2.1.3} Display AI number}{15}{subsubsection.3.2.1.3}%
-\contentsline {subsection}{\numberline {3.2.2}Collision}{15}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Move ball}{16}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Count distance}{17}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Show Vision}{19}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}Loop}{19}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Reset}{19}{subsection.3.2.7}%
-\contentsline {section}{\numberline {3.3}Create AI}{19}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}101 AI}{20}{subsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.1.1}Life example}{20}{subsubsection.3.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.3.1.2}Fitness function}{21}{subsubsection.3.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.3.1.3}Neural network}{22}{subsubsection.3.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.3.1.4}Weight and biases}{22}{subsubsection.3.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.3.1.5}Activation function}{23}{subsubsection.3.3.1.5}%
-\contentsline {subsubsection}{\numberline {3.3.1.6}Genome}{24}{subsubsection.3.3.1.6}%
-\contentsline {subsection}{\numberline {3.3.2}Tweak AI}{24}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Observation}{25}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Explain the log}{26}{subsection.3.3.4}%
-\contentsline {chapter}{\numberline {4}Testing}{29}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Summary}{30}{chapter.5}%
+\contentsline {chapter}{\numberline {3}Technologies}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1} Running library (PyGame)}{5}{section.3.1}%
+\contentsline {section}{\numberline {3.2}AI library (N.E.A.T Algorithm)}{6}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Timeline}{8}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Develop the game}{9}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Wave functionality}{9}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}Generate wave}{10}{subsubsection.4.1.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.2}Check gap}{11}{subsubsection.4.1.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.1.3}Fill gap}{11}{subsubsection.4.1.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.1.4} Second way to fill the gap}{13}{subsubsection.4.1.1.4}%
+\contentsline {subsection}{\numberline {4.1.2}Ball functionality}{13}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}Draw ball}{13}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}Generate particles}{14}{subsubsection.4.1.2.2}%
+\contentsline {section}{\numberline {4.2}Display the game}{15}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Draw}{15}{subsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.1}title}{15}{subsubsection.4.2.1.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.2}Display score}{15}{subsubsection.4.2.1.2}%
+\contentsline {subsubsection}{\numberline {4.2.1.3} Display AI number}{16}{subsubsection.4.2.1.3}%
+\contentsline {subsection}{\numberline {4.2.2}Collision}{16}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Move ball}{17}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Count distance}{18}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Show Vision}{20}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Loop}{20}{subsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.2.7}Reset}{20}{subsection.4.2.7}%
+\contentsline {section}{\numberline {4.3}Create AI}{20}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}101 AI}{21}{subsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.1}Life example}{21}{subsubsection.4.3.1.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.2}Fitness function}{22}{subsubsection.4.3.1.2}%
+\contentsline {subsubsection}{\numberline {4.3.1.3}Neural network}{23}{subsubsection.4.3.1.3}%
+\contentsline {subsubsection}{\numberline {4.3.1.4}Weight and biases}{23}{subsubsection.4.3.1.4}%
+\contentsline {subsubsection}{\numberline {4.3.1.5}Activation function}{24}{subsubsection.4.3.1.5}%
+\contentsline {subsubsection}{\numberline {4.3.1.6}Genome}{25}{subsubsection.4.3.1.6}%
+\contentsline {subsection}{\numberline {4.3.2}Tweak AI}{25}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Observation}{26}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Explain the log}{27}{subsection.4.3.4}%
+\contentsline {chapter}{\numberline {5}Testing}{30}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Summary}{31}{chapter.6}%
+\contentsline {section}{\numberline {6.1}The game development}{31}{section.6.1}%
+\contentsline {section}{\numberline {6.2}The AI tweaking}{33}{section.6.2}%
