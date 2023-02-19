@@ -1,11 +1,9 @@
 from numpy import random
 from .defs import *
-
 import pygame
 
-
 class Ball(object):
-    BALL_MOVE_SPEED = 5
+    BALL_MOVE_SPEED = 2
     BALL_RADIUS = 12
     BALL_CORD_Y = 550       # fixed as the ball doesn't go up or down
     BALL_CORD_X = 0         # changes as the ball moves on this axes
@@ -14,7 +12,6 @@ class Ball(object):
         self.ballCordX = 400//2
         self.ballCordY = Ball.BALL_CORD_Y
         self.WaveGap = waveGap
-        #loc,vel,timer
         self.Particles = []
         self.GameDisplay = gameDisplay
         self.PointsList = pointsList

@@ -19,7 +19,7 @@ class SurviveLineGame:
     def normalRun(self):
         run = True
         vision = False
-        showParticles = False
+        showParticles = True
         drawBallRec = False
         self.Wave.waveSpeed = 1
         while run:
@@ -89,7 +89,7 @@ class SurviveLineGame:
                 # input for each instance of the list 10 digits
 
                 # reward if the distance for both left and right is the same
-                leftDis = int(output[0])
+                leftDis = int (output[0])
                 rightDis = int (output[2])
                 if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
                     if round(leftDis, -1) == round(rightDis, -1):
@@ -117,7 +117,7 @@ class SurviveLineGame:
                 drawBallRec = True
                 # self.game.notificationMusic()
 
-            #stop the genome at this point, as it already reached a high score of 200
+            #stop the genome at this point
             if fitness>self.threshold:
                 keepRunning = False
 
@@ -179,8 +179,8 @@ def runNEAT(config):
 
 if __name__ == "__main__":
     width, height = 400, 800
-    # , pygame.NOFRAME
-    window = pygame.display.set_mode((width, height))
+    # 
+    window = pygame.display.set_mode((width, height), pygame.NOFRAME)
     e = SurviveLineGame(window, width, height)
 
     configPath = os.path.join(e.localDir, "config.txt")
@@ -188,5 +188,5 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          configPath)
 
-    # e.normalRun()  # run the game without AI
-    runNEAT(config)  # train AI
+    e.normalRun()  # run the game without AI
+    # runNEAT(config)  # train AI

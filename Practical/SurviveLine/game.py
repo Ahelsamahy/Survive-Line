@@ -60,7 +60,7 @@ class Game():
     def collision(self, runLoop):
         ball = self.Ball.ballRect()
         Wave = self.Wave
-        #                              226          ,             250
+        #                              238          ,             262
         for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
             if (Wave.PointsList[YCord] != 0) and (ball.right >= Wave.PointsList[YCord]-50-Wave.WaveGap):
                 return runLoop == False
@@ -88,7 +88,7 @@ class Game():
     def countDistance(self):
         """
         make a list for distance between the bottom edge of ballRect to the corresponding point on the wave 
-        with the same x-axis, then one step up on wave and repeat, and make another loop to do the same with the ballRect
+        with the same x-axis, then one step up on wave and repeat, and make another loop to do the same with the left side
         """
         ball = self.Ball.ballRect()
         Wave = self.Wave
