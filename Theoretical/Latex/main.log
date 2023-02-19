@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  7 FEB 2023 22:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  19 FEB 2023 18:44
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -858,14 +858,14 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@count@id=\count344
 \enitdp@description=\count345
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 38.
+Package hyperref Info: Option `colorlinks' set `true' on input line 37.
 runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > ma
 in.aex <nul: /p x=^%~$PATH:i>> main.aex)...executed.
 
 runsystem(del main.aex)...executed.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-7.
+6.
  (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<ot1.cmap>>
@@ -879,25 +879,25 @@ s/3_Technologies.aux) (Chapters/4_Timeline.aux)
 (Chapters/5_Testing.aux) (Chapters/6_Summary.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-Package hyperref Info: Link coloring ON on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+Package hyperref Info: Link coloring ON on input line 46.
  (main.out) (main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -938,45 +938,45 @@ Package hyperref Info: Link coloring ON on input line 47.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-7.
+6.
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oml.cmap>>
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-47.
+46.
  (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oms.cmap>>
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-47.
+46.
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 47.
+(Font)              <12> on input line 46.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 47.
+(Font)              <8> on input line 46.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 47.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+(Font)              <6> on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 47.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 46.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 47.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 46.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 47.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 46.
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
@@ -1004,13 +1004,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count353
-<eszterhazy-logo-en.pdf, id=114, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-en.pdf, id=110, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-en.pdf Graphic file (type pdf)
 <use eszterhazy-logo-en.pdf>
-Package pdftex.def Info: eszterhazy-logo-en.pdf  used on input line 57.
+Package pdftex.def Info: eszterhazy-logo-en.pdf  used on input line 56.
 (pdftex.def)             Requested size: 256.07907pt x 88.0427pt.
 
-Overfull \hbox (12.82239pt too wide) in paragraph at lines 57--57
+Overfull \hbox (12.82239pt too wide) in paragraph at lines 56--56
  []| []  [] [] 
  []
 
@@ -1024,12 +1024,14 @@ f>] (main.toc)
 
  [2
 
+] [3
+
 ]
 \openout2 = `./Chapters/1_Introduction.aux'.
 
  (Chapters/1_Introduction.tex
 Chapter 1.
-) [3
+) [4
 
 
 ]
@@ -1037,39 +1039,38 @@ Chapter 1.
 
  (Chapters/2_RelatedWork.tex
 Chapter 2.
-) [4
-
-
-
-
-]
-\openout2 = `./Chapters/3_Technologies.aux'.
-
- (Chapters/3_Technologies.tex
-Chapter 3.
-<usedImages/scoreFrame.jpg, id=173, 401.5pt x 166.6225pt>
-File: usedImages/scoreFrame.jpg Graphic file (type jpg)
-<use usedImages/scoreFrame.jpg>
-Package pdftex.def Info: usedImages/scoreFrame.jpg  used on input line 13.
-(pdftex.def)             Requested size: 308.71106pt x 128.12428pt.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+0.
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 [5
 
 
 
 
-]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-9.
- (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-[6
+]) [6]
+\openout2 = `./Chapters/3_Technologies.aux'.
+
+ (Chapters/3_Technologies.tex
+Chapter 3.
+<usedImages/scoreFrame.jpg, id=187, 401.5pt x 166.6225pt>
+File: usedImages/scoreFrame.jpg Graphic file (type jpg)
+<use usedImages/scoreFrame.jpg>
+Package pdftex.def Info: usedImages/scoreFrame.jpg  used on input line 13.
+(pdftex.def)             Requested size: 308.71106pt x 128.12428pt.
+[7
+
+
+
+
+] [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.31 	\end{itemize}
-                    <./usedImages/scoreFrame.jpg>]) [7]
+                    <./usedImages/scoreFrame.jpg>]) [9]
 \openout2 = `./Chapters/4_Timeline.aux'.
 
 
@@ -1080,7 +1081,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[8
+[10
 
 
 
@@ -1104,7 +1105,7 @@ Overfull \hbox (1.17085pt too wide) in paragraph at lines 59--60
  []
  []
 
-[9]
+[11]
 \openout3 = `main.pyg'.
 
 
@@ -1117,13 +1118,13 @@ pygtex)
 pygtex)
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 82.
- [10]
-<./usedImages//filledGap.jpg, id=239, 609.477pt x 626.34pt>
+ [12]
+<./usedImages//filledGap.jpg, id=252, 609.477pt x 626.34pt>
 File: ./usedImages//filledGap.jpg Graphic file (type jpg)
 <use ./usedImages//filledGap.jpg>
 Package pdftex.def Info: ./usedImages//filledGap.jpg  used on input line 98.
 (pdftex.def)             Requested size: 304.73776pt x 313.16922pt.
- [11 <./usedImages//filledGap.jpg>]
+ [13 <./usedImages//filledGap.jpg>]
 \openout3 = `main.pyg'.
 
 
@@ -1133,56 +1134,55 @@ pygtex)
 
 
 (_minted-main/EE033C352462366D82CE93C52D35FA73CF33289265490CC72470AF6FAFE9A294.
-pygtex) [12] [13]
+pygtex) [14] [15]
 \openout3 = `main.pyg'.
 
 
 (_minted-main/94DB0630608CF0E14BB4757F682F7EA5CF33289265490CC72470AF6FAFE9A294.
-pygtex) [14]
-Overfull \hbox (171.24513pt too wide) in paragraph at lines 204--205
-[]\OT1/lmr/m/n/12 This func-tion is pos-si-ble thanks to [Par-ti-cles - Pygame 
-Tu-to-rial - YouTube](https://www.youtube.com/watch?v=F69-
- []
-
-[15]
+pygtex)
+LaTeX Font Info:    Trying to load font information for OMS+lmr on input line 1
+94.
+ (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmr.fd
+File: omslmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 194.
+[16] [17]
 \openout3 = `main.pyg'.
 
 
 (_minted-main/015EED303E5584C1B19F5486C2F36C56CF33289265490CC72470AF6FAFE9A294.
-pygtex) [16]
-<usedImages/colliison.jpg, id=275, 412.54124pt x 420.57124pt>
+pygtex) [18]
+<usedImages/colliison.jpg, id=289, 412.54124pt x 420.57124pt>
 File: usedImages/colliison.jpg Graphic file (type jpg)
 <use usedImages/colliison.jpg>
 Package pdftex.def Info: usedImages/colliison.jpg  used on input line 256.
 (pdftex.def)             Requested size: 308.71106pt x 314.72174pt.
- [17
+ [19
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.268 
+l.266 
        <./usedImages/colliison.jpg>]
-<usedImages/vision 576 lines.png, id=281, 302.3295pt x 122.859pt>
+<usedImages/vision 576 lines.png, id=296, 302.3295pt x 122.859pt>
 File: usedImages/vision 576 lines.png Graphic file (type png)
 <use usedImages/vision 576 lines.png>
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 28
 1.
 (pdftex.def)             Requested size: 308.71106pt x 125.45883pt.
+ [20]
 \openout3 = `main.pyg'.
 
 
 (_minted-main/1C32D2FB56EDC0415483333A97855846CF33289265490CC72470AF6FAFE9A294.
 pygtex)
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 315.
-
 File: usedImages/vision 576 lines.png Graphic file (type png)
 <use usedImages/vision 576 lines.png>
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 32
 0.
 (pdftex.def)             Requested size: 220.50887pt x 89.60756pt.
-<usedImages/vision 45 lines.png, id=282, 503.8825pt x 204.765pt>
+<usedImages/vision 45 lines.png, id=301, 503.8825pt x 204.765pt>
 File: usedImages/vision 45 lines.png Graphic file (type png)
 <use usedImages/vision 45 lines.png>
 Package pdftex.def Info: usedImages/vision 45 lines.png  used on input line 320
@@ -1193,15 +1193,15 @@ Overfull \hbox (24.00003pt too wide) in paragraph at lines 317--322
  [][] 
  []
 
-[18
+[21
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.322 \end{table}
-                  <./usedImages/vision 576 lines.png (PNG copy)>] [19] [20 <./u
-sedImages/vision 45 lines.png (PNG copy)>]
-<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=298, 1129.21875pt x
+                  <./usedImages/vision 576 lines.png (PNG copy)>] [22 <./usedIm
+ages/vision 45 lines.png (PNG copy)>]
+<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=312, 1129.21875pt x
  1129.21875pt>
 File: usedImages/AI vs Machine Learning vs Deep Learning.jpg Graphic file (type
  jpg)
@@ -1209,12 +1209,12 @@ File: usedImages/AI vs Machine Learning vs Deep Learning.jpg Graphic file (type
 Package pdftex.def Info: usedImages/AI vs Machine Learning vs Deep Learning.jpg
   used on input line 353.
 (pdftex.def)             Requested size: 308.71106pt x 308.7183pt.
- [21]
+ [23]
 \openout3 = `main.pyg'.
 
 
 (_minted-main/AAA99DC08EDC4F96571EEF1B7CEEFB2ECF33289265490CC72470AF6FAFE9A294.
-pygtex) [22
+pygtex) [24
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1226,18 +1226,18 @@ l.374
 
 (_minted-main/B9C6F84DFF5B793B5CA47D93B0CBAFFECF33289265490CC72470AF6FAFE9A294.
 pygtex)
-<usedImages/nn.png, id=310, 697.4055pt x 248.3679pt>
+<usedImages/nn.png, id=324, 697.4055pt x 248.3679pt>
 File: usedImages/nn.png Graphic file (type png)
 <use usedImages/nn.png>
 Package pdftex.def Info: usedImages/nn.png  used on input line 393.
 (pdftex.def)             Requested size: 308.71106pt x 109.94542pt.
- [23]
-<usedImages/neuronsNN.png, id=319, 551.05875pt x 337.26pt>
+ [25]
+<usedImages/neuronsNN.png, id=334, 551.05875pt x 337.26pt>
 File: usedImages/neuronsNN.png Graphic file (type png)
 <use usedImages/neuronsNN.png>
 Package pdftex.def Info: usedImages/neuronsNN.png  used on input line 411.
 (pdftex.def)             Requested size: 308.71106pt x 188.94664pt.
- [24
+ [26
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1248,7 +1248,7 @@ l.415
 
 
 (_minted-main/F77289A1F6350D76F3FE960A5398BD63CF33289265490CC72470AF6FAFE9A294.
-pygtex) [25
+pygtex) [27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1259,7 +1259,7 @@ l.441
 
 
 (_minted-main/DBE0320C5C26989FBDE077AD208A02E9CF33289265490CC72470AF6FAFE9A294.
-pygtex) [26]
+pygtex)
 \openout3 = `main.pyg'.
 
 
@@ -1269,64 +1269,77 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 6.
  (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)) [27] [28]) [29]
+)) [28]) [29]
+\openout2 = `./Chapters/5_Testing.aux'.
+
+ (Chapters/5_Testing.tex
 Chapter 5.
+<usedImages/numTrainingSessions.png, id=369, 333.6465pt x 149.358pt>
+File: usedImages/numTrainingSessions.png Graphic file (type png)
+<use usedImages/numTrainingSessions.png>
+Package pdftex.def Info: usedImages/numTrainingSessions.png  used on input line
+ 15.
+(pdftex.def)             Requested size: 308.71106pt x 138.2041pt.
 [30
 
 
 
-]
-\openout2 = `./Chapters/5_Testing.aux'.
 
- (Chapters/5_Testing.tex)
+]) [31
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.75 	\include{./Chapters/5_Testing}
+                                     <./usedImages/numTrainingSessions.png>]
 \openout2 = `./Chapters/6_Summary.aux'.
 
- (Chapters/6_Summary.tex
+
+(Chapters/6_Summary.tex
 Chapter 6.
-<usedImages/repoStart.png, id=369, 478.78876pt x 420.3705pt>
+<usedImages/repoStart.png, id=382, 478.78876pt x 420.3705pt>
 File: usedImages/repoStart.png Graphic file (type png)
 <use usedImages/repoStart.png>
 Package pdftex.def Info: usedImages/repoStart.png  used on input line 8.
 (pdftex.def)             Requested size: 308.71106pt x 271.04388pt.
-[31
-
+[32
 
 
 
 
 ]
-<usedImages/repoEncapsulation.png, id=375, 497.4585pt x 256.5585pt>
+<usedImages/repoEncapsulation.png, id=387, 497.4585pt x 256.5585pt>
 File: usedImages/repoEncapsulation.png Graphic file (type png)
 <use usedImages/repoEncapsulation.png>
 Package pdftex.def Info: usedImages/repoEncapsulation.png  used on input line 1
 8.
 (pdftex.def)             Requested size: 308.71106pt x 159.2173pt.
-) [32
+ [33
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.85 	\include{./Chapters/6_Summary}
-                                    
+l.24 
+     
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.85 	\include{./Chapters/6_Summary}
-                                     <./usedImages/repoStart.png> <./usedImages
-/repoEncapsulation.png>] [33] (main.aux (Chapters/1_Introduction.aux)
-(Chapters/2_RelatedWork.aux) (Chapters/3_Technologies.aux)
-(Chapters/4_Timeline.aux) (Chapters/5_Testing.aux) (Chapters/6_Summary.aux))
+l.24 
+      <./usedImages/repoStart.png> <./usedImages/repoEncapsulation.png>])
+[34] (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux)
+(Chapters/3_Technologies.aux) (Chapters/4_Timeline.aux) (Chapters/5_Testing.aux
+) (Chapters/6_Summary.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 98983CFF0DD04B65C2D21F75AF63F73A;3806.
+(rerunfilecheck)             Checksum: 4809989DD93567DB1049E5CCABA54597;3656.
 runsystem(del main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 27062 strings out of 476375
- 528546 string characters out of 5788031
+ 27099 strings out of 476375
+ 529395 string characters out of 5788031
  1869299 words of memory out of 5000000
- 46707 multiletter control sequences out of 15000+600000
+ 46735 multiletter control sequences out of 15000+600000
  564628 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,12n,89p,1009b,752s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1350,9 +1363,9 @@ m/lmsy10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public
 c/lm/lmtk10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/pub
 lic/lm/lmtt10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/lm/lmtti10.pfb>
-Output written on main.pdf (33 pages, 1112498 bytes).
+Output written on main.pdf (34 pages, 1133623 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 110 named destinations out of 1000 (max. 500000)
- 296 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 477 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
+ 293 words of extra memory for PDF output out of 10000 (max. 10000000)
 

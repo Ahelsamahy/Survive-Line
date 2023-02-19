@@ -5,13 +5,13 @@ The first step of developing the game was choosing a programming language that w
 \begin{enumerate}
 	\item The most famous programming language with AI libraries that have a good documentation.
 	\item It is OOP, which means I can have a class for each component of the game easily to make an instance for the AI to train from.
-	\item A library to draw graphic on screen while it won't need heavy CPU usage that won't throttle the process of AI learning 
+	\item A library to draw graphic on screen while it won't need heavy CPU usage that won't throttle the process of AI learning.
 \end{enumerate}
 
-Choosing a library for the game was the first step as it would define the characteristics. I went for \textbf{PyGame} because it was nearly the only one that is good enough with documentation to start with, and quit enough, the main focus isn't about making a game that will have that much of physics in it and 3d animation. For now, the imagined picture of the game is a rectangle as a screen that will have two main component of the game, a wave that is on one side of the screen vertically and one on the other side with the only difference is 350px (the starting amplitude is 50px and the screen width is 400px) and a ball that the \textbf{only purpose for it is to survive as much as it can, without hitting any of the sides of the wave}.\\
+Choosing a library for the game was the first step as it would define the characteristics. I went for \textbf{PyGame} because it was nearly the only one that is good enough with documentation to start with, and quit enough, the main focus isn't about making a game that will have that much of physics in it and 3d animation. For now, the imagined picture of the game is a rectangle as a screen. It will have two main component of the game, a wave that is on one side of the screen vertically and one on the other side with the only difference is 350px (the starting amplitude is 50px and the screen width is 400px). A ball that the \textbf{only purpose for it is to survive as much as it can, without hitting any of the sides of the wave}.\\
 
 
-I'm minimalist when it comes to developing things, like there wouldn't be splash screen all over, and hard controls, not even hard rules, and it will be the approach I'm following with the game, to break it into steps:
+I'm minimalist when it comes to developing things. There wouldn't be splash screen all over, and hard controls, not even hard rules, and it will be the approach I'm following with the game, to break it into steps:
 
 \begin{enumerate}
 	\item The accent colour of the game will be black as a background
@@ -58,7 +58,7 @@ most of them are self explanatory, but the ones that need more dive into details
 
 The starting point of the game, in the \inlineCode{waveFunc.py} to make a main class \inlineCode{Class Wave():} with an equation that can generate a wave and at the same time I can change in the variables of the wave to make it harder for the player. These variable are wave amplitude\footnote{is the maximum or lowest height the wave can go in one point to up or down.} or wave frequency\footnote{a number of waves that can go through a fixed distance in amount of time.}.
 
-With all of this in calculation which means that I can make the game harder by making the behaviour unexpected for the next move, also to go extra step, there will be a decrease in the gap between the two waves to limit the player's movement.
+With all of this in calculation which means that I can make the game harder by making the behaviour unexpected for the next move. To go extra step, there will be a decrease in the gap between the two waves to limit the player's movement.
 
 \begin{minted}{python}
 pointsList_XCord = int((self.HDisplay/2) + self.WaveAmplitude* math.sin(self.waveFreq * ((float(0)/-self.WDisplay)*(2*math.pi) + (time.time()))))
@@ -84,9 +84,9 @@ as you can see, there are some variables that have the \inlineCode{self.} before
 \end{listing}
 
 
-These are the variables that are only (and not specifically) linked to the wave functions, and this is where an important functionality of OOP comes in. Encapsulation is the OOP functionality which means to get all the related data to a class (which is wave class at this point), if it is needed in other classes, then an instance of class wave can be made then the new variable can be used from it.
+These are the variables that are only (and not specifically) linked to the wave functions, and this is where an important functionality of OOP comes in. Encapsulation is the OOP functionality which means to get all the related data to a class (that is wave class at this point), if it is needed in other classes, then an instance of class wave can be made then the new variable can be used from it.
 
-The equation in figure \ref{code:waveFunc self}  is going to store the X axis coordinates in a list called \inlineCode{PointsList} for the sake of adding points to it once they are generated and show them on screen one by one as if it is loading, because if there isn't a list, then the wave would be a steady visual sine wave (without changing amplitude or frequency yet), this part of code is placed in \inlineCode{def generateWave(self)} function.
+The equation in figure \ref{code:waveFunc self} is going to store the X axis coordinates in a list called \inlineCode{PointsList}. It is used for the sake of adding points to it once they are generated and show them on screen one by one as if it is loading. If there isn't a list, then the wave would be a steady visual sine wave (without changing amplitude or frequency yet), this part of code is placed in \inlineCode{def generateWave(self)} function.
 
 There have to be more condition to make the points be generated without disorder, like one point won't be in the other half of screen, which means that when the 350px is added to it, it will be out of the borders of the display.
 
@@ -99,7 +99,7 @@ After generating a point, with the change in amplitude, the next point that is a
 \end{figure}
 
 \subsubsection{Fill gap}
-If there is one part which took the most in developing, I would say it is this part, because there were different approaches to solve the problem. First one is either to move the point on y-axis by the gap then make a straight line from the old line segment to it, and the second one was to get the point just to be minus on the x-axis then be linked to it. The first option was better for the sake of visibility and not effecting the next point respectively. There were lots of ways (or you can say conditions) that needs to be covered in the point list, for example what if the gap is at the end of list?  will throw "out of index error" when trying to shift the new point by the amount of gap. One way to cover this is by removing amount of points from the start of the list, then add the same amount at the end where you need it.
+If there is one part which took the most in developing, I would say it is this part, because there were different approaches to solve the problem. First one is either to move the point on y-axis by the gap then make a straight line from the old line segment to it. The second one was to get the point just to be minus on the x-axis then be linked to it. The first option was better for the sake of visibility and not effecting the next point respectively. There were lots of ways (or you can say conditions) that needs to be covered in the point list, for example what if the gap is at the end of list?  will throw "out of index error" when trying to shift the new point by the amount of gap. One way to cover this is by removing amount of points from the start of the list, then add the same amount at the end where you need it. That wasn't clear enough, let me explain more.
 
 Say that the gap is over the limit of list (800Px), dealing with it before was just to make the gap limited to the end of list, so if the point is at index 797 and the gap is 10 (that means there will be an "out of index" error at extra index 6) so it was just to make it limited to  \inlineCode{gap = DISPLAY\_H - POINTS\_I - 1} but the problem is that it wouldn't work on high scale when the amplitude gets higher.
 To deal with it is to remove the over-points in gap from the beginning of the list and add empty points of the same amount at the end then make the index go back to the new index, (back to the same example). It will remove 6 points from the beginning of list then add empty 6 points to the end, and shift the index to 6 points in the back so it stays with the new point.
@@ -144,9 +144,9 @@ if (gapDirection):
 
 First it moves the first point in the new line segment by the amount of gap, then resets the old value of it to zero (as it will be part in the straight line). Secondly is a for loop to fill the points incrementally starting from the last point in the old line segment to the new point.
 
-\subsubsection{ Second way to fill the gap}
+\subsubsection{Second way to fill the gap}
 
-Fill the gap was basically working on the base of shifting the point on Y-axis, but there might be another approach to tackle this ( the second way I talked about in fixing the problem of gap).
+Fill the gap was basically working on the base of shifting the point on Y-axis, but there might be another approach to tackle this (the second way I talked about in fixing the problem of gap).
 
 Thinking that it will take more effort to move the point in new line segment in the position that corresponds to the gap, then make a line between the old line segment and the new one. That is a lot to think about, there can be a different way. What if we change the point on x-axis? just to make it close to the old one, I know it is a bit of cheating, but as long as it works, then it is good.
 
@@ -162,7 +162,7 @@ The main focus when working on the ball was to make it as simple as it can be, s
 As the game is based on a \textbf{ball} that survives a line, then I need to display a ball and not a circle (google the difference). There isn't a function to draw a filled ball in one line, so I have to draw an empty circle then fill it. The function \inlineCode{pygame.gfxdraw.aacircle} will draw an anti-aliased circle and \inlineCode{pygame.gfxdraw.filled{\_}circle} draw a filled circle inside of it, then draw a fake rectangle around them with \inlineCode{pygame.Rect} that will deal with the collision (will discuss it in the display game section).
 
 \subsubsection{Generate particles}\label{generate-particles}
-This part is little on logic than the other because it was made for the visuality of the game, no output coming out of it to make the game faster or improve something, but it would add a little bit of a characteristic to the game and the vision I have for it.
+This part is little on logic than the other because it was made for the visuality of the game. No output coming out of it to make the game faster or improve something, but it would add a little bit of a characteristic to the game and the vision I have for it.
 
 The particles are made to be in the position of the ball and generate as a way to look like a combustion engine steam coming out ot it, so there are three things to notice here.
 \begin{itemize}
@@ -191,7 +191,7 @@ def generateParticles(self):
 	\end{minted}
 \end{listing}
 
-In the \inlineCode{Vel} variable deceleration part, it makes sure that the value we would get, would be a random number between {-1, 1}. The \inlineCode{Timer} to give chaos to the particles so not all of them are released at the same time.
+In the \inlineCode{Vel} variable deceleration part, it makes sure that the value we would get, would be a random number between \{-1, 1\}. The \inlineCode{Timer} to give chaos to the particles so not all of them are released at the same time.
 
 The code would add to the list of particles a new particle with these random starting values, then the \inlineCode{for loop} process each value on its own.
 
@@ -201,7 +201,7 @@ The code would add to the list of particles a new particle with these random sta
 \item If condition at the end to remove the particle from the list so it wouldn't take much of space with more runtime.
 \end{itemize}
 
-This function is possible thanks to [Particles - Pygame Tutorial - YouTube](https://www.youtube.com/watch?v=F69-t33e8tk)
+This function is possible thanks to \href{https://www.youtube.com/watch?v=F69-t33e8tk}{Particles - Pygame Tutorial - YouTube}
 
 \section{Display the game}\label{display-the-game}
 Getting all of the parts coming together is based on logic, as there are lots of changes in it with variables in each game component \inlineCode{waveFunc} and \inlineCode{ballFunc} but the basics are made in the game. Now about displaying them from the \inlineCode{game.py} file that will deal as an instance of all game component, like the string that will keep all of them tide up.
@@ -209,7 +209,7 @@ Getting all of the parts coming together is based on logic, as there are lots of
 \subsection{Draw}\label{draw}
 There are basic things in the game that a user would need to always see during the runtime of it, like the ball to know the position of it and the wave so the ball won't hit it, maybe the particles to add some visuality to the game and the score on the top. Most of these functions are already made in the components class but needs to be called here, in the \inlineCode{game.py} file.
 
-\subsubsection{title}{Update label}
+\subsubsection{Update label}
 
 In order to type anything on the screen in PyGame, you need to:
 \begin{enumerate}
@@ -221,23 +221,23 @@ In order to type anything on the screen in PyGame, you need to:
 It can be thought of as a harder way just to write a simple text, but it gives more freedom to customize the text before writing it and it's also CPU consuming wise when it comes to graphics options that you might not need, like anti aliasing.
 
 \subsubsection{Display score} \label{display-score}
-There is a need for a counter in the game, to be incremented each time the main \inlineCode{While} loop in the game makes a new round, so it would work as a way  to measure the score of the game (also fitness for AI). This \inlineCode{ScoreCount} will be the way to measure it, but as every loop, that is +60 (FPS of game) points in every second. I think it might be a little bit over, so I will divide it by 200 and place it on the middle top part of the screen, now first part of the game requirement is over, with displaying score.
+There is a need for a counter in the game, to be incremented each time the main \inlineCode{While} loop in the game makes a new round, so it would work as a way  to measure the score of the game (also fitness for AI). This \inlineCode{ScoreCount} will be the way to measure it, but as every loop, that is +60 (FPS of game) points in every second. I think it might be a little bit over, so I will divide it by 200 and place it on the middle top part of the screen. Now first part of the game requirement is over, with displaying score.
 
-\subsubsection{ Display AI number}
+\subsubsection{Display AI number}
 
-As a way to keep record of the training sessions of AI is to find the generation number and genome number, but if you don't understand these expressions, it is ok, I don't also, but I will read about them once I reach the AI part and tell you more there. During the learning period, I won't be staring in my screen the whole time, so there have to be some way I can know which genome did better and the time for it. The log will be in CMD after every genome and will use OBS to record the game window only, so I return to the video at anytime.
+As a way to keep record of the training sessions of AI is to find the generation number and genome number, but if you don't understand these expressions, it is ok, I don't also. I will read about them once I reach the AI part and tell you more there. During the learning period, I won't be staring in my screen the whole time, so there have to be some way I can know which genome did better and the time for it. The log will be in CMD after every genome and will use OBS to record the game window only, so I return to the video at anytime.
 
 \subsection{Collision}\label{sec:collision}
 Basics of collision coming ahead. When there is an object that overlaps another one and they shouldn't. To implement this on the game, a collision would be triggered if the ball overlaps any point of the wave points that corresponds to the same x-axis points with it.
 
 In the Ball component class there is a \inlineCode{ballRect} functions, that returns an invisible rectangle that surrounds the ball with lots of important functionality in it. Basically I can access all the coordinates of every edge in this rectangle that would help in the collision, and this will be the way of detection for the ball.
-As for the collision function working mechanism, it loops through every point in the wave with the range of the ball, in this case it is  calculated by the full height of screen (800 px) minus the bottom of the ball (238 x-cord for it) $800-562 = 238$ this is the starting range. Ending range will be the the top of ball, $800-538 = 262$, for the right side of ball, if the x value for it is over or equal the x-axis of the points list with the same axis -50 - the wave gap then it will be collision. On left side, if the x-axis of left side of ball is less or equal the x-axis of  the points list with the same axis - 350 - the wave gap then it will be collision. 
+
+As for the collision function working mechanism, it loops through every point in the wave with the range of the ball, in this case it is  calculated by the full height of screen (800 px) minus the bottom of the ball (238 x-cord for it) $800-562 = 238$ this is the starting range. Ending range will be the the top of ball, $800-538 = 262$, for the right side of ball, if the x value for it is over or equal the x-axis of the points list with the same axis -50 - the wave gap then it will be collision. On left side, if the x-axis of left side of ball is less or equal the x-axis of the points list with the same axis - 350 - the wave gap then it will be collision. 
+
+I see a hand rising from the back of class. "Why there is a difference of 24 pixels between 238 and 262?" Because the ball radius is 12 pixels that makes the diameter 24 pixels.
 
 
-%##make a illustrition
-
-
-\begin{listing}
+\begin{listing}[H]
 \begin{minted}{python}
 #                              238          ,             262
 for YCord in range(self.HDisplay-ball.bottom, self.HDisplay-ball.top):
@@ -254,7 +254,7 @@ You might ask, why make a rectangle be responsible for the detection of a ball o
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{usedImages/colliison}
-	\caption{relation between the ballRect and the normal wave}
+	\caption{Relation between the ballRect and the normal wave}
 	\label{fig:colliison}
 \end{figure}
 
@@ -264,13 +264,13 @@ Remember what I said about OOP and every class should make what is limited to? t
 
 There will be buttons assigned to each movement in the class to get the ball around the x-axis only. If the function gets "right" as a parameter, then it will call the \inlineCode{moveball} function in \inlineCode{ballFunc.py} file to add to the x-axis of the ball, the amount of steps that is 5px, also the same with left side. Limitation is not to get the ball out side the borders of screen and an extra half of the radius of ball because it wasn't looking good having the whole ball stuck to the screen side as a limit.
 
-You might ask me. "why make the parameter for function a string and not a Boolean variable as there are two types of movement only?", I'm not going to lie, I had it during the whole game to be as a boolean variable, until the implementation of AI, I changed it to string. Why? because in first place I thought the neural network would have 2 outputs (left and right movement) but there would be a third one, as not moving, or centre in other words, to make the ball steady during the training and not wiggling around.
+You might ask me. "why make the parameter for function a string and not a Boolean variable as there are two types of movement only?", I'm not going to lie, I had it during the whole game to be as a boolean variable, until the implementation of AI, I changed it to string. Why? because in first place I thought the neural network would have 2 outputs (left and right movement) but there would be a third one, as not moving, or 'centre' in other words, to make the ball steady during the training and not wiggling around.
 
 \subsection{Count distance}\label{sec:count-distance}
 As of the early implementation of the AI, the input was (the order from left to right):
 \begin{itemize}
-\item distance between the centre of ball to the point in wave with the same x cord both left and right.
-\item ball x cord.
+\item Distance between the centre of ball to the point in wave with the same x cord both left and right.
+\item Ball x cord.
 \end{itemize}
 
 But the problem is the collision covers the whole ballRect (that is 24 pixel) and the NN can only have input of the centre, to solve it you would need to pass a list of the distance between the points on ballRect and the wave on the side, here is a big dive into it.
@@ -310,9 +310,9 @@ with the same x-axis, then one step up on wave and repeat, and make another loop
 	\end{minted}
 \end{listing}
 
-Sounds good, but the problem is the two for loops were CPU consuming, imagine there are 24 pixel then repeat it again for the wave ones (a two inner for loops) $24^2 = 576$ and another one for the left side $576*2 = 1152$,  and to process them again on the AI input , that is $1152*2 = 2304$ times, all is made in one second, not to add the particles that are being made behind the ball, all of this was a lot. To make a little better, I reduced the step size to be 5 for each loop, made it to 45 in each list and got the inserted value to be as integer.
+Sounds good, but the problem is the two for loops were CPU consuming, imagine there are 24 pixel then repeat it again for the wave ones (a two inner for loops) $24^2 = 576$ and another one for the left side $576*2 = 1152$,  and to process them again on the AI input , that is $1152*2 = 2304$ times, all is made in one time only in one \inlineCode{while} loop (not to multiply it by 60 for the FPS of the game), not to add the particles that are being made behind the ball, all of this was a lot. To make a little better, I reduced the step size to be 5 for each loop, made it to 45 in each list and got the inserted value to be as integer.
 
-\begin{table}[]
+\begin{table}[H]
 	\centering
 \begin{tabular}{|c|c|}
 	\hline
@@ -330,7 +330,7 @@ The speed of learning during the AI would be faster than a human can play a game
 There are some functions that need to be always working during the game. Changing the wave amplitude, increase the \inlineCode{ScoreCount} by one and change the game speed as in FPS. \inlineCode{ScoreCount} is just a holder for them so it doesn't get missy in the AI part .
 
 \subsection{Reset}
-Calls the reset function in components class in the \inlineCode{Wave} and \inlineCode{Ball} and is triggered once the collision happens.
+Calls the reset function in the \inlineCode{Wave} and \inlineCode{Ball} components class. It is triggered once the collision happens.
 
 \section{Create AI}\label{create-ai}
 
@@ -338,10 +338,10 @@ As the progress of the thesis can be separated into two parts. I can say now tha
 
 There are a lots of algorithms, that can be used to develop such a neural network that is capable of this task. Changing the weights and biases without me interfering in it. I feel like I'm going over lots of expressions here that needs to be clarified first.
 
-\subsection{101 AI}\label{101-ai}
-The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?!. It raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task. That is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
+\subsection{101 AI}\label{sec:101-ai}
+The way for AI to work is try to make mimic the way of human brain to work, but this means that the human brain itself is going to develop such an intelligence that is overcoming it ?!?! It raises some red flags here, but the closest it can get to (at least on my humble machine) is make a neural network capable of solving only one task. That is totally different from the human brain being capable of doing multiple tasks in short period of time, like taking input from senses and giving the output in action without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
-To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \href{https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/}{Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat} , and this type is the main point in making the AI.
+To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \href{https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/}{Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat}, and this type is the main point in making the AI.
 
 \subsubsection{Life example}\label{sec:ai-life-example}
 Given example of a child trying to kick the ball, this is the first time a child sees a ball, and doesn't know \textbf{yet} what to do with it. The child here is called an agent, and the football is the environment that is trying to solve or in this case, kick it as far as it can be (which they don't know yet). The agent try to touch the ball but it isn't the goal they are seeking to reach (trying over time), after some time of hitting it harder, they realise it won't hurt them (as a punishment) and if they score goal it is good (as a reward). 
@@ -358,7 +358,7 @@ That is the same way AI is learning in this game. The ball (which is agent) is t
 As mentioned in \hyperref[display-score]{counter part}, there is a counter in the game, it will be used as what is called \inlineCode{fitness function}. A \inlineCode{Fitness function} measures how good is our genome doing with a good input for the ball to give a proper output of movement, so the ball survive as far as it can, here is another unknown expression.
  
 \subsubsection{Fitness function}
-There must be a way to reward or punish the AI according to its behave during the game. The more the ball survives the wave, the higher the fitness score for it will get (better quality it is), meanwhile, if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation. The possibility for low fitness-genome to be mutated into future generation will be lowered.
+There must be a way to reward or punish the AI according to its behave during the game. The more the ball survives the wave, the higher the fitness score for it will get (better quality it is). Meanwhile, if it dies on early stages, the fitness score for it will be reduced drastically as a punishment and also be lower in the hierarchy of genomes in the generation. The possibility for low fitness-genome to be mutated into future generation will be lowered.
 
 Applying this method in the game here, there is a way of reward. If the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less venerable to hit into it.
 
@@ -372,7 +372,7 @@ if(len(str(leftDis)) and len(str(rightDis)) > 2 ):
 \end{minted}
 \end{listing}
 
-Explained from inside out. The fitness is increased by 2, if the rounded output for left distance== rounded output to right distance (the ball is in the middle), but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
+Explained from inside out. The fitness is increased by 2, if the rounded output for left distance == rounded output to right distance (the ball is in the middle), but first it checks if both of them are more than 2 two digits so it can round if the numbers are hundreds only.
 
 As for the punishment. If the genome dies at the beginning of where it was, and without any movement from it to survive, the fitness score will be reduced. The point here is try to find the good punishment for it and not over do it, so it can be balanced.
 
@@ -455,30 +455,6 @@ activation_options      = relu
 
 Going to the activation function, the one that define the effect from one neuron to another, the value is between 0 and 1. More info about it in \hyperref[sec:activation-function]{Activation function} section.  
 
-
-
-\subsection{Observation}\label{Observation}
-At first time running the algorithm, the input vision for the ball to the wave, was from the centre of ball to both sides of the wave as a one point. That made it hard for the ball to find its way (or have a futuristic vision you can say). There would be a change in the wave curve and the ball can't detect it, so an idea came of having more range for the ball to see. It would calculate the distance between the ball rectangle to the left or right side of wave in more than one point.
-
-To get more into it with numbers, there would be a notice of the ball having a weird sense of getting to know its "new" sense of wider vision diameter. The ball would take about 20 generations just to start moving in more random left and right. This is made when the ball had only the vision of its 24-pixel diameter (12px as radius) then extra step of plus 50 pixels, getting this info in nutshell
-\begin{itemize}
-\item One point vision: good as start and better CPU wise.
-\item Diameter vision + 20: best one in score yet (117 points in generation 89).
-\item Diameter +50 points: No learning even after nearly 300 generation.
-\end{itemize}
-
-The reason to increase the vision for the ball (even though it was working fine) is I wanted to test how long would it take from the ball to get used to the new (increased) amount of lines. I can tell you it took long long enough.
-
-At this point of the game, I implemented the increased speed of wave *4 that improved the learning speed. With normal fps, it would take 8 hours 15 min for 37 generation, but the new one (with limitation to 4 times speed, not more) takes 5 hours 15 second for 100 generation to work. That is 4 times the normal running time of normal pace of game for a human to play it, and the generation threshold to be 300 generation instead of 100, let the laptop run as much as it needs. It took more than 15 hours to finish 294 generation and 11 genome, when went back to check the log, none of them managed to pass 3000 fitness score. That means that none of them had a good intuition of the lines to move left or right and at least overcome one curve in the wave. From this, the amount of numbers increased = more time in training.
-
-There is a small box that is shown around the ball, it is called ballRect and mentioned a lot in the \hyperref[sec:count-distance]{Count Distance} and \hyperref[sec:collision]{Collision}. ballRect is shown to check if the genome did terminate for an actual collision or because it reached the threshold, like the case here in this video.
-
-In order to save as much as CPU power during the learning process, the box is shown only when fitness is over 50. In addition to some extra visuals in the game, such as the particles behind the ball, but all of them can be viewed again with a key for each one:
-\begin{itemize}
-\item \inlineCode{v Key} to shown \textbf{v}ision
-\item \inlineCode{b key} to show the \textbf{b}allRect
-\item \inlineCode{p key} to show the \textbf{p}articles
-\end{itemize}
 
 \subsection{Explain the log}\label{sec:explain-the-log}
 
