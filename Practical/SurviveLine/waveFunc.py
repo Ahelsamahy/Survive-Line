@@ -26,8 +26,12 @@ class Wave:
 
     def draw(self, Display):
         for Y_CORD in range(len(self.PointsList)):
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 50 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR,)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 350 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR,)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 49 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 50 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 51 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 349 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 350 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 351 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
 
     def changeSpeed(self):
         if (self.ScoreCount % (100 * (self.GameSpeed // 2)) == 0) and self.FPS < 100:
