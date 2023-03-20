@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Survive Line
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Ahmed
+    family-names: Mahfouz
+    email: ahmelsamahy@gmail.com
+repository-code: 'https://github.com/Ahelsamahy/Survive-Line'
+url: 'https://ahmedmahfouz.me/?p=thesis'
+abstract: Surviving game with ball between two lines.
+keywords:
+  - Python3
+  - PyGame
+  - AI
+version: '1'
+date-released: '2023-02-20'
