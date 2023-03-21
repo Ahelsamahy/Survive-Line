@@ -1,5 +1,5 @@
 \documentclass{thesis-ekf}
-\usepackage{hyperref}
+
 %\usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 %\documentclass{report}
@@ -11,6 +11,12 @@
 \usepackage{amsmath,amsfonts}
 \usepackage{titlesec} % make arbitrary amound of nested header with numbers
 \usepackage{enumitem}
+\usepackage{url}
+\usepackage[style=authortitle,backend=bibtex]{biblatex}
+\DeclareFieldFormat[article,book,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1}
+
+\addbibresource{bibliography.bib}
+\usepackage{hyperref}
 
 
 
@@ -74,6 +80,8 @@ Now that the emotional part is over. There are people who shaped the programmer 
 	\include{./Chapters/5_Testing}
 	
 	\include{./Chapters/6_Summary}
-	
+
+	\printbibliography
+
 	
 \end{document}

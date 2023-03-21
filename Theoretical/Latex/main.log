@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  18 MAR 2023 21:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.1.29)  21 MAR 2023 01:10
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -858,49 +858,307 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@count@id=\count344
 \enitdp@description=\count345
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 37.
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
+Package: biblatex 2022/07/12 v3.18b programmable bibliographies (PK/MW)
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count346
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count347
+\c@listtotal=\count348
+\c@listcount=\count349
+\c@liststart=\count350
+\c@liststop=\count351
+\c@citecount=\count352
+\c@citetotal=\count353
+\c@multicitecount=\count354
+\c@multicitetotal=\count355
+\c@instcount=\count356
+\c@maxnames=\count357
+\c@minnames=\count358
+\c@maxitems=\count359
+\c@minitems=\count360
+\c@citecounter=\count361
+\c@maxcitecounter=\count362
+\c@savedcitecounter=\count363
+\c@uniquelist=\count364
+\c@uniquename=\count365
+\c@refsection=\count366
+\c@refsegment=\count367
+\c@maxextratitle=\count368
+\c@maxextratitleyear=\count369
+\c@maxextraname=\count370
+\c@maxextradate=\count371
+\c@maxextraalpha=\count372
+\c@abbrvpenalty=\count373
+\c@highnamepenalty=\count374
+\c@lownamepenalty=\count375
+\c@maxparens=\count376
+\c@parenlevel=\count377
+\blx@tempcnta=\count378
+\blx@tempcntb=\count379
+\blx@tempcntc=\count380
+\c@blx@maxsection=\count381
+\blx@maxsegment@0=\count382
+\blx@notetype=\count383
+\blx@parenlevel@text=\count384
+\blx@parenlevel@foot=\count385
+\blx@sectionciteorder@0=\count386
+\blx@sectionciteorderinternal@0=\count387
+\blx@entrysetcounter=\count388
+\blx@biblioinstance=\count389
+\labelnumberwidth=\skip62
+\labelalphawidth=\skip63
+\biblabelsep=\skip64
+\bibitemsep=\skip65
+\bibnamesep=\skip66
+\bibinitsep=\skip67
+\bibparsep=\skip68
+\bibhang=\skip69
+\blx@bcfin=\read7
+\blx@bcfout=\write6
+\blx@langwohyphens=\language80
+\c@mincomprange=\count390
+\c@maxcomprange=\count391
+\c@mincompwidth=\count392
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-dm.def
+File: blx-dm.def 2022/07/12 v3.18b biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'authortitle.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count393
+\c@savedafterword=\count394
+\c@annotator=\count395
+\c@savedannotator=\count396
+\c@author=\count397
+\c@savedauthor=\count398
+\c@bookauthor=\count399
+\c@savedbookauthor=\count400
+\c@commentator=\count401
+\c@savedcommentator=\count402
+\c@editor=\count403
+\c@savededitor=\count404
+\c@editora=\count405
+\c@savededitora=\count406
+\c@editorb=\count407
+\c@savededitorb=\count408
+\c@editorc=\count409
+\c@savededitorc=\count410
+\c@foreword=\count411
+\c@savedforeword=\count412
+\c@holder=\count413
+\c@savedholder=\count414
+\c@introduction=\count415
+\c@savedintroduction=\count416
+\c@namea=\count417
+\c@savednamea=\count418
+\c@nameb=\count419
+\c@savednameb=\count420
+\c@namec=\count421
+\c@savednamec=\count422
+\c@translator=\count423
+\c@savedtranslator=\count424
+\c@shortauthor=\count425
+\c@savedshortauthor=\count426
+\c@shorteditor=\count427
+\c@savedshorteditor=\count428
+\c@labelname=\count429
+\c@savedlabelname=\count430
+\c@institution=\count431
+\c@savedinstitution=\count432
+\c@lista=\count433
+\c@savedlista=\count434
+\c@listb=\count435
+\c@savedlistb=\count436
+\c@listc=\count437
+\c@savedlistc=\count438
+\c@listd=\count439
+\c@savedlistd=\count440
+\c@liste=\count441
+\c@savedliste=\count442
+\c@listf=\count443
+\c@savedlistf=\count444
+\c@location=\count445
+\c@savedlocation=\count446
+\c@organization=\count447
+\c@savedorganization=\count448
+\c@origlocation=\count449
+\c@savedoriglocation=\count450
+\c@origpublisher=\count451
+\c@savedorigpublisher=\count452
+\c@publisher=\count453
+\c@savedpublisher=\count454
+\c@language=\count455
+\c@savedlanguage=\count456
+\c@origlanguage=\count457
+\c@savedoriglanguage=\count458
+\c@pageref=\count459
+\c@savedpageref=\count460
+\shorthandwidth=\skip70
+\shortjournalwidth=\skip71
+\shortserieswidth=\skip72
+\shorttitlewidth=\skip73
+\shortauthorwidth=\skip74
+\shorteditorwidth=\skip75
+\locallabelnumberwidth=\skip76
+\locallabelalphawidth=\skip77
+\localshorthandwidth=\skip78
+\localshortjournalwidth=\skip79
+\localshortserieswidth=\skip80
+\localshorttitlewidth=\skip81
+\localshortauthorwidth=\skip82
+\localshorteditorwidth=\skip83
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-compat.d
+ef
+File: blx-compat.def 2022/07/12 v3.18b biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load BibTeX backend compatibility...
+Package biblatex Info: ... file 'blx-bibtex.def' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-bibtex.d
+ef
+File: blx-bibtex.def 2022/07/12 v3.18b biblatex compatibility (PK/MW)
+
+
+Package biblatex Warning: Using fall-back BibTeX(8) backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.def
+File: biblatex.def 2022/07/12 v3.18b biblatex compatibility (PK/MW)
+\c@textcitecount=\count461
+\c@textcitetotal=\count462
+\c@textcitemaxnames=\count463
+\c@biburlbigbreakpenalty=\count464
+\c@biburlbreakpenalty=\count465
+\c@biburlnumpenalty=\count466
+\c@biburlucpenalty=\count467
+\c@biburllcpenalty=\count468
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count469
+)
+Package biblatex Info: Trying to load bibliography style 'authortitle'...
+Package biblatex Info: ... file 'authortitle.bbx' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\authorti
+tle.bbx
+File: authortitle.bbx 2022/07/12 v3.18b biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\standard
+.bbx
+File: standard.bbx 2022/07/12 v3.18b biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count470
+\c@bbx:relatedtotal=\count471
+))
+Package biblatex Info: Trying to load citation style 'authortitle'...
+Package biblatex Info: ... file 'authortitle.cbx' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\authorti
+tle.cbx
+File: authortitle.cbx 2022/07/12 v3.18b biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+ (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2023-01-24 L3 programming layer (loader) 
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
+dftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count472
+\l__pdf_internal_box=\box81
+))
+Package biblatex Info: ... and expl3
+(biblatex)             2023-01-24 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-case-exp
+l3.sty
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpa
+rse.sty
+Package: xparse 2023-01-16 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2022/07/12 v3.18b expl3 case changing code for biblatex
+
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 42.
 runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > ma
 in.aex <nul: /p x=^%~$PATH:i>> main.aex)...executed.
 
 runsystem(del main.aex)...executed.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-6.
- (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count473
+\@quotereset=\count474
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
+1.
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)<<ot1.cmap>>
-(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
-dftex.def
-File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count346
-\l__pdf_internal_box=\box81
-) (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux) (Chapter
-s/3_Technologies.aux) (Chapters/4_Timeline.aux)
-(Chapters/5_Testing.aux) (Chapters/6_Summary.aux))
+)<<ot1.cmap>> (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.a
+ux)
+(Chapters/3_Technologies.aux) (Chapters/4_Timeline.aux) (Chapters/5_Testing.aux
+) (Chapters/6_Summary.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-Package hyperref Info: Link coloring ON on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+Package hyperref Info: Link coloring ON on input line 51.
  (main.out) (main.out)
-\@outlinefile=\write6
-\openout6 = `main.out'.
+\@outlinefile=\write7
+\openout7 = `main.out'.
 
 
 *geometry* driver: auto-detecting
@@ -937,60 +1195,60 @@ Package hyperref Info: Link coloring ON on input line 46.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-6.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
+1.
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oml.cmap>>
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-46.
+51.
  (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oms.cmap>>
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-46.
+51.
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 46.
+(Font)              <12> on input line 51.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 46.
+(Font)              <8> on input line 51.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 46.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+(Font)              <6> on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
 
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 46.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 51.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 46.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 51.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 46.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 51.
 
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count347
+\scratchcounter=\count475
 \scratchdimen=\dimen287
 \scratchbox=\box82
-\nofMPsegments=\count348
-\nofMParguments=\count349
+\nofMPsegments=\count476
+\nofMParguments=\count477
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count350
+\MPscratchCnt=\count478
 \MPscratchDim=\dimen288
-\MPnumerator=\count351
-\makeMPintoPDFobject=\count352
+\MPnumerator=\count479
+\makeMPintoPDFobject=\count480
 \everyMPtoPDFconversion=\toks46
 )
 (C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
@@ -1003,14 +1261,34 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 .cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count353
+\c@lstlisting=\count481
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(C:\Users\Mahfouz\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\english.
+lbx
+File: english.lbx 2022/07/12 v3.18b biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout6 = `main-blx.bib'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' found.
+ (main.bbl)
+Package biblatex Info: Reference section=0 on input line 51.
+Package biblatex Info: Reference segment=0 on input line 51.
 <eszterhazy-logo-en.pdf, id=110, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-en.pdf Graphic file (type pdf)
 <use eszterhazy-logo-en.pdf>
-Package pdftex.def Info: eszterhazy-logo-en.pdf  used on input line 56.
+Package pdftex.def Info: eszterhazy-logo-en.pdf  used on input line 61.
 (pdftex.def)             Requested size: 256.07907pt x 88.0427pt.
 
-Overfull \hbox (12.82239pt too wide) in paragraph at lines 56--56
+Overfull \hbox (12.82239pt too wide) in paragraph at lines 61--61
  []| []  [] [] 
  []
 
@@ -1019,8 +1297,8 @@ Overfull \hbox (12.82239pt too wide) in paragraph at lines 56--56
 {C:/Users/Mahfouz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <C:/Users/M
 ahfouz/AppData/Local/Programs/MiKTeX/tex/latex/thesis-ekf/eszterhazy-logo-en.pd
 f>] (main.toc)
-\tf@toc=\write7
-\openout7 = `main.toc'.
+\tf@toc=\write8
+\openout8 = `main.toc'.
 
  [2
 
@@ -1054,7 +1332,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  (Chapters/3_Technologies.tex
 Chapter 3.
-<usedImages/scoreFrame.jpg, id=187, 401.5pt x 166.6225pt>
+<usedImages/scoreFrame.jpg, id=190, 401.5pt x 166.6225pt>
 File: usedImages/scoreFrame.jpg Graphic file (type jpg)
 <use usedImages/scoreFrame.jpg>
 Package pdftex.def Info: usedImages/scoreFrame.jpg  used on input line 13.
@@ -1119,7 +1397,7 @@ pygtex)
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 82.
  [12]
-<./usedImages//filledGap.jpg, id=252, 609.477pt x 626.34pt>
+<./usedImages//filledGap.jpg, id=255, 609.477pt x 626.34pt>
 File: ./usedImages//filledGap.jpg Graphic file (type jpg)
 <use ./usedImages//filledGap.jpg>
 Package pdftex.def Info: ./usedImages//filledGap.jpg  used on input line 98.
@@ -1153,7 +1431,7 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 
 (_minted-main/015EED303E5584C1B19F5486C2F36C56CF33289265490CC72470AF6FAFE9A294.
 pygtex)
-<usedImages/colliison.jpg, id=289, 412.54124pt x 420.57124pt>
+<usedImages/colliison.jpg, id=292, 412.54124pt x 420.57124pt>
 File: usedImages/colliison.jpg Graphic file (type jpg)
 <use usedImages/colliison.jpg>
 Package pdftex.def Info: usedImages/colliison.jpg  used on input line 257.
@@ -1165,7 +1443,7 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.265 
        <./usedImages/colliison.jpg>]
-<usedImages/vision 576 lines.png, id=296, 302.3295pt x 122.859pt>
+<usedImages/vision 576 lines.png, id=299, 302.3295pt x 122.859pt>
 File: usedImages/vision 576 lines.png Graphic file (type png)
 <use usedImages/vision 576 lines.png>
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 28
@@ -1182,7 +1460,7 @@ File: usedImages/vision 576 lines.png Graphic file (type png)
 Package pdftex.def Info: usedImages/vision 576 lines.png  used on input line 32
 2.
 (pdftex.def)             Requested size: 220.50887pt x 89.60756pt.
-<usedImages/vision 45 lines.png, id=301, 503.8825pt x 204.765pt>
+<usedImages/vision 45 lines.png, id=304, 503.8825pt x 204.765pt>
 File: usedImages/vision 45 lines.png Graphic file (type png)
 <use usedImages/vision 45 lines.png>
 Package pdftex.def Info: usedImages/vision 45 lines.png  used on input line 322
@@ -1201,7 +1479,7 @@ has been already used, duplicate ignored
 l.324 \end{table}
                   <./usedImages/vision 576 lines.png (PNG copy)>] [22 <./usedIm
 ages/vision 45 lines.png (PNG copy)>]
-<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=312, 1129.21875pt x
+<usedImages/AI vs Machine Learning vs Deep Learning.jpg, id=315, 1129.21875pt x
  1129.21875pt>
 File: usedImages/AI vs Machine Learning vs Deep Learning.jpg Graphic file (type
  jpg)
@@ -1226,13 +1504,13 @@ l.376
 
 (_minted-main/B9C6F84DFF5B793B5CA47D93B0CBAFFECF33289265490CC72470AF6FAFE9A294.
 pygtex)
-<usedImages/nn.png, id=324, 697.4055pt x 248.3679pt>
+<usedImages/nn.png, id=327, 697.4055pt x 248.3679pt>
 File: usedImages/nn.png Graphic file (type png)
 <use usedImages/nn.png>
 Package pdftex.def Info: usedImages/nn.png  used on input line 395.
 (pdftex.def)             Requested size: 308.71106pt x 109.94542pt.
  [25]
-<usedImages/neuronsNN.png, id=334, 551.05875pt x 337.26pt>
+<usedImages/neuronsNN.png, id=337, 551.05875pt x 337.26pt>
 File: usedImages/neuronsNN.png Graphic file (type png)
 <use usedImages/neuronsNN.png>
 Package pdftex.def Info: usedImages/neuronsNN.png  used on input line 413.
@@ -1274,7 +1552,7 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
  (Chapters/5_Testing.tex
 Chapter 5.
-<usedImages/numTrainingSessions.png, id=369, 333.6465pt x 149.358pt>
+<usedImages/numTrainingSessions.png, id=372, 333.6465pt x 149.358pt>
 File: usedImages/numTrainingSessions.png Graphic file (type png)
 <use usedImages/numTrainingSessions.png>
 Package pdftex.def Info: usedImages/numTrainingSessions.png  used on input line
@@ -1290,14 +1568,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.74 	\include{./Chapters/5_Testing}
+l.79 	\include{./Chapters/5_Testing}
                                      <./usedImages/numTrainingSessions.png>]
 \openout2 = `./Chapters/6_Summary.aux'.
 
 
 (Chapters/6_Summary.tex
 Chapter 6.
-<usedImages/repoStart.png, id=382, 478.78876pt x 420.3705pt>
+<usedImages/repoStart.png, id=385, 478.78876pt x 420.3705pt>
 File: usedImages/repoStart.png Graphic file (type png)
 <use usedImages/repoStart.png>
 Package pdftex.def Info: usedImages/repoStart.png  used on input line 8.
@@ -1308,7 +1586,7 @@ Package pdftex.def Info: usedImages/repoStart.png  used on input line 8.
 
 
 ]
-<usedImages/repoEncapsulation.png, id=387, 497.4585pt x 256.5585pt>
+<usedImages/repoEncapsulation.png, id=390, 497.4585pt x 256.5585pt>
 File: usedImages/repoEncapsulation.png Graphic file (type png)
 <use usedImages/repoEncapsulation.png>
 Package pdftex.def Info: usedImages/repoEncapsulation.png  used on input line 1
@@ -1327,27 +1605,34 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.24 
       <./usedImages/repoStart.png> <./usedImages/repoEncapsulation.png>])
-[34] (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux)
+[34] [35
+
+
+
+] (main.aux (Chapters/1_Introduction.aux) (Chapters/2_RelatedWork.aux)
 (Chapters/3_Technologies.aux) (Chapters/4_Timeline.aux) (Chapters/5_Testing.aux
 ) (Chapters/6_Summary.aux))
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 4809989DD93567DB1049E5CCABA54597;3656.
 runsystem(del main.pyg)...executed.
 
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
  ) 
 Here is how much of TeX's memory you used:
- 27099 strings out of 476375
- 529395 string characters out of 5788031
- 1869299 words of memory out of 5000000
- 46735 multiletter control sequences out of 15000+600000
- 564628 words of font info for 88 fonts, out of 8000000 for 9000
+ 34328 strings out of 476375
+ 676124 string characters out of 5788031
+ 1870299 words of memory out of 5000000
+ 53899 multiletter control sequences out of 15000+600000
+ 571904 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,12n,89p,1020b,752s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
+ 83i,12n,89p,1965b,1794s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.en
+c}{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
 }{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{
 C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc
 }{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.e
-nc}{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.e
 nc}{C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmsc.e
 nc}<C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12
 .pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcs
@@ -1358,14 +1643,16 @@ lmr10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm
 m/lmr6.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
 m/lmr7.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
 m/lmr8.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
-m/lmsy10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/lm/lmsy6.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/lm/lmtk10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/lm/lmtt10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/lm/lmtti10.pfb>
-Output written on main.pdf (34 pages, 1133979 bytes).
+m/lmri12.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmsy10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmsy6.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/lm/lmtk10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/lm/lmtt10.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmtt12.pfb><C:/Users/Mahfouz/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/lm/lmtti10.pfb>
+Output written on main.pdf (35 pages, 1171743 bytes).
 PDF statistics:
- 477 PDF objects out of 1000 (max. 8388607)
- 114 named destinations out of 1000 (max. 500000)
+ 495 PDF objects out of 1000 (max. 8388607)
+ 117 named destinations out of 1000 (max. 500000)
  293 words of extra memory for PDF output out of 10000 (max. 10000000)
 
