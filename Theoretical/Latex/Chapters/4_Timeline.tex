@@ -202,7 +202,7 @@ The code would add to the list of particles a new particle with these random sta
 \item If condition at the end to remove the particle from the list so it wouldn't take much of space with more runtime.
 \end{itemize}
 
-This function is possible thanks to \href{https://www.youtube.com/watch?v=F69-t33e8tk}{Particles - Pygame Tutorial - YouTube}
+This function is possible thanks to \citetitle{Particles_-_Pygame_Tutorial}
 
 \section{Display the game}\label{display-the-game}
 Getting all of the parts coming together is based on logic, as there are lots of changes in it with variables in each game component \inlineCode{waveFunc} and \inlineCode{ballFunc} but the basics are made in the game. Now about displaying them from the \inlineCode{game.py} file that will deal with all game components as an instance, like the string that will keep all of them tied up.
@@ -343,7 +343,7 @@ There are a lots of algorithms, that can be used to develop such a neural networ
 \subsection{101 AI}\label{sec:101-ai}
 The way for AI to work is to try to mimic the way that the human brain works, but this means that the human brain itself is going to develop such an intelligence that it overcomes it ?!?! It raises some red flags here, but the closest it can get (at least on my humble machine) is to make a neural network capable of solving only one task. That is totally different from the human brain being capable of doing multiple tasks in a short period of time, like taking input from the senses and giving the output in action, without mentioning controlling your breathing and heart beat without you thinking (now you are thinking about them?).
 
-To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \href{https://intellipaat.com/blog/supervised-learning-vs-unsupervised-learning-vs-reinforcement-learning/}{Supervised vs Unsupervised vs Reinforcement Learning | Intellipaat}, and this type is the main point in making the AI.
+To simplify the process of a human brain. Since a young age when you were a child, you got to learn that something is dangerous or safe, right or wrong, by trying and then learning from your own mistakes, that is called \textbf{Reinforcement learning} \citetitle{Supervised_vs_Unsupervised_vs_Reinforcement_Learning}, and this type is the main point in making the AI.
 
 \subsubsection{Life example}\label{sec:ai-life-example}
 Given the example of a child trying to kick the ball, this is the first time a child sees a ball and doesn't know \textbf{yet} what to do with it. The child here is called an agent, and the football is the environment that is trying to solve, or in this case, kick it as far as it can be (which they don't know yet). The agent try to touch the ball, but it isn't the goal they are seeking to reach (trying over time). After some time of hitting it harder, they realize it won't hurt them (as a punishment), and if they score a goal, it is good (as a reward).
@@ -360,7 +360,7 @@ That is the same way the AI is learning in this game. The ball (which is the age
 As mentioned in \hyperref[display-score]{counter part}, there is a counter in the game, it will be used as what is called \inlineCode{fitness function}. A \inlineCode{Fitness function} measures how well our genome is doing with a good input for the ball to give a proper output of movement, so the ball survives as far as it can. Here is another unknown expression.
  
 \subsubsection{Fitness function}
-There must be a way to reward or punish the AI according to how it behaves during the game. The more the ball survives the wave, the higher its fitness score will be ( better its quality). Meanwhile, if it dies in the early stages, its fitness score for it will be drastically reduced as a punishment, and it will also be lower in the hierarchy of genomes in the generation. The possibility for a low fitness-genome to be mutated into a future generation will be lowered.
+There must be a way to reward or punish the AI according to how it behaves during the game. The more the ball survives the wave, the higher its fitness score will be (better its quality). Meanwhile, if it dies in the early stages, its fitness score for it will be drastically reduced as a punishment, and it will also be lower in the hierarchy of genomes in the generation. The possibility for a low fitness-genome to be mutated into a future generation will be lowered.
 
 By applying this method to the game here, there is a way to reward. If the ball stays in the middle between the two waves, that is for the sake if there is an immediate change in the wave curve, the ball is less likely to hit into it.
 
@@ -399,7 +399,7 @@ In order to take a decision, there is an input, and then a certain amount of pro
 
 \subsubsection{Weight and biases}
 
-In the early stages of the ball's life, when it is learning how to control its movement, the first steps are either going totally to the left or right. Which isn't really paying off to make it go far. Each neuron has to tweak the parameters it gets from the one before it, the weights and biases are responsible for this, going back to the child example. The brain consists of little neurons that are responsible for making every decision the child take, it change over time, as is the case here. The brain changes a little bit on the decision and tries a different approach to the problem. One time hit the ball hard to the left side, one time with little power to the right side. "\textbf{Weights} control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." \href{https://machine-learning.paperspace.com/wiki/weights-and-biases}{difference}
+In the early stages of the ball's life, when it is learning how to control its movement, the first steps are either going totally to the left or right. Which isn't really paying off to make it go far. Each neuron has to tweak the parameters it gets from the one before it, the weights and biases are responsible for this, going back to the child example. The brain consists of little neurons that are responsible for making every decision the child take, it change over time, as is the case here. The brain changes a little bit on the decision and tries a different approach to the problem. One time hit the ball hard to the left side, one time with little power to the right side. "\textbf{Weights} control the signal (or the strength of the connection) between two neurons. In other words, a weight decides how much influence the input will have on the output." \citetitle{Weights_and_Biases}.
 
 \subsubsection{Activation function} \label{sec:activation-function}
 The connections between neurons and each other have weights and biases that can be altered. Let's say that there is one neuron whose value isn't important and can be used when the input is different, or even if it doesn't exist at all, but only to one specific neuron in the layer after it. If it were to be removed, it would change the value of all the neurons after it.
@@ -489,14 +489,14 @@ Saving checkpoint to neat-checkpoint-99
 \item line 4: store the highest fitness of the genome from the beginning of the session. It got the first threshold, so I can know if my input is being optimized with every generation or not.
  \end{itemize}
 
-Starting from line 5, all that comes, is made by the \inlineCode{reporting()} class in the algorithm source code. What will be written here is an attempt to explain every part of it (and heavily taken from \href{https://neat-python.readthedocs.io/en/latest/glossary.html}{Glossary — NEAT-Python 0.92 documentation}):
+Starting from line 5, all that comes, is made by the \inlineCode{reporting()} class in the algorithm source code. What will be written here is an attempt to explain every part of it (and heavily taken from \citetitle{NEAT_Overview_-_Glossary}):
 
 
 \begin{itemize}
 \item line 5 $\rightarrow$\inlineCode{stdev}: is the standard deviation of each genome to the over of all mean fitness in the generation, so higher it is, the more difference there is.
 
 
-\item line 6 $\rightarrow$\inlineCode{species 1} "Subdivisions of the population into groups of similar (by the \href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genomic-distance}{genomic distance} measure) individuals (\href{https://neat-python.readthedocs.io/en/latest/glossary.html#term-genome}{genomes}), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the \hyperref[sec:ai-library-neat-algorithm]{AI library (N.E.A.T Algorithm)}
+\item line 6 $\rightarrow$\inlineCode{species 1} "Subdivisions of the population into groups of similar (by the \citetitle{NEAT_Overview_-_Genomic_distance} measure) individuals (\citetitle{NEAT_Overview_-_Genome}), which compete among themselves but share fitness relative to the rest of the population. This is, among other things, a mechanism to try to avoid the quick elimination of high-potential topological mutants that have an initial poor fitness prior to smaller “tuning” changes". More can be found in the \hyperref[sec:ai-library-neat-algorithm]{AI library (N.E.A.T Algorithm)}
 
 
 \item line 8 $\rightarrow$\inlineCode{Mean genetic distance} is measurement to the difference (or tweaks) that have been made in the genomes of this generation to their parents from previous generation. As they might have been populated from parents that aren't in the previous generation exactly, check \hyperref[list:3tweanns]{"Meaningful crossover"} in the \hyperref[sec:ai-library-neat-algorithm]{AI library (N.E.A.T Algorithm)} section.

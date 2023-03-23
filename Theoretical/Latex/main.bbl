@@ -17,6 +17,110 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
+  \entry{Particles_-_Pygame_Tutorial}{online}{}
+    \name{author}{1}{}{%
+      {{hash=D}{%
+         family={DaFluffyPotato},
+         familyi={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{D1}
+    \strng{fullhash}{D1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{title}{Particles - Pygame Tutorial}
+    \verb{url}
+    \verb https://www.youtube.com/watch?v=F69-t33e8tk
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{Supervised_vs_Unsupervised_vs_Reinforcement_Learning}{online}{}
+    \name{author}{1}{}{%
+      {{hash=I}{%
+         family={Intellipaat},
+         familyi={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{I1}
+    \strng{fullhash}{I1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{I}
+    \field{sortinithash}{I}
+    \field{title}{Supervised vs Unsupervised vs Reinforcement Learning}
+    \verb{url}
+    \verb https://intellipaat.com/blog/supervised-learning-vs-unsupervised-lear
+    \verb ning-vs-reinforcement-learning/
+    \endverb
+    \field{year}{2022}
+  \endentry
+
+  \entry{Galactic_Arms_Race:_Research}{online}{}
+    \name{author}{4}{}{%
+      {{hash=KOSEH}{%
+         family={Kenneth O.\bibnamedelima Stanley},
+         familyi={K\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+         given={Erin\bibnamedelima Hastings},
+         giveni={E\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=DJFM}{%
+         family={Derick\bibnamedelima Janssen},
+         familyi={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+         given={Fabian\bibnamedelima Moncada},
+         giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=WBMK}{%
+         family={William\bibnamedelima Bohm},
+         familyi={W\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Max\bibnamedelima Kruger},
+         giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=RLME}{%
+         family={Ryan\bibnamedelima Lessard},
+         familyi={R\bibinitperiod\bibinitdelim L\bibinitperiod},
+         given={Matt\bibnamedelima Enright},
+         giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KOSEH+1}
+    \strng{fullhash}{KOSEHDJFMWBMKRLME1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Galactic Arms Race: Research}
+    \verb{url}
+    \verb http://galacticarmsrace.blogspot.com/p/research.html
+    \endverb
+    \field{year}{2014}
+  \endentry
+
+  \entry{A.I_Learns_to_Play_Soni_the_Hedgehog_-_NEAT_Explained}{online}{}
+    \name{author}{1}{}{%
+      {{hash=KF}{%
+         family={Knight},
+         familyi={K\bibinitperiod},
+         given={Forrest},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KF1}
+    \strng{fullhash}{KF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{A.I. Learns to Play Sonic the Hedgehog - NEAT Explained}
+    \verb{url}
+    \verb https://www.youtube.com/watch?v=5RR1T_-zVws&t
+    \endverb
+    \field{year}{2020}
+  \endentry
+
   \entry{Mahfouz_Survive_Line_2023}{software}{}
     \name{author}{1}{}{%
       {{hash=MA}{%
@@ -39,6 +143,161 @@
     \field{version}{1}
     \field{month}{02}
     \field{year}{2023}
+  \endentry
+
+  \entry{Survive_Line_-_Ahmed_Mahfouz}{online}{}
+    \name{author}{1}{}{%
+      {{hash=MA}{%
+         family={Mahfouz},
+         familyi={M\bibinitperiod},
+         given={Ahmed},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MA1}
+    \strng{fullhash}{MA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Survive Line - ahmedmahfouz.me}
+    \verb{url}
+    \verb http://ahmedmahfouz.me/?p=thesis
+    \endverb
+    \field{year}{2023}
+  \endentry
+
+  \entry{PyGame}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=SP}{%
+         family={Shinners},
+         familyi={S\bibinitperiod},
+         given={Pete},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SP1}
+    \strng{fullhash}{SP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{PyGame}
+    \verb{url}
+    \verb http://pygame.org/
+    \endverb
+    \field{year}{2011}
+  \endentry
+
+  \entry{NEAT_Overview_-_Genome}{online}{}
+    \name{author}{1}{}{%
+      {{hash=SAW}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Allen\bibnamedelima W.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAW1}
+    \strng{fullhash}{SAW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{NEAT Overview - Genome}
+    \verb{url}
+    \verb https://neat-python.readthedocs.io/en/latest/glossary.html#term-genom
+    \verb e
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{NEAT_Overview_-_Genomic_distance}{online}{}
+    \name{author}{1}{}{%
+      {{hash=SAW}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Allen\bibnamedelima W.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAW1}
+    \strng{fullhash}{SAW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{NEAT Overview - Genomic distance}
+    \verb{url}
+    \verb https://neat-python.readthedocs.io/en/latest/glossary.html#term-genom
+    \verb ic-distance
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{NEAT_Overview_-_Glossary}{online}{}
+    \name{author}{1}{}{%
+      {{hash=SAW}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Allen\bibnamedelima W.},
+         giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SAW1}
+    \strng{fullhash}{SAW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{NEAT Overview - Glossary}
+    \verb{url}
+    \verb https://neat-python.readthedocs.io/en/latest/glossary.html
+    \endverb
+    \field{year}{2020}
+  \endentry
+
+  \entry{Python_Pong_AI_Tutorial_-_Using_NEAT}{online}{}
+    \name{author}{1}{}{%
+      {{hash=TTW}{%
+         family={Tim},
+         familyi={T\bibinitperiod},
+         given={Tech\bibnamedelima With},
+         giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TTW1}
+    \strng{fullhash}{TTW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{title}{Python Pong AI Tutorial - Using NEAT}
+    \verb{url}
+    \verb https://youtu.be/2f6TmKm7yx0
+    \endverb
+    \field{year}{2022}
+  \endentry
+
+  \entry{Weights_and_Biases}{online}{}
+    \name{author}{1}{}{%
+      {{hash=WA}{%
+         family={Wiki},
+         familyi={W\bibinitperiod},
+         given={AI},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WA1}
+    \strng{fullhash}{WA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{Weights and Biases}
+    \verb{url}
+    \verb https://machine-learning.paperspace.com/wiki/weights-and-biases
+    \endverb
   \endentry
 \enddatalist
 \endinput

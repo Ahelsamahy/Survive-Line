@@ -1,3 +1,4 @@
+% !TeX document-id = {ab236120-23d1-4dd1-b452-5bd9e04ff499}
 \documentclass{thesis-ekf}
 
 %\usepackage[T1]{fontenc}
@@ -14,6 +15,17 @@
 \usepackage{url}
 \usepackage[style=authortitle,backend=bibtex]{biblatex}
 \DeclareFieldFormat[article,book,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1}
+
+\DeclareCiteCommand{\citetitle}
+{\boolfalse{citetracker}%
+	\boolfalse{pagetracker}%
+	\usebibmacro{prenote}}
+{\ifciteindex
+	{\indexfield{indextitle}}
+	{}%
+	\printtext[bibhyperref]{\printfield[citetitle]{labeltitle}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
 
 \addbibresource{bibliography.bib}
 \usepackage{hyperref}
