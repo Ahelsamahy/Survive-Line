@@ -2,35 +2,22 @@
 Here, I will review the findings from the previous sections. I will consider the implications of AI in this paper regarding its performance compared to a human playing a game. I will also include a discussion of any lessons learned from the project and any future work that can be done.
 
 \section{The game development}
-The progress of the game took most of the time due to the lack of sources in the PyGame library with the right functions that I was looking for then. Generating the function was the part that took most of the time. I remember that I spent more than a month trying to figure out a way to make the wave have a random amplitude so the player wouldn't cheat in the game. The problem was finding a way to make the wave one sequence after generating with the new amplitude, as it would shift the new sequence by a specific amount of pixels on the x-axis, either positively or negatively, in relation to the last point in the old sequence.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{usedImages/repoStart}
-	\caption[]{the start of game repository on GitHub}
-	\label{fig:repostart}
-\end{figure}
+The progress of the game took most of the time due to the lack of good implemented projects using the PyGame library with the right functions that I was looking for then. Generating the function was the part that took most of the time. I remember that I spent more than a month trying to figure out a way to make the wave have a random amplitude so the player would not cheat in the game. The problem was finding a way to make the wave one sequence after generating with the new amplitude, as it would shift the new sequence by a specific amount of pixels on the X-axis, either positively or negatively, in relation to the last point in the old sequence. I managed to solve this problem in \hyperref[sec:fillGap]{Fill gap}.
 
-Dealing with the other parts, such as, making the game follow the principle of encapsulation, took more than 3 days of continued work. Something I had before was the problem of having one file that did the functionality for all components of the game. For instance, the reset function that existed in ball functions is responsible for resetting the whole game, including wave-related variables. It is preferable to create a class for the wave and then include a function in it to reset the associated variables. You can call the wave functions whenever you want.
+Dealing with the other parts, such as, making the game follow the principle of encapsulation, took more than 3 days of continued work. Something I had before was the problem of having one file that did the functionality for all components of the game. For instance, the reset function that existed in ball functions is responsible for resetting the whole game, including wave-related variables. It is preferable to create a class for the wave and then include a function in it to reset the associated variables then call the wave functions whenever you want.
 
 In my opinion, this is preferable, because I would be confused about which variables to call and would benefit from a better file management for each component of the game.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{usedImages/repoEncapsulation}
-	\caption[]{Time it took to implement the new layout in encapsulation}
-	\label{fig:repoencapsulation}
-\end{figure}
 
-The repository can be accessed from this link \citetitle{Mahfouz_Survive_Line_2023}. The game, along with running footage, can be viewed on my website \citetitle{Survive_Line_-_Ahmed_Mahfouz} for more visuality and the learning curve about it.
 
 \section{The AI tweaking}
 
-This part didn't require much tweaking, as it was just to leave the laptop to do the training sessions for the night and check the log in the morning. To compare between each generation, I had to add extra \inlineCode{print()} sentences in the log to keep track of them. It was also important to record the sessions with OBS, as I could navigate easily from the output code to the part in the video and then tweak it as much as I could for the next generation.
+This part did not require much tweaking, as it was just to leave the laptop to do the training sessions for the night and check the log in the morning. To compare between each generation, I had to add extra \inlineCode{print()} sentences in the log to keep track of them. It was also important to record the sessions with OBS, as I could navigate easily from the output code to the part in the video and then tweak it as much as I could for the next generation.
 
 \section{Future work}
 As this project took long time to be developed (and the most effort to code and document). There is a plan to add more work to it in the future, to make the AI part more efficient.
 
-The goal for the game display part only, is to save as much as PC resources, so the AI part won't have problem while running and take enough resources. This can be achieved by decreasing the number of loops in the game to make them work on the needed parts only and decreasing the FPS to 30 FPS.
+The goal for the game display part only, is to save as much as PC resources, so the AI part will not have problem while running and take enough resources. This can be achieved by decreasing the number of loops in the game to make them work on the needed parts only and decreasing the FPS to 30 FPS.
 
 The AI part can be optimized by trying different activation functions and seeing the output from each, to get a generation where all of the genomes in it can reach the threshold.
 
-The ability to play on other devices, especially phones. There is a mass market now for the amount of people who use their phones, so if the game can be ported to an Android version, then it would be great for better testing and reviewing. The game is made in a phone aspect ration, so the display won't have a big problem. 
+The ability to play on other devices, especially phones. There is a mass market now for the amount of people who use their phones, so if the game can be ported to an Android version, then it would be great for better testing and reviewing. The game is made in a phone aspect ration, so the display will not have a big problem. 

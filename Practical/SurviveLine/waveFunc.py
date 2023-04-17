@@ -2,8 +2,8 @@ import math
 import time
 from numpy import random
 import pygame
+import pygame.gfxdraw
 
-# from defs import *
 PointsI = 0
 
 
@@ -22,22 +22,26 @@ class Wave:
         self.WaveAmplitude = 50
         self.PointsI = 0  # index to loop inside the points list
         self.PointsList = [0] * 800
-        #define each number
 
     def draw(self, Display):
         for Y_CORD in range(len(self.PointsList)):
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 49 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 50 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 51 - self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 349 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 350 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
-            pygame.gfxdraw.pixel( Display, self.PointsList[Y_CORD] - 351 + self.WaveGap, self.HDisplay - Y_CORD, Wave.WAVE_COLOUR)
+            pygame.gfxdraw.pixel(
+                Display,
+                self.PointsList[Y_CORD] - 50 - self.WaveGap,
+                self.HDisplay - Y_CORD,
+                Wave.WAVE_COLOUR,
+            )
+            pygame.gfxdraw.pixel(
+                Display,
+                self.PointsList[Y_CORD] - 350 + self.WaveGap,
+                self.HDisplay - Y_CORD,
+                Wave.WAVE_COLOUR,
+            )
 
     def changeSpeed(self):
         if (self.ScoreCount % (100 * (self.GameSpeed // 2)) == 0) and self.FPS < 100:
             self.FPS += 2
             self.GameSpeed *= self.GameSpeed
-            # print("incremented speed of game")
         return self.FPS, self.GameSpeed
 
     def changeWave(self):
@@ -47,13 +51,20 @@ class Wave:
             self.WaveAmplitude = random.randint(50, 51 + self.WaveGap // 2)
 
     def generateWave(self):
-
         if self.PointsI % 800 == 0:
             self.PointsI = 0
 
-        pointsList_XCord = int((self.HDisplay / 2) + self.WaveAmplitude * 
-                            math.sin(self.waveFrequency* ((float(0) / -self.WDisplay) 
-                            * (2 * math.pi) +self.waveSpeed* (time.time()))))
+        pointsList_XCord = int(
+            (self.HDisplay / 2)
+            + self.WaveAmplitude
+            * math.sin(
+                self.waveFrequency
+                * (
+                    (float(0) / -self.WDisplay) * (2 * math.pi)
+                    + self.waveSpeed * (time.time())
+                )
+            )
+        )
 
         if pointsList_XCord - self.WaveAmplitude - self.WaveGap > self.WDisplay:
             pointsList_XCord = self.WDisplay + 50 + self.WaveGap
@@ -90,7 +101,6 @@ class Wave:
             self.PointsList[index] = point
 
     def checkGap(self):
-        # gapDirection = True  # to right is true, left is false
         if (self.PointsI not in [0, 1, 799]) and (
             self.PointsList[self.PointsI - 1] - self.PointsList[self.PointsI] > 1
         ):

@@ -1,9 +1,6 @@
 % !TeX document-id = {ab236120-23d1-4dd1-b452-5bd9e04ff499}
 \documentclass{thesis-ekf}
-
-%\usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-%\documentclass{report}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx} %include images
 \usepackage{listings}
@@ -13,21 +10,10 @@
 \usepackage{titlesec} % make arbitrary amound of nested header with numbers
 \usepackage{enumitem}
 \usepackage{url}
-\usepackage[style=authortitle,backend=bibtex]{biblatex}
-\DeclareFieldFormat[article,book,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1}
-
-\DeclareCiteCommand{\citetitle}
-{\boolfalse{citetracker}%
-	\boolfalse{pagetracker}%
-	\usebibmacro{prenote}}
-{\ifciteindex
-	{\indexfield{indextitle}}
-	{}%
-	\printtext[bibhyperref]{\printfield[citetitle]{labeltitle}}}
-{\multicitedelim}
-{\usebibmacro{postnote}}
+\usepackage[style=numeric,backend=bibtex]{biblatex}
 
 \addbibresource{bibliography.bib}
+
 \usepackage{hyperref}
 
 
@@ -64,9 +50,11 @@
 \begin{document}
 	
 	\author{Ahmed Mohamed M. Mahfouz Gadalla}
+	\authorcaption{Computer Science BSc}
 	\title{AI beats a game}
 	\institute{Institute of Mathematics and Informatics}
 	\supervisor{Dr. Kovásznai Gergely}
+	\supervisorcaption{Associate professor}
 	\city{Eger}
 	\date{April 2023}
 	
@@ -75,9 +63,9 @@
 	\tableofcontents
 	
 	\chapter*{Dedication}
-This journey of three years is coming to an end, but it didn't come to this point in the period of only these years. It is the sum of my life up until this point. This is why I want to thank, by far, my parents, \textbf{Amal Hady} and \textbf{Mohamed Mahfouz}. Always putting my priorities before theirs, being the important part of me, and making me the person I am today. Thanking my mom for taking care of me with all the characteristics (good and bad) in myself.  The idea of having an AI that beats the game is inspired from my dad winning over me when I was a child in racing games. I decided to make a game where I wouldn't have to touch the controller to get a higher score than him. From my heart, I thank both of you.
+This journey of three years is coming to an end, but it did not come to this point in the period of only these years. It is the sum of my life up until this point. This is why I want to thank, by far, my parents, \textbf{Amal Hady} and \textbf{Mohamed Mahfouz}. Always putting my priorities before theirs, being the important part of me, and making me the person I am today. Thanking my mom for taking care of me with all the characteristics (good and bad) in myself. The idea of having an AI that beats the game is inspired from my dad winning over me when I was a child in racing games. I decided to make a game where I would not have to touch the controller to get a higher score than him. From my heart, I thank both of you.
 	
-Now that the emotional part is over. There are people who shaped the programmer inside of me today, to the point where he is capable of developing the thesis that is in front of you, my classmates, and my supervisor, \textbf{Dr. Kovásznai Gergely}. His work with me through the studying period, sending emails for him back and forth, really can make it up to him. Not only by guiding me, but also by giving me the steps of what to do. 
+Now that the emotional part is over. There are people who shaped the programmer inside of me today, to the point where he is capable of developing the thesis that is in front of you, my classmates, and my supervisor, \textbf{Dr. Kovásznai Gergely}. His work with me through the studying period, sending emails for him back and forth, really can not make it up to him. Not only by guiding me, but also by giving me the steps of what to do. 
 
 
 

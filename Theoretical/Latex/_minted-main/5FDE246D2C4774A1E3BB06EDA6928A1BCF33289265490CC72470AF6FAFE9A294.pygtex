@@ -4,7 +4,7 @@
 \PYG{k}{def} \PYG{n+nf}{changeSpeed}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
 	\PYG{c+c1}{\PYGZsh{}change the wave aplitude and increase the wave gap}
 \PYG{k}{def} \PYG{n+nf}{changeWave}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
-	\PYG{c+c1}{\PYGZsh{}generate a new point on Y axis}
+	\PYG{c+c1}{\PYGZsh{}generate a new point on Y\PYGZhy{}axis}
 \PYG{k}{def} \PYG{n+nf}{generateWave}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
 	\PYG{c+c1}{\PYGZsh{}add point to the list of points}
 \PYG{k}{def} \PYG{n+nf}{addPoint}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{index}\PYG{p}{,} \PYG{n}{point}\PYG{p}{):}

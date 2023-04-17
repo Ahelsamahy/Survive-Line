@@ -1,8 +1,7 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{def} \PYG{n+nf}{countDistance}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
-\PYG{l+s+sd}{make a list for distance between the bottom edge of ballRect to the corresponding point on the wave}
-\PYG{l+s+sd}{with the same x\PYGZhy{}axis, then one step up on wave and repeat, and make another loop to do the same with the left side}
+\PYG{l+s+sd}{make a list for distance between the bottom edge of ballRect to the corresponding point on the wave with the same X\PYGZhy{}axis, then one step up on wave and repeat, and make another loop to do the same with the left side}
 \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
 	\PYG{n}{ball} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Ball}\PYG{o}{.}\PYG{n}{ballRect}\PYG{p}{()}
 	\PYG{n}{Wave} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Wave}
