@@ -1,6 +1,8 @@
 # Survive Line
 
-<img src="./Assets/Gamelogo.webp" style="zoom:40%;" />
+<p align="center">
+<img src="./Assets/Gamelogo.webp" width="50%" height="50%" /> 
+</p>
 
 **Survive Line** is a game powered by Pygame and Artificial Intelligence, designed as my BSc thesis project. In this game, a ball navigates between two waves where they have random amplitude and the speed between them decreases over time, powered by the latest in AI technology using the N.E.A.T algorithm.
 
@@ -14,13 +16,15 @@
 
 The game features an AI that can autonomously navigate through the waves without any manual intervention. Below is a video showcasing the AI in action
 
-[![AI Gameplay](https://github.com/Ahelsamahy/Survive-Line/blob/master/Assets/AI(12.28).mp4?raw=true)](https://github.com/Ahelsamahy/Survive-Line/blob/master/Assets/AI(12.28).mp4)
+https://github.com/Ahelsamahy/Survive-Line/assets/10195309/7f49307b-deb6-4765-94cc-6789664209fc
+
 
 ## Game Footage
 
 Here's a sneak peek of **Survive Line** in action:
 
-[![Normal Gameplay](https://github.com/Ahelsamahy/Survive-Line/blob/master/Assets/normalFootage.mp4?raw=true)](https://github.com/Ahelsamahy/Survive-Line/blob/master/Assets/normalFootage.mp4)
+https://github.com/Ahelsamahy/Survive-Line/assets/10195309/41cc46dd-8de3-48ee-bc9d-451bf78ec930
+
 
 ### Controls
 
